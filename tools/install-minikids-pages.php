@@ -1,37 +1,27 @@
 <?php
 require 'C:/xampp/htdocs/wordpress/wp-load.php';
 
-$pages = [
-    'inicio' => ['title' => 'Inicio', 'content' => '<!-- wp:minikids-pages/site {"page":"home"} /-->'],
-    'tienda' => ['title' => 'Tienda', 'content' => '<!-- wp:minikids-pages/site {"page":"shop"} /-->'],
-    'nosotros' => ['title' => 'Nosotros', 'content' => '<!-- wp:minikids-pages/site {"page":"about"} /-->'],
-    'contacto' => ['title' => 'Contacto', 'content' => '<!-- wp:minikids-pages/site {"page":"contact"} /-->'],
-];
+/* Native Gutenberg blocks: all text and images become editable in Pages. */
+$home = <<<'BLOCKS'
+<!-- wp:group {"className":"hero"} --><div class="wp-block-group hero"><!-- wp:group {"className":"container hero-grid"} --><div class="wp-block-group container hero-grid"><!-- wp:group {"className":"hero-copy"} --><div class="wp-block-group hero-copy"><!-- wp:paragraph {"className":"eyebrow"} --><p class="eyebrow">La diversión empieza aquí</p><!-- /wp:paragraph --><!-- wp:heading {"level":1} --><h1 class="wp-block-heading">Juega, imagina y <em>sonríe.</em></h1><!-- /wp:heading --><!-- wp:paragraph --><p>Descubre juguetes que despiertan la curiosidad y convierten cada día en una nueva aventura.</p><!-- /wp:paragraph --><!-- wp:buttons --><div class="wp-block-buttons"><!-- wp:button {"className":"button"} --><div class="wp-block-button button"><a class="wp-block-button__link wp-element-button" href="/tienda/">Ver juguetes →</a></div><!-- /wp:button --></div><!-- /wp:buttons --></div><!-- /wp:group --><!-- wp:group {"className":"hero-art"} --><div class="wp-block-group hero-art"><!-- wp:paragraph {"className":"product-emoji"} --><p class="product-emoji">🧸 ✦</p><!-- /wp:paragraph --></div><!-- /wp:group --></div><!-- /wp:group --></div><!-- /wp:group -->
+<!-- wp:group {"className":"section"} --><div class="wp-block-group section"><!-- wp:group {"className":"container"} --><div class="wp-block-group container"><!-- wp:heading {"level":2,"className":"section-title"} --><h2 class="wp-block-heading section-title">Compra por categoría</h2><!-- /wp:heading --><!-- wp:paragraph {"className":"section-subtitle"} --><p class="section-subtitle">Todo lo que necesitas para llenar sus días de diversión.</p><!-- /wp:paragraph --><!-- wp:columns {"className":"category-grid"} --><div class="wp-block-columns category-grid"><!-- wp:column --><div class="wp-block-column"><!-- wp:group {"className":"category-card"} --><div class="wp-block-group category-card"><!-- wp:heading {"level":3} --><h3 class="wp-block-heading">Peluches</h3><!-- /wp:heading --><!-- wp:paragraph {"className":"emoji"} --><p class="emoji">🧸</p><!-- /wp:paragraph --></div><!-- /wp:group --></div><!-- /wp:column --><!-- wp:column --><div class="wp-block-column"><!-- wp:group {"className":"category-card"} --><div class="wp-block-group category-card"><!-- wp:heading {"level":3} --><h3 class="wp-block-heading">Aprende jugando</h3><!-- /wp:heading --><!-- wp:paragraph {"className":"emoji"} --><p class="emoji">🧩</p><!-- /wp:paragraph --></div><!-- /wp:group --></div><!-- /wp:column --><!-- wp:column --><div class="wp-block-column"><!-- wp:group {"className":"category-card"} --><div class="wp-block-group category-card"><!-- wp:heading {"level":3} --><h3 class="wp-block-heading">Para compartir</h3><!-- /wp:heading --><!-- wp:paragraph {"className":"emoji"} --><p class="emoji">🎲</p><!-- /wp:paragraph --></div><!-- /wp:group --></div><!-- /wp:column --></div><!-- /wp:columns --></div><!-- /wp:group --></div><!-- /wp:group -->
+<!-- wp:group {"className":"section"} --><div class="wp-block-group section"><!-- wp:group {"className":"container promo-band"} --><div class="wp-block-group container promo-band"><!-- wp:group --><div class="wp-block-group"><!-- wp:paragraph {"className":"eyebrow"} --><p class="eyebrow">Pequeños precios, grandes momentos</p><!-- /wp:paragraph --><!-- wp:heading {"level":2} --><h2 class="wp-block-heading">Todo por debajo de S/ 29.90</h2><!-- /wp:heading --><!-- wp:paragraph --><p>Encuentra detalles divertidos para sorprender sin complicarte.</p><!-- /wp:paragraph --></div><!-- /wp:group --><!-- wp:paragraph {"className":"promo-art"} --><p class="promo-art">🎈 🧸 🎁</p><!-- /wp:paragraph --></div><!-- /wp:group --></div><!-- /wp:group -->
+BLOCKS;
 
-$ids = [];
-foreach ($pages as $slug => $page) {
+$shop = <<<'BLOCKS'
+<!-- wp:group {"className":"catalog-heading"} --><div class="wp-block-group catalog-heading"><!-- wp:group {"className":"container"} --><div class="wp-block-group container"><!-- wp:heading {"level":1} --><h1 class="wp-block-heading">Todos los juguetes</h1><!-- /wp:heading --><!-- wp:paragraph --><p>Elige una nueva aventura para cada día.</p><!-- /wp:paragraph --></div><!-- /wp:group --></div><!-- /wp:group -->
+<!-- wp:group {"className":"section"} --><div class="wp-block-group section"><!-- wp:group {"className":"container"} --><div class="wp-block-group container"><!-- wp:heading {"level":2,"className":"section-title"} --><h2 class="wp-block-heading section-title">Nuestros favoritos</h2><!-- /wp:heading --><!-- wp:columns {"className":"product-grid"} --><div class="wp-block-columns product-grid"><!-- wp:column --><div class="wp-block-column"><!-- wp:group {"className":"product-card"} --><div class="wp-block-group product-card"><!-- wp:image {"sizeSlug":"large","className":"product-image"} --><figure class="wp-block-image size-large product-image"><img src="https://images.unsplash.com/photo-1559454403-b8fb88521f11?auto=format&amp;fit=crop&amp;w=700&amp;q=80" alt="Peluche osito"/></figure><!-- /wp:image --><!-- wp:paragraph {"className":"product-category"} --><p class="product-category">Peluches</p><!-- /wp:paragraph --><!-- wp:heading {"level":3,"className":"product-name"} --><h3 class="wp-block-heading product-name">Peluche osito abrazable</h3><!-- /wp:heading --><!-- wp:paragraph {"className":"price"} --><p class="price">S/ 39.90</p><!-- /wp:paragraph --></div><!-- /wp:group --></div><!-- /wp:column --><!-- wp:column --><div class="wp-block-column"><!-- wp:group {"className":"product-card"} --><div class="wp-block-group product-card"><!-- wp:image {"sizeSlug":"large","className":"product-image"} --><figure class="wp-block-image size-large product-image"><img src="https://images.unsplash.com/photo-1594787318286-3d835c1d207f?auto=format&amp;fit=crop&amp;w=700&amp;q=80" alt="Bloques creativos"/></figure><!-- /wp:image --><!-- wp:paragraph {"className":"product-category"} --><p class="product-category">Didácticos</p><!-- /wp:paragraph --><!-- wp:heading {"level":3,"className":"product-name"} --><h3 class="wp-block-heading product-name">Bloques creativos 60 piezas</h3><!-- /wp:heading --><!-- wp:paragraph {"className":"price"} --><p class="price">S/ 29.90</p><!-- /wp:paragraph --></div><!-- /wp:group --></div><!-- /wp:column --></div><!-- /wp:columns --></div><!-- /wp:group --></div><!-- /wp:group -->
+BLOCKS;
+
+$about = '<!-- wp:group {"className":"catalog-heading"} --><div class="wp-block-group catalog-heading"><!-- wp:group {"className":"container"} --><div class="wp-block-group container"><!-- wp:heading {"level":1} --><h1 class="wp-block-heading">Jugar es crecer</h1><!-- /wp:heading --><!-- wp:paragraph --><p>Conoce la historia detrás de MiniKids.</p><!-- /wp:paragraph --></div><!-- /wp:group --></div><!-- /wp:group --><!-- wp:group {"className":"section"} --><div class="wp-block-group section"><!-- wp:group {"className":"container promo-band"} --><div class="wp-block-group container promo-band"><!-- wp:group --><div class="wp-block-group"><!-- wp:paragraph {"className":"eyebrow"} --><p class="eyebrow">Nuestra historia</p><!-- /wp:paragraph --><!-- wp:heading {"level":2} --><h2 class="wp-block-heading">Pequeñas sorpresas para grandes sonrisas.</h2><!-- /wp:heading --><!-- wp:paragraph --><p>En MiniKids creemos que el mejor regalo es el momento de descubrir, imaginar y compartir.</p><!-- /wp:paragraph --></div><!-- /wp:group --><!-- wp:paragraph {"className":"promo-art"} --><p class="promo-art">🧸 ✨ 🎨</p><!-- /wp:paragraph --></div><!-- /wp:group --></div><!-- /wp:group -->';
+$contact = '<!-- wp:group {"className":"catalog-heading"} --><div class="wp-block-group catalog-heading"><!-- wp:group {"className":"container"} --><div class="wp-block-group container"><!-- wp:heading {"level":1} --><h1 class="wp-block-heading">Hablemos</h1><!-- /wp:heading --><!-- wp:paragraph --><p>Estamos aquí para ayudarte a encontrar el regalo perfecto.</p><!-- /wp:paragraph --></div><!-- /wp:group --></div><!-- /wp:group --><!-- wp:group {"className":"section"} --><div class="wp-block-group section"><!-- wp:group {"className":"container newsletter"} --><div class="wp-block-group container newsletter"><!-- wp:group --><div class="wp-block-group"><!-- wp:heading {"level":2} --><h2 class="wp-block-heading">¿Tienes una pregunta?</h2><!-- /wp:heading --><!-- wp:paragraph --><p>Escríbenos a hola@minikids.pe y te responderemos pronto.</p><!-- /wp:paragraph --></div><!-- /wp:group --><!-- wp:buttons --><div class="wp-block-buttons"><!-- wp:button {"className":"button light"} --><div class="wp-block-button button light"><a class="wp-block-button__link wp-element-button" href="mailto:hola@minikids.pe">Escribir ahora →</a></div><!-- /wp:button --></div><!-- /wp:buttons --></div><!-- /wp:group --></div><!-- /wp:group -->';
+
+$pages = ['inicio' => ['Inicio', $home], 'tienda' => ['Tienda', $shop], 'nosotros' => ['Nosotros', $about], 'contacto' => ['Contacto', $contact]];
+foreach ($pages as $slug => [$title, $content]) {
     $existing = get_page_by_path($slug);
-    $post = [
-        'post_title' => $page['title'],
-        'post_name' => $slug,
-        'post_content' => $page['content'],
-        'post_status' => 'publish',
-        'post_type' => 'page',
-    ];
-    $ids[$slug] = $existing ? wp_update_post(array_merge($post, ['ID' => $existing->ID]), true) : wp_insert_post($post, true);
+    $post = ['post_title' => $title, 'post_name' => $slug, 'post_content' => $content, 'post_status' => 'publish', 'post_type' => 'page'];
+    $id = $existing ? wp_update_post($post + ['ID' => $existing->ID], true) : wp_insert_post($post, true);
+    if ($slug === 'inicio') { update_option('show_on_front', 'page'); update_option('page_on_front', (int) $id); }
+    echo $slug . ':' . $id . ':' . get_permalink($id) . PHP_EOL;
 }
-
-$active = get_option('active_plugins', []);
-if (!in_array('minikids-pages/minikids-pages.php', $active, true)) {
-    $active[] = 'minikids-pages/minikids-pages.php';
-    update_option('active_plugins', $active);
-}
-update_option('template', 'twentytwentyfive');
-update_option('stylesheet', 'twentytwentyfive');
-update_option('show_on_front', 'page');
-update_option('page_on_front', (int) $ids['inicio']);
-update_option('blogname', 'MiniKids Peru');
-update_option('blogdescription', 'Juguetes, regalos y grandes sonrisas');
-
-echo "PAGES_READY\n";
-foreach ($ids as $slug => $id) echo $slug . ':' . $id . ':' . get_permalink($id) . "\n";
+echo "PAGES_CONVERTED_TO_NATIVE_BLOCKS\n";

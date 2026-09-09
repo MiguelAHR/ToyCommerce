@@ -34,7 +34,10 @@ function mkp_register_blocks() {
     ]);
 }
 add_action('init', 'mkp_register_blocks');
-function mkp_editor_assets() { wp_enqueue_style('mkp-editor-toolbar', plugin_dir_url(__FILE__) . 'editor.css', [], '1.0.0'); }
+function mkp_editor_assets() {
+    wp_enqueue_style('mkp-editor-public', plugin_dir_url(__FILE__) . 'minikids-pages.css', [], '1.0.1');
+    wp_enqueue_style('mkp-editor-toolbar', plugin_dir_url(__FILE__) . 'editor.css', [], '1.0.0');
+}
 add_action('enqueue_block_editor_assets', 'mkp_editor_assets');
 
 function mkp_products() {
