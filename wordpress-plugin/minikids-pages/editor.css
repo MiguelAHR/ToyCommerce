@@ -1,0 +1,41 @@
+.mkp-editor-preview {
+  border: 1px solid #ded8d2;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(36, 30, 24, .08);
+}
+.mkp-editor-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 13px 17px;
+  border-bottom: 1px solid #ebe6e1;
+  background: linear-gradient(110deg, #fff7f4, #fff);
+}
+.mkp-editor-heading { display: flex; align-items: center; gap: 10px; }
+.mkp-editor-heading strong { display: block; color: #25211e; font-size: 13px; }
+.mkp-editor-heading span:not(.mkp-editor-icon) { display: block; margin-top: 2px; color: #827a73; font-size: 11px; }
+.mkp-editor-icon { display: grid; width: 31px; height: 31px; place-items: center; border-radius: 9px; background: #f34b45; color: #fff; font-size: 15px; }
+.mkp-editor-toolbar .components-base-control { width: 188px; margin: 0; }
+.mkp-editor-toolbar .components-base-control__label { display: none; }
+.mkp-editor-toolbar .components-select-control__input { min-height: 32px; border-color: #d9d2cb; border-radius: 7px; font-size: 12px; }
+.mkp-editor-canvas { padding: 20px; background: #f4f1ee; }
+.mkp-editor-browser { overflow: hidden; border: 1px solid #d8d2cc; border-radius: 10px; background: #fff; box-shadow: 0 7px 17px rgba(43, 35, 29, .14); }
+.mkp-editor-browser-bar { display: flex; align-items: center; gap: 14px; height: 31px; padding: 0 11px; border-bottom: 1px solid #eee9e5; background: #fbfaf9; color: #968d86; font-size: 9px; }
+.mkp-editor-dots { color: #f06861; font-size: 10px; letter-spacing: 2px; }
+.mkp-editor-url { width: 190px; max-width: 55%; overflow: hidden; border-radius: 5px; padding: 4px 8px; background: #f0eeec; text-overflow: ellipsis; white-space: nowrap; }
+.mkp-editor-viewport { position: relative; max-height: 580px; overflow: auto; background: #fff; }
+.mkp-editor-site-scale { width: 161.3%; min-height: 920px; transform: scale(.62); transform-origin: top left; }
+.mkp-editor-site-scale .site-shell { overflow: hidden; }
+.mkp-editor-site-scale .cart-drawer { display: none !important; }
+.mkp-editor-site-scale .site-header { position: relative; top: auto; }
+.mkp-editor-site-scale .header-actions, .mkp-editor-site-scale .add-button, .mkp-editor-site-scale .newsletter-form { pointer-events: none; }
+@media (max-width: 782px) {
+  .mkp-editor-toolbar { align-items: flex-start; flex-direction: column; }
+  .mkp-editor-toolbar .components-base-control { width: 100%; }
+  .mkp-editor-canvas { padding: 10px; }
+  .mkp-editor-viewport { max-height: 460px; }
+  .mkp-editor-site-scale { width: 217.4%; transform: scale(.46); }
+}
