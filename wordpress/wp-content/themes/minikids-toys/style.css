@@ -72,8 +72,16 @@ button { cursor: pointer; }
 .toy-bear::before, .toy-bear::after { content: ""; position: absolute; top: -25px; width: 68px; height: 68px; border-radius: 50%; background: #bd8054; }
 .toy-bear::before { left: 7px; } .toy-bear::after { right: 7px; }
 .bear-face { position: absolute; left: 50%; top: 54px; width: 130px; height: 96px; border-radius: 50%; background: #e6b682; transform: translateX(-50%); }
-.bear-face::before { content: "•  •"; position: absolute; top: 20px; left: 28px; color: #39251b; font-size: 21px; letter-spacing: 25px; }
-.bear-face::after { content: "⌣"; position: absolute; left: 54px; top: 34px; color: #39251b; font-size: 29px; }
+/* Rasgos dibujados con formas CSS. Antes eran los glifos "•" (ojos) y "⌣" (boca)
+   usados como graficos: la fuente los renderizaba a 4x5 px y como una linea
+   plana de 24x4 px, practicamente invisibles. */
+.bear-eye { position: absolute; top: 20px; width: 14px; height: 16px; border-radius: 50%; background: #39251b; }
+.bear-eye.left { left: 29px; }
+.bear-eye.right { right: 29px; }
+/* La bufanda arranca en la cara-local y=74, asi que los rasgos se mantienen arriba. */
+.bear-muzzle { position: absolute; left: 50%; top: 38px; width: 58px; height: 34px; border-radius: 50%; background: #f4d6b0; transform: translateX(-50%); }
+.bear-muzzle::before { content: ""; position: absolute; left: 50%; top: 4px; width: 18px; height: 12px; border-radius: 50% 50% 58% 58%; background: #39251b; transform: translateX(-50%); }
+.bear-muzzle::after { content: ""; position: absolute; left: 50%; top: 13px; width: 26px; height: 12px; border-bottom: 3px solid #39251b; border-radius: 0 0 60% 60%; transform: translateX(-50%); }
 .toy-bear .scarf { position: absolute; left: 22px; bottom: 23px; width: 140px; height: 31px; border-radius: 16px; background: var(--red); transform: rotate(-3deg); }
 .toy-star { position: absolute; right: 0; bottom: 23px; color: #5ab7a0; font-size: 110px; line-height: 1; transform: rotate(16deg); }
 .spark { position: absolute; color: #fff; font-size: 25px; }

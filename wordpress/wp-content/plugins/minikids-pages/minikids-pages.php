@@ -9,8 +9,12 @@ if (!defined('ABSPATH')) { exit; }
 
 function mkp_assets() {
     wp_enqueue_style('mkp-fonts', 'https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito+Sans:wght@400;600;700;800;900&display=swap', [], null);
-    wp_enqueue_style('mkp-style', plugin_dir_url(__FILE__) . 'minikids-pages.css', [], '1.0.1');
-    wp_enqueue_script('mkp-cart', plugin_dir_url(__FILE__) . 'cart.js', [], '1.0.1', true);
+    // Version basada en la fecha de modificacion del archivo: al editar el CSS/JS
+    // el navegador descarga la version nueva en lugar de servir la cacheada.
+    $mkp_css = plugin_dir_path(__FILE__) . 'minikids-pages.css';
+    $mkp_js  = plugin_dir_path(__FILE__) . 'cart.js';
+    wp_enqueue_style('mkp-style', plugin_dir_url(__FILE__) . 'minikids-pages.css', [], filemtime($mkp_css));
+    wp_enqueue_script('mkp-cart', plugin_dir_url(__FILE__) . 'cart.js', [], filemtime($mkp_js), true);
 }
 add_action('wp_enqueue_scripts', 'mkp_assets');
 
@@ -22,7 +26,7 @@ function mkp_register_blocks() {
         '1.0.0',
         true
     );
-    wp_register_style('mkp-editor-style', plugin_dir_url(__FILE__) . 'minikids-pages.css', [], '1.0.1');
+    wp_register_style('mkp-editor-style', plugin_dir_url(__FILE__) . 'minikids-pages.css', [], filemtime(plugin_dir_path(__FILE__) . 'minikids-pages.css'));
     register_block_type('minikids-pages/site', [
         'api_version' => 3,
         'editor_script' => 'mkp-block-editor',
@@ -35,7 +39,7 @@ function mkp_register_blocks() {
 }
 add_action('init', 'mkp_register_blocks');
 function mkp_editor_assets() {
-    wp_enqueue_style('mkp-editor-public', plugin_dir_url(__FILE__) . 'minikids-pages.css', [], '1.0.1');
+    wp_enqueue_style('mkp-editor-public', plugin_dir_url(__FILE__) . 'minikids-pages.css', [], filemtime(plugin_dir_path(__FILE__) . 'minikids-pages.css'));
     wp_enqueue_style('mkp-editor-toolbar', plugin_dir_url(__FILE__) . 'editor.css', [], '1.0.0');
 }
 add_action('enqueue_block_editor_assets', 'mkp_editor_assets');
@@ -68,7 +72,7 @@ function mkp_footer() { ob_start(); ?>
     <?php return ob_get_clean(); }
 function mkp_home() {
     $products = mkp_products(); ob_start(); ?>
-    <main><section class="hero"><div class="container hero-grid"><div class="hero-copy"><span class="eyebrow">La diversión empieza aquí</span><h1>Juega, imagina y <em>sonríe.</em></h1><p>Descubre juguetes que despiertan la curiosidad y convierten cada día en una nueva aventura.</p><a class="button" href="<?php echo esc_url(mkp_url('tienda')); ?>">Ver juguetes <span>→</span></a></div><div class="hero-art"><div class="toy-illustration"><span class="spark one">✦</span><span class="spark two">✦</span><div class="toy-star">★</div><div class="toy-bear"><div class="bear-face"></div><div class="scarf"></div></div></div></div></div></section><div class="container"><div class="trust-row"><div class="trust-item"><span class="trust-icon">🚚</span><span>Envíos a todo<br>el Perú</span></div><div class="trust-item"><span class="trust-icon">🎁</span><span>Regalos para<br>cada ocasión</span></div><div class="trust-item"><span class="trust-icon">🔒</span><span>Compra<br>segura</span></div><div class="trust-item"><span class="trust-icon">💬</span><span>Estamos para<br>ayudarte</span></div></div></div><section class="section"><div class="container"><div class="section-head"><div><h2 class="section-title">Compra por categoría</h2><p class="section-subtitle">Todo lo que necesitas para llenar sus días de diversión.</p></div></div><div class="category-grid"><a class="category-card" href="<?php echo esc_url(mkp_url('tienda')); ?>?categoria=peluches"><h3>Peluches</h3><span class="emoji">🧸</span></a><a class="category-card" href="<?php echo esc_url(mkp_url('tienda')); ?>?categoria=didacticos"><h3>Aprende jugando</h3><span class="emoji">🧩</span></a><a class="category-card" href="<?php echo esc_url(mkp_url('tienda')); ?>?categoria=juegos-familiares"><h3>Para compartir</h3><span class="emoji">🎲</span></a><a class="category-card" href="<?php echo esc_url(mkp_url('tienda')); ?>?categoria=vehiculos"><h3>Mini aventuras</h3><span class="emoji">🚀</span></a></div></div></section><section class="section" id="destacados"><div class="container"><div class="section-head"><div><h2 class="section-title">Favoritos de la semana</h2><p class="section-subtitle">Los juguetes que todos quieren llevar a casa.</p></div><a class="text-link" href="<?php echo esc_url(mkp_url('tienda')); ?>">Ver todos →</a></div><div class="product-grid"><?php foreach (array_slice($products,0,4) as $p) echo mkp_card($p); ?></div></div></section><section class="section"><div class="container"><div class="promo-band"><div><span class="eyebrow">Pequeños precios, grandes momentos</span><h2>Todo por debajo de S/ 29.90</h2><p>Encuentra detalles divertidos para sorprender sin complicarte.</p><a class="button light" href="<?php echo esc_url(mkp_url('tienda')); ?>?categoria=ofertas">Ver ofertas <span>→</span></a></div><div class="promo-art" aria-hidden="true">🎈 🧸 🎁</div></div></div></section><section class="section"><div class="container"><div class="newsletter"><div><h2>Recibe un poquito de magia</h2><p>Suscríbete y entérate primero de nuestras novedades y promos.</p></div><form class="newsletter-form" action="#" method="post"><input type="email" placeholder="Tu correo electrónico" aria-label="Tu correo electrónico" required><button type="submit">Suscribirme</button></form></div></div></section></main>
+    <main><section class="hero"><div class="container hero-grid"><div class="hero-copy"><span class="eyebrow">La diversión empieza aquí</span><h1>Juega, imagina y <em>sonríe.</em></h1><p>Descubre juguetes que despiertan la curiosidad y convierten cada día en una nueva aventura.</p><a class="button" href="<?php echo esc_url(mkp_url('tienda')); ?>">Ver juguetes <span>→</span></a></div><div class="hero-art"><div class="toy-illustration"><span class="spark one">✦</span><span class="spark two">✦</span><div class="toy-star">★</div><div class="toy-bear"><div class="bear-face"><i class="bear-eye left"></i><i class="bear-eye right"></i><i class="bear-muzzle"></i></div><div class="scarf"></div></div></div></div></div></section><div class="container"><div class="trust-row"><div class="trust-item"><span class="trust-icon">🚚</span><span>Envíos a todo<br>el Perú</span></div><div class="trust-item"><span class="trust-icon">🎁</span><span>Regalos para<br>cada ocasión</span></div><div class="trust-item"><span class="trust-icon">🔒</span><span>Compra<br>segura</span></div><div class="trust-item"><span class="trust-icon">💬</span><span>Estamos para<br>ayudarte</span></div></div></div><section class="section"><div class="container"><div class="section-head"><div><h2 class="section-title">Compra por categoría</h2><p class="section-subtitle">Todo lo que necesitas para llenar sus días de diversión.</p></div></div><div class="category-grid"><a class="category-card" href="<?php echo esc_url(mkp_url('tienda')); ?>?categoria=peluches"><h3>Peluches</h3><span class="emoji">🧸</span></a><a class="category-card" href="<?php echo esc_url(mkp_url('tienda')); ?>?categoria=didacticos"><h3>Aprende jugando</h3><span class="emoji">🧩</span></a><a class="category-card" href="<?php echo esc_url(mkp_url('tienda')); ?>?categoria=juegos-familiares"><h3>Para compartir</h3><span class="emoji">🎲</span></a><a class="category-card" href="<?php echo esc_url(mkp_url('tienda')); ?>?categoria=vehiculos"><h3>Mini aventuras</h3><span class="emoji">🚀</span></a></div></div></section><section class="section" id="destacados"><div class="container"><div class="section-head"><div><h2 class="section-title">Favoritos de la semana</h2><p class="section-subtitle">Los juguetes que todos quieren llevar a casa.</p></div><a class="text-link" href="<?php echo esc_url(mkp_url('tienda')); ?>">Ver todos →</a></div><div class="product-grid"><?php foreach (array_slice($products,0,4) as $p) echo mkp_card($p); ?></div></div></section><section class="section"><div class="container"><div class="promo-band"><div><span class="eyebrow">Pequeños precios, grandes momentos</span><h2>Todo por debajo de S/ 29.90</h2><p>Encuentra detalles divertidos para sorprender sin complicarte.</p><a class="button light" href="<?php echo esc_url(mkp_url('tienda')); ?>?categoria=ofertas">Ver ofertas <span>→</span></a></div><div class="promo-art" aria-hidden="true">🎈 🧸 🎁</div></div></div></section><section class="section"><div class="container"><div class="newsletter"><div><h2>Recibe un poquito de magia</h2><p>Suscríbete y entérate primero de nuestras novedades y promos.</p></div><form class="newsletter-form" action="#" method="post"><input type="email" placeholder="Tu correo electrónico" aria-label="Tu correo electrónico" required><button type="submit">Suscribirme</button></form></div></div></section></main>
     <?php return ob_get_clean();
 }
 function mkp_shop() {
@@ -86,7 +90,9 @@ function mkp_page_shell() {
     if (!is_page()) return;
     $page=get_queried_object(); $map=['inicio'=>'home','tienda'=>'shop','nosotros'=>'about','contacto'=>'contact'];
     if (!$page || empty($map[$page->post_name])) return;
-    $content=do_blocks(get_post_field('post_content',$page->ID));
+    // Renderiza la plantilla dinámica del plugin (botones de carrito, filtros,
+    // búsqueda, precios) en lugar de la maqueta estática guardada en la página.
+    $content=mkp_site_shortcode(['page' => $map[$page->post_name]]);
     status_header(200); nocache_headers(); ?><!doctype html><html <?php language_attributes(); ?>><head><meta charset="<?php bloginfo('charset'); ?>"><meta name="viewport" content="width=device-width, initial-scale=1"><title><?php echo esc_html(get_the_title($page)); ?> · MiniKids Peru</title><style>html,body{width:100%;min-height:100%;margin:0;padding:0;background:#fff}body .site-shell{display:block;width:100%;min-height:100vh;margin:0;padding:0}</style><?php wp_head(); ?></head><body <?php body_class('mkp-page'); ?>><?php wp_body_open(); ?><div class="site-shell"><?php echo mkp_header(); echo $content; echo mkp_footer(); ?></div><?php wp_footer(); ?></body></html><?php exit;
 }
 add_action('template_redirect','mkp_page_shell',1);
