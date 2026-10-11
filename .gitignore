@@ -1,0 +1,23 @@
+# Credenciales locales: nunca versionar la configuración real de WordPress.
+# Usa wordpress/wp-config.example.php como plantilla.
+wordpress/wp-config.php
+wordpress/wp-config.php.bak-*
+
+# Copias de seguridad y archivos temporales
+*.bak
+*.bak-*
+*.log
+*.tmp
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Directorios gestionados por WordPress en tiempo de ejecución
+wordpress/wp-content/upgrade/
+wordpress/wp-content/cache/
+wordpress/wp-content/ai1wm-backups/
+
+# Registros de XAMPP
+xampp-logs/

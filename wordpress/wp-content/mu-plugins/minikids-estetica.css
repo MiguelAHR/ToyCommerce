@@ -1,0 +1,272 @@
+/* ==========================================================================
+   MiniKids · Estetica sobre WooCommerce
+   Paleta, tipografias y estilos de tienda. Cargado por mu-plugin.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito+Sans:wght@400;600;700;800;900&display=swap');
+
+:root {
+  --ink: #202020;
+  --muted: #737373;
+  --red: #ed4b43;
+  --red-dark: #d83d37;
+  --pink: #ffe7e4;
+  --cream: #fffaf6;
+  --line: #ece8e4;
+  --card: #f7f5f2;
+  --yellow: #ffd957;
+  --mint: #dff3eb;
+  --blue: #ddecfa;
+  --max: 1240px;
+  --mkp-radius: 18px;
+}
+
+/* ---------- Tipografia ---------- */
+body,
+.wp-site-blocks,
+.woocommerce,
+.woocommerce-page {
+  font-family: "Nunito Sans", system-ui, sans-serif;
+  color: var(--ink);
+}
+
+h1, h2, h3, h4,
+.wp-block-heading,
+.woocommerce h1,
+.woocommerce h2,
+.woocommerce h3,
+.woocommerce-products-header__title {
+  font-family: "Baloo 2", "Nunito Sans", sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+/* ---------- Botones ---------- */
+.woocommerce a.button,
+.woocommerce button.button,
+.woocommerce input.button,
+.woocommerce #respond input#submit,
+.wp-block-button__link,
+.wc-block-components-button,
+.woocommerce-MyAccount-content .button {
+  background: var(--red) !important;
+  color: #fff !important;
+  border: 0 !important;
+  border-radius: 24px !important;
+  padding: 12px 22px !important;
+  font-family: "Nunito Sans", sans-serif !important;
+  font-weight: 900 !important;
+  font-size: 13px !important;
+  text-transform: none;
+  transition: background .2s ease, transform .2s ease;
+}
+
+.woocommerce a.button:hover,
+.woocommerce button.button:hover,
+.woocommerce input.button:hover,
+.woocommerce #respond input#submit:hover,
+.wp-block-button__link:hover,
+.wc-block-components-button:hover {
+  background: var(--red-dark) !important;
+  transform: translateY(-2px);
+}
+
+.woocommerce a.button.alt,
+.woocommerce button.button.alt,
+.woocommerce input.button.alt {
+  background: var(--red) !important;
+}
+
+/* ---------- Precios ---------- */
+.woocommerce-Price-amount,
+.wc-block-components-product-price__value {
+  color: var(--red) !important;
+  font-weight: 900 !important;
+}
+
+.woocommerce-Price-amount del,
+.woocommerce del .woocommerce-Price-amount,
+.wc-block-components-product-price del {
+  color: var(--muted) !important;
+  font-weight: 600 !important;
+  opacity: .7;
+}
+
+/* ---------- Tarjetas de producto ---------- */
+.woocommerce ul.products li.product,
+.wc-block-grid__product {
+  background: var(--card);
+  border-radius: var(--mkp-radius);
+  padding: 14px !important;
+  transition: transform .2s ease, box-shadow .2s ease;
+  text-align: center;
+}
+
+.woocommerce ul.products li.product:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(32, 32, 32, .08);
+}
+
+.woocommerce ul.products li.product img,
+.wc-block-grid__product-image img {
+  border-radius: 14px;
+  margin-bottom: 10px;
+}
+
+.woocommerce ul.products li.product .woocommerce-loop-product__title {
+  font-family: "Baloo 2", sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--ink);
+  padding: 4px 0 2px;
+}
+
+.woocommerce ul.products li.product .button {
+  margin-top: 10px;
+}
+
+/* Sello de oferta */
+.woocommerce span.onsale {
+  background: var(--yellow) !important;
+  color: var(--ink) !important;
+  border-radius: 999px !important;
+  min-height: 0 !important;
+  min-width: 0 !important;
+  padding: 5px 12px !important;
+  font-family: "Nunito Sans", sans-serif !important;
+  font-weight: 900 !important;
+  font-size: 11px !important;
+  line-height: 1.4 !important;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+/* ---------- Cabecera de catalogo ---------- */
+.woocommerce-products-header {
+  background: var(--pink);
+  border-radius: var(--mkp-radius);
+  padding: 34px 26px;
+  margin-bottom: 34px;
+}
+
+.woocommerce-products-header__title {
+  margin: 0 !important;
+}
+
+/* ---------- Ficha de producto ---------- */
+.single-product div.product {
+  background: var(--cream);
+  border-radius: var(--mkp-radius);
+  padding: 28px;
+}
+
+.single-product div.product .product_title {
+  font-family: "Baloo 2", sans-serif;
+  font-weight: 800;
+}
+
+.single-product div.product p.price {
+  font-size: 30px !important;
+}
+
+.single-product div.product .woocommerce-tabs ul.tabs li a {
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.single-product div.product .woocommerce-tabs ul.tabs li.active a {
+  color: var(--red);
+}
+
+/* ---------- Carrito y checkout ---------- */
+.woocommerce-cart-form,
+.woocommerce-checkout-review-order,
+.wc-block-cart,
+.wc-block-checkout {
+  background: var(--cream);
+  border-radius: var(--mkp-radius);
+  padding: 22px;
+}
+
+.woocommerce table.shop_table {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.woocommerce table.shop_table th {
+  background: var(--card);
+  font-family: "Baloo 2", sans-serif;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.woocommerce .cart_totals h2,
+.woocommerce #order_review_heading {
+  font-family: "Baloo 2", sans-serif;
+  font-weight: 800;
+}
+
+/* ---------- Avisos ---------- */
+.woocommerce-message,
+.woocommerce-info,
+.woocommerce-error {
+  border-radius: 14px;
+  border-top-color: var(--red);
+  background: var(--card);
+  color: var(--ink);
+}
+
+.woocommerce-message::before,
+.woocommerce-info::before {
+  color: var(--red);
+}
+
+/* ---------- Ilustracion del osito (para usar en la portada) ---------- */
+.mkp-hero-art { display: grid; place-items: center; position: relative; min-height: 430px; }
+.mkp-hero-art::before { content: ""; width: 320px; height: 320px; border-radius: 50%; background: var(--yellow); position: absolute; }
+.mkp-hero-art::after { content: "★"; position: absolute; top: 54px; right: 40px; color: var(--red); font-size: 38px; transform: rotate(15deg); }
+.toy-illustration { z-index: 1; position: relative; width: 280px; height: 250px; }
+.toy-bear { position: absolute; left: 46px; bottom: 0; width: 184px; height: 182px; border-radius: 48% 48% 42% 42%; background: #bd8054; box-shadow: inset -12px -12px 0 rgba(122,72,43,.13); }
+.toy-bear::before, .toy-bear::after { content: ""; position: absolute; top: -25px; width: 68px; height: 68px; border-radius: 50%; background: #bd8054; }
+.toy-bear::before { left: 7px; }
+.toy-bear::after { right: 7px; }
+.toy-bear .scarf { position: absolute; left: 22px; bottom: 23px; width: 140px; height: 31px; border-radius: 16px; background: var(--red); transform: rotate(-3deg); }
+.bear-face { position: absolute; left: 50%; top: 54px; width: 130px; height: 96px; border-radius: 50%; background: #e6b682; transform: translateX(-50%); }
+.bear-eye { position: absolute; top: 20px; width: 14px; height: 16px; border-radius: 50%; background: #39251b; }
+.bear-eye.left { left: 29px; }
+.bear-eye.right { right: 29px; }
+.bear-muzzle { position: absolute; left: 50%; top: 38px; width: 58px; height: 34px; border-radius: 50%; background: #f4d6b0; transform: translateX(-50%); }
+.bear-muzzle::before { content: ""; position: absolute; left: 50%; top: 4px; width: 18px; height: 12px; border-radius: 50% 50% 58% 58%; background: #39251b; transform: translateX(-50%); }
+.bear-muzzle::after { content: ""; position: absolute; left: 50%; top: 13px; width: 26px; height: 12px; border-bottom: 3px solid #39251b; border-radius: 0 0 60% 60%; transform: translateX(-50%); }
+.toy-star { position: absolute; right: 0; bottom: 23px; color: #5ab7a0; font-size: 110px; line-height: 1; transform: rotate(16deg); }
+.spark { position: absolute; color: #fff; font-size: 25px; }
+.spark.one { left: 8px; top: 42px; }
+.spark.two { right: 20px; bottom: 142px; color: var(--red); }
+
+/* ---------- Portada ---------- */
+.mkp-hero {
+  background: var(--pink);
+  border-radius: var(--mkp-radius);
+  padding: 48px 24px 34px;
+  margin-bottom: 34px;
+}
+
+.mkp-hero h1 {
+  font-size: clamp(38px, 5vw, 64px);
+  line-height: .95;
+  margin-bottom: 10px;
+}
+
+.mkp-hero p {
+  color: #555;
+  max-width: 620px;
+  margin: 0 auto 8px;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 780px) {
+  .single-product div.product { padding: 18px; }
+  .woocommerce-products-header { padding: 24px 18px; }
+}

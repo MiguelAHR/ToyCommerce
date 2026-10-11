@@ -1,0 +1,38 @@
+/* ESTETICA MINIKIDS - guardada para aplicar despues sobre WooCommerce */
+
+/* ---- 1. PALETA Y VARIABLES ---- */
+:root {
+  --ink: #202020;
+  --muted: #737373;
+  --red: #ed4b43;
+  --red-dark: #d83d37;
+  --pink: #ffe7e4;
+  --cream: #fffaf6;
+  --line: #ece8e4;
+  --card: #f7f5f2;
+  --yellow: #ffd957;
+  --mint: #dff3eb;
+  --blue: #ddecfa;
+  --max: 1240px;
+}
+
+/* ---- 2. OSITO Y PORTADA ---- */
+.toy-illustration { z-index: 1; position: relative; width: 280px; height: 250px; }
+.toy-bear { position: absolute; left: 46px; bottom: 0; width: 184px; height: 182px; border-radius: 48% 48% 42% 42%; background: #bd8054; box-shadow: inset -12px -12px 0 rgba(122,72,43,.13); }
+.toy-bear::before, .toy-bear::after { content: ""; position: absolute; top: -25px; width: 68px; height: 68px; border-radius: 50%; background: #bd8054; }
+.toy-bear::before { left: 7px; }
+.toy-bear .scarf { position: absolute; left: 22px; bottom: 23px; width: 140px; height: 31px; border-radius: 16px; background: var(--red); transform: rotate(-3deg); }
+.bear-face { position: absolute; left: 50%; top: 54px; width: 130px; height: 96px; border-radius: 50%; background: #e6b682; transform: translateX(-50%); }
+.bear-eye { position: absolute; top: 20px; width: 14px; height: 16px; border-radius: 50%; background: #39251b; }
+.bear-eye.left { left: 29px; }
+.bear-eye.right { right: 29px; }
+.bear-muzzle { position: absolute; left: 50%; top: 38px; width: 58px; height: 34px; border-radius: 50%; background: #f4d6b0; transform: translateX(-50%); }
+.bear-muzzle::before { content: ""; position: absolute; left: 50%; top: 4px; width: 18px; height: 12px; border-radius: 50% 50% 58% 58%; background: #39251b; transform: translateX(-50%); }
+.bear-muzzle::after { content: ""; position: absolute; left: 50%; top: 13px; width: 26px; height: 12px; border-bottom: 3px solid #39251b; border-radius: 0 0 60% 60%; transform: translateX(-50%); }
+.toy-star { position: absolute; right: 0; bottom: 23px; color: #5ab7a0; font-size: 110px; line-height: 1; transform: rotate(16deg); }
+.spark { position: absolute; color: #fff; font-size: 25px; }
+.spark.one { left: 8px; top: 42px; }
+.hero-art { display: grid; place-items: center; position: relative; min-height: 430px; }
+.hero-art::before { content: ""; width: 320px; height: 320px; border-radius: 50%; background: var(--yellow); position: absolute; }
+.hero-art::after { content: "★"; position: absolute; top: 54px; right: 40px; color: var(--red); font-size: 38px; transform: rotate(15deg); }
+

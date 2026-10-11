@@ -1,0 +1,6 @@
+2026-10-11T20:12:57+00:00 WARNING Email "admin_payment_gateway_enabled" failed to send: Could not instantiate mail function. CONTEXT: {"email_type":"admin_payment_gateway_enabled","status":"failed","recipient":"guest","WC_Gateway_BACS":null}
+2026-10-11T20:12:59+00:00 WARNING Email "admin_payment_gateway_enabled" failed to send: Could not instantiate mail function. CONTEXT: {"email_type":"admin_payment_gateway_enabled","status":"failed","recipient":"guest","WC_Gateway_COD":null}
+2026-10-11T22:32:01+00:00 WARNING Email "new_order" for order #61 failed to send: Could not instantiate mail function. CONTEXT: {"email_type":"new_order","status":"failed","recipient":"guest","order":61}
+2026-10-11T22:32:04+00:00 WARNING Email "customer_on_hold_order" for order #61 failed to send: Could not instantiate mail function. CONTEXT: {"email_type":"customer_on_hold_order","status":"failed","recipient":"admin","order":61}
+2026-10-11T22:38:17+00:00 WARNING Email "new_order" for order #64 failed to send: Could not instantiate mail function. CONTEXT: {"email_type":"new_order","status":"failed","recipient":"guest","order":64}
+2026-10-11T22:38:19+00:00 WARNING Email "customer_on_hold_order" for order #64 failed to send: Could not instantiate mail function. CONTEXT: {"email_type":"customer_on_hold_order","status":"failed","recipient":"admin","order":64}
