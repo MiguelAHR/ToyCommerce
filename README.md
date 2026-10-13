@@ -9,7 +9,7 @@ Proyecto del curso **E-Business y Analítica Web**.
 > 🚀 **Instalación rápida para el docente (2 minutos):** [`INSTRUCCIONES-INSTALACION.md`](INSTRUCCIONES-INSTALACION.md)  
 > *Pega la carpeta `wordpress` en tu `htdocs` de XAMPP, importa `database/wordpress-sanitized.sql` en phpMyAdmin y ¡listo! Funciona automáticamente en cualquier puerto (80, 8080, 8088).*
 > 
-> 📘 **Guía completa del proyecto:** [`docs/GUIA-PROYECTO.md`](docs/GUIA-PROYECTO.md) | 🎨 **Manual de Diseño:** [`docs/MANUAL-DISENO-MINIKIDS.md`](docs/MANUAL-DISENO-MINIKIDS.md)
+> 📘 **Guía completa del proyecto:** [`docs/GUIA-PROYECTO.md`](docs/GUIA-PROYECTO.md) | 🎨 **Manual de Diseño:** [`docs/MANUAL-DISENO-MINIKIDS.md`](docs/MANUAL-DISENO-MINIKIDS.md) | 📄 **Memoria Académica DOCX:** [`docs/DOCUMENTACION-PROYECTO-MINIKIDS.docx`](docs/DOCUMENTACION-PROYECTO-MINIKIDS.docx)
 
 ---
 
@@ -88,6 +88,7 @@ WooCommerce → Ajustes → Pagos.
 - `database/wordpress-sanitized.sql`: base de datos completa (52 tablas) **saneada**.
 - `docs/GUIA-PROYECTO.md`: guía de contexto y operación del proyecto.
 - `docs/MANUAL-DISENO-MINIKIDS.md`: manual completo de diseño y sistema de diseño UI/UX.
+- `docs/DOCUMENTACION-PROYECTO-MINIKIDS.docx`: memoria integral del proyecto en formato Word (.docx).
 - `docs/bugs.md`: registro y seguimiento del ciclo de vida de bugs (QA).
 - `docs/COMO-SUBIR-A-GITHUB.md`: guía de sincronización y subida a GitHub.
 - `docs/PALETA-Y-OSITO.css`: estética de la primera versión, conservada como referencia.
