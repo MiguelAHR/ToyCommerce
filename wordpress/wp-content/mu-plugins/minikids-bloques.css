@@ -1,0 +1,198 @@
+/* ============================================================
+   MiniKids · Correcciones y pulido de bloques
+   Se carga DESPUÉS de minikids-estetica.css (prioridad 30).
+   No sustituye nada: solo añade y corrige.
+   ============================================================ */
+
+/* ---------- 1. GUARD DE DESBORDAMIENTO HORIZONTAL ----------
+   El home tenía bloques wp:cover con alignfull dentro del
+   .entry-content constrained de Blocksy, y se salían del
+   contenedor provocando scroll horizontal. Ya se quitó
+   alignfull del contenido; esto es la red de seguridad. */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+.site-content,
+.entry-content,
+.ct-container,
+.ct-container-full,
+article > .entry-content {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+/* Ningún medio debe superar su contenedor */
+.entry-content img,
+.entry-content svg,
+.entry-content video,
+.entry-content iframe,
+.entry-content table,
+.wp-block-image img,
+.wp-block-cover,
+.wp-block-cover__inner-container,
+.wp-block-group,
+.wp-block-columns,
+.wp-block-column {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.wp-block-image img,
+.wp-block-cover img {
+  height: auto;
+}
+
+/* Los botones de bloque nunca se salen */
+.wp-block-buttons,
+.wp-block-button {
+  max-width: 100%;
+  flex-wrap: wrap;
+}
+
+/* Columnas: en pantallas pequeñas no forzamos el flex-basis inline */
+@media (max-width: 781px) {
+  .wp-block-columns .wp-block-column {
+    flex-basis: 100% !important;
+  }
+}
+
+/* ---------- 2. HERO: que respire dentro del contenedor ---------- */
+.entry-content .wp-block-cover {
+  border-radius: 0;
+  overflow: hidden;
+}
+
+.entry-content .wp-block-cover__inner-container {
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* ---------- 3. TARJETAS DE CATEGORÍA DEL HOME ---------- */
+.entry-content .wp-block-column .wp-block-group[class*="has-background"] {
+  transition: transform .22s ease, box-shadow .22s ease;
+}
+.entry-content .wp-block-column .wp-block-group[class*="has-background"]:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 22px rgba(17, 17, 17, .1);
+}
+.entry-content .wp-block-column .wp-block-group p a {
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: border-color .2s ease;
+}
+.entry-content .wp-block-column .wp-block-group p a:hover {
+  border-bottom-color: currentColor;
+}
+
+/* ============================================================
+   4. FEEDBACK DE "AGREGAR AL CARRITO"
+   Con AJAX activo WooCommerce cambia el botón a "Ver carrito"
+   y le pone la clase .added_to_cart. Eso es lo que se veía
+   feo: un enlace plano sin estilo.
+   ============================================================ */
+
+/* El enlace "Ver carrito" que aparece tras añadir (AJAX) */
+.woocommerce a.added_to_cart,
+.woocommerce ul.products li.product a.added_to_cart,
+.added_to_cart.wc-forward {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  margin-top: 8px !important;
+  padding: 10px 18px !important;
+  border-radius: 10px !important;
+  background: var(--blue, #0F62D6) !important;
+  color: #ffffff !important;
+  font-family: "Nunito Sans", sans-serif !important;
+  font-weight: 800 !important;
+  font-size: 14px !important;
+  line-height: 1.2 !important;
+  text-decoration: none !important;
+  border: none !important;
+  box-shadow: 0 4px 10px rgba(15, 98, 214, .28) !important;
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease !important;
+}
+
+.woocommerce a.added_to_cart:hover,
+.added_to_cart.wc-forward:hover {
+  background: #0b4ea8 !important;
+  color: #ffffff !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 7px 16px rgba(15, 98, 214, .34) !important;
+}
+
+/* Palomita antes del texto, sin tocar el HTML */
+.woocommerce a.added_to_cart::before,
+.added_to_cart.wc-forward::before {
+  content: "✓" !important;
+  font-size: 14px !important;
+  font-weight: 900 !important;
+}
+
+/* Botón principal mientras está en estado "cargando/añadido" */
+.woocommerce ul.products li.product .button.loading,
+.woocommerce ul.products li.product .add_to_cart_button.loading {
+  opacity: .7 !important;
+  pointer-events: none !important;
+}
+
+.woocommerce ul.products li.product .button.added,
+.woocommerce ul.products li.product .add_to_cart_button.added {
+  background: var(--blue, #0F62D6) !important;
+  color: #ffffff !important;
+}
+
+/* ---------- 5. AVISO "PRODUCTO AÑADIDO" (sin AJAX) ---------- */
+.woocommerce-message,
+.woocommerce-info,
+.woocommerce-error {
+  border-radius: 12px !important;
+  border-top: none !important;
+  border-left: 5px solid var(--blue, #0F62D6) !important;
+  background: #F2F7FF !important;
+  color: var(--ink, #111111) !important;
+  padding: 16px 20px !important;
+  font-family: "Nunito Sans", sans-serif !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 14px rgba(17, 17, 17, .06) !important;
+}
+
+.woocommerce-message { border-left-color: #1DA65C !important; background: #F0FBF4 !important; }
+.woocommerce-error   { border-left-color: var(--red, #F0342C) !important; background: #FFF3F2 !important; }
+.woocommerce-info    { border-left-color: var(--blue, #0F62D6) !important; }
+
+.woocommerce-message .button,
+.woocommerce-info .button,
+.woocommerce-error .button {
+  border-radius: 10px !important;
+  background: var(--blue, #0F62D6) !important;
+  color: #ffffff !important;
+  font-weight: 800 !important;
+  padding: 10px 18px !important;
+  text-decoration: none !important;
+}
+.woocommerce-message .button:hover { background: #0b4ea8 !important; color: #fff !important; }
+
+/* ---------- 6. MINI-CARRITO DE BLOCKSY ---------- */
+.ct-cart-content .woocommerce-mini-cart__buttons a.button,
+.ct-cart-content .woocommerce-mini-cart__buttons a.wc-forward {
+  border-radius: 10px !important;
+  font-weight: 800 !important;
+}
+
+/* ---------- 7. ACCESIBILIDAD (siempre al final) ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .entry-content .wp-block-column .wp-block-group[class*="has-background"]:hover {
+    transform: none;
+  }
+}
