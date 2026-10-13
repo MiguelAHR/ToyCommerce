@@ -6,9 +6,10 @@ más PayPal.
 
 Proyecto del curso **E-Business y Analítica Web**.
 
-> 📘 **Guía completa del proyecto:** [`docs/GUIA-PROYECTO.md`](docs/GUIA-PROYECTO.md)
-> Incluye stack, IDs de páginas y productos, estado de cada pasarela, cómo conectarse
-> al MCP de WordPress **desde OpenCode**, errores conocidos y el roadmap pendiente.
+> 🚀 **Instalación rápida para el docente (2 minutos):** [`INSTRUCCIONES-INSTALACION.md`](INSTRUCCIONES-INSTALACION.md)  
+> *Pega la carpeta `wordpress` en tu `htdocs` de XAMPP, importa `database/wordpress-sanitized.sql` en phpMyAdmin y ¡listo! Funciona automáticamente en cualquier puerto (80, 8080, 8088).*
+> 
+> 📘 **Guía completa del proyecto:** [`docs/GUIA-PROYECTO.md`](docs/GUIA-PROYECTO.md) | 🎨 **Manual de Diseño:** [`docs/MANUAL-DISENO-MINIKIDS.md`](docs/MANUAL-DISENO-MINIKIDS.md)
 
 ---
 
@@ -107,23 +108,20 @@ El volcado se genera con un script que elimina o anonimiza:
 
 ---
 
-## Instalación
+## Instalación rápida (Plug & Play)
 
-1. Crear la base de datos **`wordpress`** con cotejamiento `utf8mb4_general_ci`.
-2. Importar `database/wordpress-sanitized.sql`.
-3. Copiar `wordpress/wp-config.example.php` como `wp-config.php` y definir
-   credenciales y salts.
-4. Copiar `wordpress/wp-content/` a la instalación de WordPress.
-5. Activar los plugins: **WooCommerce**, **Blocksy Companion**, **WordPress MCP**,
-   **MCP Adapter** y, si se usan, **Mercado Pago** y **PayPal Payments**.
-6. Verificar en WooCommerce → Ajustes que la moneda sea **PEN** y el país **Perú**.
-7. Introducir las credenciales de las pasarelas de pago.
+> 💡 **Ver la guía visual detallada:** [`INSTRUCCIONES-INSTALACION.md`](INSTRUCCIONES-INSTALACION.md)
 
-### Credenciales de demo
+1. **Copiar archivos:** Copia la carpeta **`wordpress`** descargada del repositorio dentro de tu directorio `htdocs` de XAMPP (`C:\xampp\htdocs\wordpress`). *(El archivo `wp-config.php` ya viene preconfigurado con detección dinámica de puertos para que funcione en 80, 8080, 8088 sin tocar nada)*.
+2. **Importar base de datos:** En phpMyAdmin (`http://localhost/phpmyadmin`), crea una base de datos llamada **`wordpress`** e importa el archivo `database/wordpress-sanitized.sql`.
+3. **Abrir la tienda:** Ingresa a `http://localhost/wordpress/` (o si tu XAMPP corre en otro puerto: `http://localhost:8088/wordpress/`).
 
-```
-usuario:    admin
-contraseña: MiniKids2026!
+### Credenciales de acceso al Panel de Administración
+
+```text
+URL:        http://localhost/wordpress/wp-admin/
+Usuario:    admin
+Contraseña: MiniKids2026!
 ```
 
 > 🔒 Cámbialas en cuanto importes, y vuelve a generar las contraseñas de aplicación.

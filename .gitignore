@@ -1,6 +1,4 @@
-# Credenciales locales: nunca versionar la configuración real de WordPress.
-# Usa wordpress/wp-config.example.php como plantilla.
-wordpress/wp-config.php
+# Archivos de respaldo de configuración local
 wordpress/wp-config.php.bak-*
 
 # Copias de seguridad y archivos temporales
