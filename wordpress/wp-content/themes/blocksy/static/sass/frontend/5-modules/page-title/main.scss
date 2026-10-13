@@ -1,0 +1,21 @@
+@use 'type-1';
+@use 'type-2';
+
+.entry-header {
+	
+	> *:not(:first-child) {
+		margin-top: var(--item-spacing, 20px);
+	}
+
+	.page-title {
+		margin-bottom: 0;
+	}
+
+	.page-description {
+		color: var(--theme-text-color);
+
+		> *:last-child {
+			margin-bottom: 0;
+		}
+	}
+}

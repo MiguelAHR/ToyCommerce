@@ -1,0 +1,25 @@
+{
+    "name": "letsgodev/culqi-integration",
+    "description": "WordPress Culqi Integration",
+    "keywords": ["culqi", "client", "api", "php", "wordpress"],
+    "type": "wordpress-plugin",
+    "homepage": "https://www.letsgodev.com/",
+    "license": "GPL-2.0+",
+    "authors": [
+        {
+            "name": "Lets Go Dev",
+            "email": "support@letsgodev.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=5.3.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Fullculqi\\Syncs\\": "includes/Syncs",
+            "Fullculqi\\Traits\\": "includes/Traits"
+        }
+    }
+}

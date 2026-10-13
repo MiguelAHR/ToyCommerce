@@ -1,0 +1,35 @@
+// stackable v3
+:where(body:not(.stk--has-base-scheme)) {
+
+	[data-type="stackable/button"] {
+		--stk-button-text-color: var(--theme-button-text-initial-color);
+		--stk-button-background-color: var(--theme-button-background-initial-color);
+
+		.stk-button {
+			border-radius: var(--theme-button-border-radius, 3px);
+
+			&:hover {
+				--stk-button-text-color: var(--theme-button-text-hover-color);
+				--stk-button-background-color: var(--theme-button-background-hover-color);
+			}
+		}
+	}
+}
+
+
+// getwid
+div.wp-block-getwid-section {
+	.wp-block-getwid-section__wrapper {
+		.wp-block-getwid-section__inner-wrapper {
+			max-width: var(--theme-block-max-width);
+		}
+	}
+}
+
+
+// qubely
+.qubely-section .qubely-container {
+	max-width: var(--theme-block-max-width) !important;
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+}

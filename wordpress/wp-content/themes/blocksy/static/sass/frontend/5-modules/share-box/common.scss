@@ -1,0 +1,23 @@
+.ct-share-box {
+
+	a {
+		display: flex;
+		justify-content: center;
+	}
+
+	// tooltip
+	.ct-tooltip {
+		--ct-tooltip-vertical-initial-offset: 7px;
+		--ct-tooltip-vertical-hover-offset: 12px;
+	}
+
+	// types
+	&:is([data-type="type-2"], [data-type="type-3"]) {
+
+		> div {
+			display: inline-flex;
+			flex-wrap: wrap;
+			gap: var(--items-spacing, 15px);
+		}
+	}
+}

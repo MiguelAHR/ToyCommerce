@@ -1,0 +1,12 @@
+.wc-variation-gallery-field__hero.ct-has-actions {
+
+	.wc-variation-gallery-replace {
+		display: none;
+	}
+
+	ul.actions {
+		--actions-visibility: 1;
+		--actions-top-spacing: auto;
+		--actions-bottom-spacing: 10px;
+	}
+}

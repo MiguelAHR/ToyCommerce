@@ -1,0 +1,23 @@
+[data-button-state] {
+
+	.ct-button-loader {
+		display: none;
+	}
+}
+
+// loading state
+[data-button-state*="loading"] {
+
+	.ct-button-loader {
+		display: block;
+
+		path {
+			transform-origin: center;
+			animation: spin 0.5s linear infinite;
+		}
+	}
+
+	svg:not(.ct-button-loader) {
+		display: none;
+	}
+}

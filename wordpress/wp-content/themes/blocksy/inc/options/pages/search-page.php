@@ -1,0 +1,150 @@
+<?php
+/**
+ * Search page
+ *
+ * @copyright 2019-present Creative Themes
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU General Public License
+ * @package   Blocksy
+ */
+
+$page_title_options = blocksy_get_options('general/page-title', [
+	'prefix' => 'search',
+	'is_search' => true,
+	'location_name' => __('Search', 'blocksy')
+]);
+
+$posts_listing_options = blocksy_get_options('general/posts-listing', [
+	'prefix' => 'search',
+	'title' => __('Search Results', 'blocksy')
+]);
+
+$pagination_options = blocksy_get_options('general/pagination', [
+	'prefix' => 'search',
+]);
+
+$inner_options = [
+	blocksy_manager()->get_prefix_title_actions([
+		'prefix' => 'search',
+		'areas' => [
+			[
+				'title' => __('Page Title', 'blocksy'),
+				'options' => $page_title_options,
+				'sources' => array_merge(
+					blocksy_manager()
+						->screen
+						->get_archive_prefixes_with_human_labels([
+							'has_categories' => true,
+							'has_author' => true,
+							'has_search' => true,
+							'has_woocommerce' => true
+						]),
+
+					blocksy_manager()
+						->screen
+						->get_single_prefixes_with_human_labels([
+							'has_woocommerce' => true
+						])
+				)
+			],
+
+			[
+				'id' => 'posts_listing',
+				'title' => __('Posts Listing', 'blocksy'),
+				'options' => $posts_listing_options,
+				'sources' => blocksy_manager()
+					->screen
+					->get_archive_prefixes_with_human_labels([
+						'has_categories' => true,
+						'has_author' => true,
+						'has_search' => true
+					]),
+			],
+
+			[
+				'title' => __('Pagination', 'blocksy'),
+				'options' => $pagination_options,
+				'sources' => blocksy_manager()
+					->screen
+					->get_archive_prefixes_with_human_labels([
+						'has_categories' => true,
+						'has_author' => true,
+						'has_search' => true
+					]),
+			]
+		]
+	]),
+
+	$page_title_options,
+	$posts_listing_options,
+
+	[
+		blocksy_rand_md5() => [
+			'type'  => 'ct-title',
+			'label' => __( 'Page Elements', 'blocksy' ),
+		],
+	],
+
+	blocksy_get_options('general/sidebar-particular', [
+		'prefix' => 'search'
+	]),
+
+	$pagination_options,
+
+	[
+		blocksy_rand_md5() => [
+			'type' => 'ct-title',
+			'label' => __( 'Functionality Options', 'blocksy' ),
+		],
+
+		'search_enable_live_results' => [
+			'label' => __( 'Live results', 'blocksy' ),
+			'type' => 'ct-switch',
+			'value' => 'yes',
+		],
+
+		blocksy_rand_md5() => [
+			'type' => 'ct-condition',
+			'condition' => [ 'search_enable_live_results' => 'yes' ],
+			'options' => function_exists('is_shop') ? [
+
+				'searchProductPrice' => [
+					'label' => __( 'Live Results Product Price', 'blocksy' ),
+					'type' => 'ct-switch',
+					'value' => 'no',
+					'divider' => 'top',
+				],
+
+				'searchProductStatus' => [
+					'label' => __( 'Live Results Product Status', 'blocksy' ),
+					'type' => 'ct-switch',
+					'value' => 'no',
+					'divider' => 'top',
+				],
+
+			] : []
+		],
+	],
+
+	blocksy_get_options('general/cards-reveal-effect', [
+		'prefix' => 'search'
+	])
+];
+
+/**
+ * Filters the inner options for the search results customizer section.
+ *
+ * @since 2.1.47
+ *
+ * @param array $inner_options List of option definitions for the section.
+ */
+$inner_options = apply_filters(
+	'blocksy:options:search-page',
+	$inner_options
+);
+
+$options = [
+	'search_section_options' => [
+		'type' => 'ct-options',
+		'inner-options' => $inner_options
+	]
+];

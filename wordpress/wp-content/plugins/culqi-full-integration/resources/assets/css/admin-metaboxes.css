@@ -1,0 +1,110 @@
+.postbox-header, .handlediv, .hndle {
+	display: none;
+}
+
+#poststuff .metabox_h2 {
+	margin: 0;
+	font-size: 21px;
+	font-weight: 400;
+	line-height: 1.2;
+	text-shadow: 1px 1px 1px #fff;
+	padding: 0;
+}
+
+#poststuff .metabox_h3 {
+	color: #333;
+    margin: 1.33em 0 0;
+    font-size: 14px;
+}
+
+#poststuff .metabox_subh2 {
+	margin: 0;
+	font-weight: 400;
+	line-height: 1.6em;
+	font-size: 16px;
+	color: #777;
+}
+
+.metabox_column_container {
+	clear: both;
+}
+
+.metabox_column_container .metabox_column {
+	width: 50%;
+	float: left;
+}
+
+.metabox_column_container .metabox_img_fluid img {
+	width: 100%;
+}
+
+.metabox_warnings_msg {
+	background-color: #EEE;
+	padding: 5px 20px;
+	font-weight: bold;
+	text-align: left;
+	color: #0073aa;
+}
+
+
+.metabox_column_container label {
+	display: block;
+	font-weight: bold;
+}
+
+.metabox_column_container input[type=text],
+.metabox_column_container select {
+	height: 32px;
+	width: 50%;
+}
+
+.metabox_simple_link {
+	color: #444;
+	border: 1px solid #FFF;
+	padding: 8px 12px;
+	border-radius: 8px;
+}
+
+.metabox_simple_link:hover {
+	background-color: #f8d7da;
+	color: #721c24;
+	text-decoration: none;
+}
+
+span.dashicons {
+	vertical-align:middle;
+}
+
+input.disabled, select.disabled {
+	color: #32373c;
+	background-color: #EEE;
+}
+
+
+.font_success {
+	font-size: 20px;
+	color: green;
+}
+
+
+.font_error {
+	font-size: 20px;
+	color: red;
+}
+
+.font_success .dashicons,
+.font_error .dashicons {
+	padding-top: 4px;
+}
+
+
+.culqi_plans_container_options {
+	border: 1px solid #DDD;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.culqi_plans_container_options p.culqi_plans_option {
+	display: flex;
+    margin: 0;
+}

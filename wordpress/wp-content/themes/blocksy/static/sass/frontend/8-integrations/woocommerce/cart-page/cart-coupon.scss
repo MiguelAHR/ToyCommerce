@@ -1,0 +1,52 @@
+@use "../../../1-helpers/functions";
+
+.woocommerce-cart-form__contents {
+
+	.ct-cart-form-actions {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: flex-start;
+		gap: 10px;
+
+		@include functions.media-breakpoint-down (sm) {
+			flex-direction: column;
+		}
+
+		.coupon {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 10px;
+			flex: 1;
+			min-width: 0;
+
+			@include functions.media-breakpoint-down (sm) {
+				width: 100%;
+				flex-direction: column;
+			}
+
+			input {
+				@include functions.media-breakpoint-down (sm) {
+					width: 100%;
+				}
+
+				@include functions.media-breakpoint-up (md) {
+					width: 220px;
+				}
+			}
+
+			.coupon-error-notice {
+				width: 100%;
+				margin-bottom: 0;
+			}
+		}
+
+		button {
+			--theme-button-padding: 0 20px;
+			--theme-button-min-height: var(--theme-form-field-height, 40px);
+
+			@include functions.media-breakpoint-down (sm) {
+				width: 100%;
+			}
+		}
+	}
+}

@@ -86,8 +86,11 @@ WooCommerce → Ajustes → Pagos.
 - `wordpress/wp-config.example.php`: plantilla de configuración sin secretos.
 - `database/wordpress-sanitized.sql`: base de datos completa (52 tablas) **saneada**.
 - `docs/GUIA-PROYECTO.md`: guía de contexto y operación del proyecto.
+- `docs/MANUAL-DISENO-MINIKIDS.md`: manual completo de diseño y sistema de diseño UI/UX.
+- `docs/bugs.md`: registro y seguimiento del ciclo de vida de bugs (QA).
+- `docs/COMO-SUBIR-A-GITHUB.md`: guía de sincronización y subida a GitHub.
 - `docs/PALETA-Y-OSITO.css`: estética de la primera versión, conservada como referencia.
-- `tools/`: scripts auxiliares de instalación.
+- `tools/`: scripts auxiliares de instalación y `tools/verify_improvements.php` (suite de verificación).
 
 No se incluye el core de WordPress ni un `wp-config.php` real.
 

@@ -1,106 +1,650 @@
 /* ==========================================================================
-   MiniKids · Estetica sobre WooCommerce
-   Paleta, tipografias y estilos de tienda. Cargado por mu-plugin.
+   MiniKids · Estética Next.js para WordPress & Blocksy
+   Paleta oficial, tipografías Baloo 2 + Nunito + Caveat, y componentes
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito+Sans:wght@400;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800;900&family=Caveat:wght@600;700&display=swap');
 
 :root {
-  --ink: #202020;
-  --muted: #737373;
-  --red: #ed4b43;
-  --red-dark: #d83d37;
-  --pink: #ffe7e4;
-  --cream: #fffaf6;
-  --line: #ece8e4;
-  --card: #f7f5f2;
-  --yellow: #ffd957;
-  --mint: #dff3eb;
-  --blue: #ddecfa;
-  --max: 1240px;
-  --mkp-radius: 18px;
+  --brand-yellow: #ffd60a;
+  --brand-yellow-dark: #f5c400;
+  --brand-blue: #1a73e8;
+  --brand-sky: #4cb6f3;
+  --brand-red: #ef233c;
+  --brand-ink: #111111;
+
+  --pastel-yellow: #fdeea6;
+  --pastel-blue: #dceefc;
+  --pastel-cream: #fdf4e3;
+  --pastel-pink: #fde3ea;
+  --pastel-green: #e1f6ec;
+
+  --background: #ffffff;
+  --muted: #f5f6f8;
+  --muted-foreground: #5f6470;
+  --border: #e6e8ec;
+  --input: #dfe2e7;
+  --accent: #fff7cc;
+
+  --font-display: 'Baloo 2', cursive, sans-serif;
+  --font-sans: 'Nunito', system-ui, sans-serif;
+  --font-accent: 'Caveat', cursive;
 }
 
-/* ---------- Tipografia ---------- */
+/* ==========================================================================
+   Tipografía General
+   ========================================================================== */
 body,
 .wp-site-blocks,
 .woocommerce,
 .woocommerce-page {
-  font-family: "Nunito Sans", system-ui, sans-serif;
-  color: var(--ink);
+  font-family: var(--font-sans) !important;
+  color: var(--brand-ink) !important;
+  background-color: var(--background);
 }
 
-h1, h2, h3, h4,
+h1, h2, h3, h4, h5, h6,
 .wp-block-heading,
 .woocommerce h1,
 .woocommerce h2,
 .woocommerce h3,
 .woocommerce-products-header__title {
-  font-family: "Baloo 2", "Nunito Sans", sans-serif;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  color: var(--ink);
+  font-family: var(--font-display) !important;
+  color: var(--brand-ink) !important;
+  letter-spacing: -0.01em;
 }
 
-/* ---------- Botones ---------- */
-.woocommerce a.button,
-.woocommerce button.button,
-.woocommerce input.button,
-.woocommerce #respond input#submit,
-.wp-block-button__link,
-.wc-block-components-button,
-.woocommerce-MyAccount-content .button {
-  background: var(--red) !important;
-  color: #fff !important;
-  border: 0 !important;
-  border-radius: 24px !important;
-  padding: 12px 22px !important;
-  font-family: "Nunito Sans", sans-serif !important;
-  font-weight: 900 !important;
-  font-size: 13px !important;
-  text-transform: none;
-  transition: background .2s ease, transform .2s ease;
+/* ==========================================================================
+   Blocksy Header & Navbar (Sticky y fijado en scroll)
+   ========================================================================== */
+#main-container {
+  overflow: visible !important;
 }
 
-.woocommerce a.button:hover,
-.woocommerce button.button:hover,
-.woocommerce input.button:hover,
-.woocommerce #respond input#submit:hover,
-.wp-block-button__link:hover,
-.wc-block-components-button:hover {
-  background: var(--red-dark) !important;
-  transform: translateY(-2px);
+html,
+body {
+  overflow-x: clip !important;
 }
 
-.woocommerce a.button.alt,
-.woocommerce button.button.alt,
-.woocommerce input.button.alt {
-  background: var(--red) !important;
+header.ct-header {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 9999 !important;
+  background: rgba(255, 255, 255, 0.98) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  border-bottom: 1px solid rgba(230, 232, 236, 0.8) !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04) !important;
+  transition: box-shadow 0.2s ease !important;
 }
 
-/* ---------- Precios ---------- */
-.woocommerce-Price-amount,
-.wc-block-components-product-price__value {
-  color: var(--red) !important;
-  font-weight: 900 !important;
+header.ct-header.minikids-scrolled {
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08) !important;
 }
 
-.woocommerce-Price-amount del,
-.woocommerce del .woocommerce-Price-amount,
-.wc-block-components-product-price del {
-  color: var(--muted) !important;
-  font-weight: 600 !important;
-  opacity: .7;
+body.admin-bar header.ct-header {
+  top: 32px !important;
 }
 
-/* ---------- Tarjetas de producto (Catálogo y Favoritos) ---------- */
-.woocommerce ul.products {
-  display: grid !important;
-  grid-template-columns: repeat(4, 1fr) !important;
-  gap: 22px !important;
-  margin: 28px 0 40px !important;
+@media screen and (max-width: 782px) {
+  body.admin-bar header.ct-header {
+    top: 46px !important;
+  }
+}
+
+/* Navbar compacto con alineación vertical perfecta en todos los elementos */
+header.ct-header [data-row="middle"],
+header.ct-header [data-row] {
+  min-height: 60px !important;
+  height: 60px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+header.ct-header .ct-container {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  height: 100% !important;
+}
+
+header.ct-header [data-column="start"],
+header.ct-header [data-column="end"] {
+  display: flex !important;
+  align-items: center !important;
+  height: 100% !important;
+}
+
+header.ct-header [data-column="end"] > [data-items="primary"],
+header.ct-header [data-column="end"] > [data-items] {
+  display: flex !important;
+  align-items: center !important;
+  height: 100% !important;
+  gap: 28px !important;
+}
+
+.site-branding {
+  display: flex !important;
+  align-items: center !important;
+  height: 100% !important;
+}
+
+/* Logo image in header with spring micro-interaction */
+.site-branding .site-title a {
+  display: inline-block !important;
+  width: 145px !important;
+  height: 44px !important;
+  background: url('/wordpress/wp-content/uploads/minikids/logo-minikids.png') no-repeat left center / contain !important;
+  text-indent: -9999px !important;
+  overflow: hidden !important;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+.site-branding .site-title a:hover {
+  transform: scale(1.06) rotate(-1deg) !important;
+}
+
+.header-menu-1 {
+  display: flex !important;
+  align-items: center !important;
+  height: 100% !important;
+  position: relative !important;
+  z-index: 10000 !important;
+  margin: 0 !important;
+}
+
+.header-menu-1 .menu,
+.header-menu-1 ul.menu {
+  display: flex !important;
+  align-items: center !important;
+  height: 100% !important;
+  position: relative !important;
+  z-index: 10000 !important;
+  margin: 0 !important;
   padding: 0 !important;
   list-style: none !important;
+  gap: 4px !important;
+}
+
+.header-menu-1 .menu > li,
+.header-menu-1 ul.menu > li {
+  display: flex !important;
+  align-items: center !important;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Navigation Links with perfectly centered vertical alignment */
+.header-menu-1 .menu > li > a,
+.header-menu-1 ul.menu > li > a {
+  font-family: var(--font-sans) !important;
+  font-size: 14.5px !important;
+  font-weight: 600 !important;
+  color: var(--brand-ink) !important;
+  padding: 8px 12px !important;
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  line-height: 1 !important;
+  height: auto !important;
+  transition: color 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.header-menu-1 .menu > li > a::after,
+.header-menu-1 ul.menu > li > a::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 12px !important;
+  right: 12px !important;
+  height: 2.5px !important;
+  background: var(--brand-blue) !important;
+  border-radius: 2px !important;
+  transform: scaleX(0) !important;
+  transform-origin: center !important;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+.header-menu-1 .menu > li > a:hover,
+.header-menu-1 ul.menu > li > a:hover {
+  color: var(--brand-blue) !important;
+  transform: translateY(-2px) !important;
+}
+
+.header-menu-1 .menu > li > a:hover::after,
+.header-menu-1 ul.menu > li > a:hover::after {
+  transform: scaleX(1) !important;
+}
+
+/* Solo el enlace activo real (excluyendo anclas internas con #) */
+.header-menu-1 .menu > li.current-menu-item > a:not([href*="#"]),
+.header-menu-1 .menu > li.current_page_item > a:not([href*="#"]) {
+  color: var(--brand-blue) !important;
+}
+
+.header-menu-1 .menu > li.current-menu-item > a:not([href*="#"])::after,
+.header-menu-1 .menu > li.current_page_item > a:not([href*="#"])::after {
+  transform: scaleX(1) !important;
+}
+
+/* Retirar botón de búsqueda del navbar (se mantiene el buscador interno de la tienda) */
+.ct-header-search {
+  display: none !important;
+}
+
+/* Header Cart Container con centrado vertical absoluto */
+.ct-header-cart {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 100% !important;
+  margin: 0 !important;
+}
+
+/* Ocultar completamente el precio fijo visible del navbar (solo se ve en el mini-carrito y carrito) */
+.ct-header-cart .ct-label,
+.ct-header-cart [data-price],
+.ct-header-cart .ct-amount,
+.ct-header-cart .woocommerce-Price-amount {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Header Cart Trigger Button */
+.ct-header-cart .ct-cart-item,
+.ct-cart-item {
+  width: 42px !important;
+  height: 42px !important;
+  border-radius: 50% !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: relative !important;
+  background: transparent !important;
+  color: var(--brand-ink) !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  text-decoration: none !important;
+  box-sizing: border-box !important;
+  transition: background 0.25s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease, color 0.2s ease !important;
+}
+
+.ct-header-cart .ct-cart-item:hover,
+.ct-cart-item:hover {
+  background: var(--pastel-yellow) !important;
+  color: var(--brand-ink) !important;
+  transform: scale(1.08) translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(255, 214, 10, 0.4) !important;
+}
+
+/* Contenedor del ícono estático para no atrapar el badge */
+.ct-header-cart .ct-icon-container {
+  position: static !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: auto !important;
+  height: auto !important;
+}
+
+.ct-cart-item svg {
+  width: 20px !important;
+  height: 20px !important;
+  display: block !important;
+  color: currentColor !important;
+  fill: currentColor !important;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+.ct-cart-item:hover svg {
+  transform: rotate(-8deg) scale(1.08) !important;
+}
+
+/* Cart Badge Count - Píldora posicionada en esquina externa superior sin tapar el icono */
+.ct-header-cart .ct-cart-badge,
+.ct-header-cart .ct-dynamic-count-cart,
+.ct-cart-item .ct-dynamic-count-cart {
+  position: absolute !important;
+  top: -2px !important;
+  right: -3px !important;
+  background: var(--brand-red) !important;
+  color: #ffffff !important;
+  border-radius: 999px !important;
+  border: 2px solid #ffffff !important;
+  font-family: var(--font-sans) !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  min-width: 18px !important;
+  height: 18px !important;
+  line-height: 14px !important;
+  padding: 0 4px !important;
+  text-align: center !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 2px 6px rgba(239, 35, 60, 0.4) !important;
+  pointer-events: none !important;
+  transition: transform 0.2s ease !important;
+  z-index: 5 !important;
+}
+
+.ct-cart-item:hover .ct-dynamic-count-cart,
+.ct-cart-item:hover .ct-cart-badge {
+  transform: scale(1.12) !important;
+}
+
+/* Ocultar el dropdown nativo de Blocksy para evitar conflictos con el slide-drawer */
+.ct-header-cart .ct-cart-content {
+  display: none !important;
+  pointer-events: none !important;
+}
+
+/* Ocultar footer por defecto de Blocksy en TODO el sitio */
+#footer.ct-footer {
+  display: none !important;
+}
+
+/* Ocultar hero/título roto de Blocksy en el home y eliminar espacio blanco superior */
+.home .hero-section,
+.home .entry-header,
+.home .page-title,
+.home > #main > .hero-section {
+  display: none !important;
+}
+
+.home [data-vertical-spacing*="top"],
+.home .ct-container-full,
+.home #main,
+.home .site-main,
+.home article {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+.home .blocksy-woo-messages-default:empty,
+.home .blocksy-woo-messages-default .woocommerce:empty,
+.home .blocksy-woo-messages-default {
+  display: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Ancho completo sin desbordamiento */
+.home .entry-content {
+  max-width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* ==========================================================================
+   1. Barra Superior Amarilla (TopBar)
+   ========================================================================== */
+.minikids-topbar {
+  background: var(--brand-yellow) !important;
+  color: var(--brand-ink) !important;
+  padding: 8px 16px !important;
+  text-align: center !important;
+  font-family: var(--font-sans) !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.01em !important;
+  width: 100% !important;
+}
+
+.minikids-topbar p {
+  margin: 0 !important;
+  color: var(--brand-ink) !important;
+}
+
+/* ==========================================================================
+   2. Sección Hero
+   ========================================================================== */
+.minikids-hero {
+  position: relative !important;
+  min-height: 520px !important;
+  background-size: cover !important;
+  background-position: center !important;
+  display: flex !important;
+  align-items: center !important;
+  overflow: hidden !important;
+}
+
+.minikids-hero::before {
+  content: '' !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background: linear-gradient(to right, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.82) 42%, rgba(255,255,255,0.15) 80%, transparent 100%) !important;
+  z-index: 1 !important;
+}
+
+.minikids-hero .wp-block-cover__inner-container {
+  position: relative !important;
+  z-index: 2 !important;
+  max-width: 1280px !important;
+  margin: 0 auto !important;
+  padding: 60px 24px !important;
+  width: 100% !important;
+}
+
+.minikids-hero-content {
+  max-width: 580px !important;
+}
+
+.minikids-hero-title {
+  font-family: var(--font-display) !important;
+  font-size: clamp(40px, 5.2vw, 56px) !important;
+  font-weight: 800 !important;
+  line-height: 0.95 !important;
+  letter-spacing: -0.02em !important;
+  color: var(--brand-ink) !important;
+  margin: 0 0 8px !important;
+}
+
+.minikids-hero-title .hero-highlight {
+  color: var(--brand-blue) !important;
+  position: relative !important;
+}
+
+.minikids-hero-cursive {
+  font-family: var(--font-accent) !important;
+  font-size: 26px !important;
+  font-weight: 700 !important;
+  color: var(--brand-red) !important;
+  margin: 4px 0 14px !important;
+  transform: rotate(-1deg) !important;
+  display: inline-block !important;
+}
+
+.minikids-hero-subtitle {
+  font-family: var(--font-sans) !important;
+  font-size: 18px !important;
+  line-height: 1.45 !important;
+  color: #444444 !important;
+  margin: 0 0 28px !important;
+}
+
+.minikids-hero-buttons {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 14px !important;
+}
+
+.minikids-btn-primary a.wp-block-button__link {
+  background: var(--brand-yellow) !important;
+  color: var(--brand-ink) !important;
+  font-family: var(--font-sans) !important;
+  font-weight: 800 !important;
+  font-size: 15px !important;
+  padding: 13px 28px !important;
+  border-radius: 12px !important;
+  border: none !important;
+  box-shadow: 0 4px 14px rgba(255, 214, 10, 0.45) !important;
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.minikids-btn-primary a.wp-block-button__link:hover {
+  background: var(--brand-yellow-dark) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(255, 214, 10, 0.6) !important;
+}
+
+.minikids-btn-secondary a.wp-block-button__link {
+  background: #ffffff !important;
+  color: var(--brand-ink) !important;
+  font-family: var(--font-sans) !important;
+  font-weight: 800 !important;
+  font-size: 15px !important;
+  padding: 11px 28px !important;
+  border-radius: 12px !important;
+  border: 2px solid var(--brand-ink) !important;
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease !important;
+}
+
+.minikids-btn-secondary a.wp-block-button__link:hover {
+  background: var(--brand-ink) !important;
+  color: #ffffff !important;
+  transform: translateY(-2px) !important;
+}
+
+.minikids-hero-dots {
+  display: none !important;
+}
+
+/* ==========================================================================
+   3. Encabezados de Sección
+   ========================================================================== */
+.minikids-section {
+  max-width: 1280px !important;
+  margin: 0 auto !important;
+  padding: 48px 16px !important;
+}
+
+.minikids-section-header {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: baseline !important;
+  margin-bottom: 24px !important;
+  border-bottom: 1px solid var(--border) !important;
+  padding-bottom: 12px !important;
+}
+
+.minikids-section-title {
+  font-family: var(--font-display) !important;
+  font-size: clamp(26px, 3.2vw, 32px) !important;
+  font-weight: 800 !important;
+  color: var(--brand-ink) !important;
+  margin: 0 !important;
+}
+
+.minikids-section-link a {
+  font-family: var(--font-sans) !important;
+  font-size: 14.5px !important;
+  font-weight: 700 !important;
+  color: var(--brand-blue) !important;
+  text-decoration: none !important;
+  transition: color 0.2s ease !important;
+}
+
+.minikids-section-link a:hover {
+  text-decoration: underline !important;
+}
+
+/* ==========================================================================
+   4. Grid de Categorías (7 Columnas Pastel)
+   ========================================================================== */
+.minikids-category-grid {
+  display: grid !important;
+  grid-template-columns: repeat(7, 1fr) !important;
+  gap: 14px !important;
+  margin: 0 !important;
+}
+
+.minikids-cat-card {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  border-radius: 20px !important;
+  padding: 14px 10px 18px !important;
+  text-decoration: none !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+  box-sizing: border-box !important;
+}
+
+.minikids-cat-card:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08) !important;
+}
+
+.minikids-cat-card.cat-peluches   { background: var(--pastel-yellow) !important; }
+.minikids-cat-card.cat-madera     { background: var(--pastel-blue) !important; }
+.minikids-cat-card.cat-vehiculos  { background: var(--pastel-cream) !important; }
+.minikids-cat-card.cat-bloques    { background: var(--pastel-pink) !important; }
+.minikids-cat-card.cat-educativos { background: var(--pastel-green) !important; }
+.minikids-cat-card.cat-munecas    { background: var(--pastel-pink) !important; }
+.minikids-cat-card.cat-aire-libre { background: var(--pastel-blue) !important; }
+
+.minikids-cat-card .cat-img-box {
+  width: 100% !important;
+  aspect-ratio: 1 / 1 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.minikids-cat-card .cat-img-box img {
+  max-width: 90% !important;
+  max-height: 90% !important;
+  object-fit: contain !important;
+  mix-blend-mode: multiply !important;
+  transition: transform 0.3s ease !important;
+}
+
+.minikids-cat-card:hover .cat-img-box img {
+  transform: scale(1.08) !important;
+}
+
+.minikids-cat-card .cat-name {
+  font-family: var(--font-display) !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  color: var(--brand-ink) !important;
+  text-align: center !important;
+  margin-top: 10px !important;
+  line-height: 1.2 !important;
+  transition: color 0.2s ease !important;
+}
+
+.minikids-cat-card:hover .cat-name {
+  color: var(--brand-blue) !important;
+}
+
+/* ==========================================================================
+   5. Tarjetas de Productos (WooCommerce 6 Columnas Home, 4 en Tienda)
+   ========================================================================== */
+.woocommerce ul.products,
+.woocommerce ul.products.columns-6 {
+  display: grid !important;
+  grid-template-columns: repeat(6, 1fr) !important;
+  gap: 14px !important;
+  margin: 0 0 32px !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+.woocommerce:not(.home) ul.products,
+.woocommerce-page:not(.home) ul.products,
+.woocommerce ul.products.columns-4 {
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 20px !important;
 }
 
 .woocommerce ul.products::before,
@@ -108,1096 +652,2066 @@ h1, h2, h3, h4,
   display: none !important;
 }
 
-.woocommerce ul.products li.product,
-.wc-block-grid__product {
+.woocommerce ul.products li.product {
   background: #ffffff !important;
-  border: 1.5px solid var(--line) !important;
-  border-radius: var(--mkp-radius) !important;
-  padding: 16px 16px 20px !important;
-  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease !important;
-  text-align: center;
-  position: relative;
+  border: 1px solid var(--border) !important;
+  border-radius: 16px !important;
+  padding: 12px 12px 18px !important;
+  position: relative !important;
   display: flex !important;
   flex-direction: column !important;
   justify-content: space-between !important;
-  width: auto !important;
   margin: 0 !important;
   float: none !important;
-  box-shadow: 0 4px 14px rgba(32, 32, 32, .03) !important;
+  width: auto !important;
   box-sizing: border-box !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease !important;
 }
 
-.woocommerce ul.products li.product:hover,
-.wc-block-grid__product:hover {
-  transform: translateY(-5px) !important;
-  box-shadow: 0 16px 36px rgba(32, 32, 32, .09) !important;
-  border-color: rgba(255, 217, 87, .85) !important;
+.woocommerce ul.products li.product:hover {
+  transform: translateY(-4px) !important;
+  border-color: transparent !important;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.1) !important;
 }
 
-/* Enlace contenedor de imagen, título y precio */
-.woocommerce ul.products li.product .woocommerce-LoopProduct-link {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  text-decoration: none !important;
-  flex-grow: 1 !important;
+.woocommerce ul.products li.product.minikids-product-hidden {
+  display: none !important;
+}
+
+/* Sello Oferta */
+.woocommerce ul.products li.product span.onsale {
+  position: absolute !important;
+  top: 10px !important;
+  left: 10px !important;
+  background: var(--brand-red) !important;
+  color: #ffffff !important;
+  border-radius: 50px !important;
+  padding: 3px 10px !important;
+  font-family: var(--font-sans) !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.04em !important;
+  z-index: 2 !important;
+  min-height: 0 !important;
+  min-width: 0 !important;
+  line-height: 1.2 !important;
 }
 
 /* Imagen del producto */
 .woocommerce ul.products li.product img,
-.wc-block-grid__product-image img {
-  border-radius: 14px !important;
+.woocommerce ul.products li.product .ct-media-container img {
   width: 100% !important;
   aspect-ratio: 1 / 1 !important;
   object-fit: contain !important;
-  background: #fdfaf7 !important;
+  background: var(--pastel-cream) !important;
+  border-radius: 12px !important;
   padding: 8px !important;
-  margin-bottom: 12px !important;
+  margin-bottom: 10px !important;
+  transition: transform 0.3s ease !important;
   box-sizing: border-box !important;
-  transition: transform .25s ease !important;
 }
 
 .woocommerce ul.products li.product:hover img {
-  transform: scale(1.03) !important;
+  transform: scale(1.05) !important;
 }
 
-/* Título del producto */
+/* Título */
 .woocommerce ul.products li.product .woocommerce-loop-product__title {
-  font-family: "Baloo 2", sans-serif !important;
+  font-family: var(--font-display) !important;
+  font-size: 14.5px !important;
   font-weight: 700 !important;
-  font-size: 16.5px !important;
   line-height: 1.25 !important;
-  color: var(--ink) !important;
-  padding: 4px 0 2px !important;
-  margin: 0 !important;
-  min-height: 42px !important;
+  color: var(--brand-ink) !important;
+  margin: 0 0 6px !important;
+  min-height: 38px !important;
   display: -webkit-box !important;
   -webkit-line-clamp: 2 !important;
   -webkit-box-orient: vertical !important;
   overflow: hidden !important;
-  transition: color .2s ease !important;
+  transition: color 0.2s ease !important;
 }
 
-.woocommerce ul.products li.product:hover .woocommerce-loop-product__title {
-  color: var(--red) !important;
+.woocommerce ul.products li.product:hover .woocommerce-loop-product__title,
+.woocommerce ul.products li.product a:hover .woocommerce-loop-product__title {
+  color: var(--brand-blue) !important;
 }
 
-/* Precios en la tarjeta */
-.woocommerce ul.products li.product .price {
+/* Precio General: Productos sin oferta (limpios, discretos y neutros) */
+.woocommerce ul.products li.product .price,
+.woocommerce .price {
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  color: var(--brand-ink) !important;
+  margin: 4px 0 12px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  gap: 8px !important;
-  margin: 6px 0 14px !important;
-  font-size: 19px !important;
-  line-height: 1.2 !important;
+  gap: 6px !important;
 }
 
-.woocommerce ul.products li.product .price ins {
+/* En oferta detectado por WooCommerce: precio original tachado y discreto */
+.woocommerce ul.products li.product .price del,
+.woocommerce .price del,
+.woocommerce ul.products li.product.sale .price del {
+  font-size: 13px !important;
+  color: #8d99ae !important;
+  font-weight: 500 !important;
+  text-decoration: line-through !important;
+  opacity: 0.8 !important;
+}
+
+/* En oferta detectado por WooCommerce: precio rebajado destacado en rojo */
+.woocommerce ul.products li.product .price ins,
+.woocommerce .price ins,
+.woocommerce ul.products li.product.sale .price ins {
+  font-size: 17.5px !important;
+  font-weight: 800 !important;
+  color: var(--brand-red) !important;
   text-decoration: none !important;
 }
 
-.woocommerce ul.products li.product .price ins .woocommerce-Price-amount,
-.woocommerce ul.products li.product .price > .woocommerce-Price-amount {
-  color: var(--ink) !important;
-  font-size: 20px !important;
-  font-weight: 900 !important;
-}
-
-.woocommerce ul.products li.product .price del,
-.woocommerce ul.products li.product .price del .woocommerce-Price-amount {
-  color: var(--muted) !important;
-  font-size: 14px !important;
-  font-weight: 600 !important;
-  opacity: .75 !important;
-}
-
-/* Sello de oferta (rojo como en el mockup) */
-.woocommerce ul.products li.product span.onsale {
-  position: absolute !important;
-  top: 14px !important;
-  left: 14px !important;
-  margin: 0 !important;
-  background: var(--red) !important;
-  color: #ffffff !important;
-  border-radius: 999px !important;
-  min-height: 0 !important;
-  min-width: 0 !important;
-  padding: 4px 12px !important;
-  font-family: "Nunito Sans", sans-serif !important;
-  font-weight: 900 !important;
-  font-size: 11px !important;
-  line-height: 1.4 !important;
-  text-transform: uppercase !important;
-  letter-spacing: .05em !important;
-  box-shadow: 0 3px 8px rgba(237, 75, 67, .3) !important;
-  z-index: 2 !important;
-}
-
-/* Botón "Agregar al carrito" en la tarjeta (amarillo de marca como en el mockup) */
+/* Botón Agregar al Carrito (Amarillo de marca) */
 .woocommerce ul.products li.product .button,
 .woocommerce ul.products li.product .add_to_cart_button {
-  background: var(--yellow) !important;
-  color: var(--ink) !important;
-  border: 0 !important;
-  border-radius: 999px !important;
-  padding: 12px 18px !important;
-  font-family: "Nunito Sans", sans-serif !important;
-  font-weight: 900 !important;
-  font-size: 13.5px !important;
-  text-align: center !important;
-  display: block !important;
   width: 100% !important;
-  box-sizing: border-box !important;
-  margin-top: auto !important;
-  box-shadow: 0 3px 10px rgba(255, 217, 87, .35) !important;
-  transition: all .2s ease !important;
+  background: var(--brand-yellow) !important;
+  color: var(--brand-ink) !important;
+  font-family: var(--font-sans) !important;
+  font-size: 13.5px !important;
+  font-weight: 800 !important;
+  padding: 10px 14px !important;
+  border-radius: 10px !important;
+  border: none !important;
+  text-align: center !important;
   cursor: pointer !important;
+  margin-top: auto !important;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.15s !important;
 }
 
 .woocommerce ul.products li.product .button:hover,
 .woocommerce ul.products li.product .add_to_cart_button:hover {
-  background: #f7ce45 !important;
-  color: var(--ink) !important;
+  background: var(--brand-yellow-dark) !important;
   transform: translateY(-2px) !important;
-  box-shadow: 0 6px 18px rgba(255, 217, 87, .55) !important;
+  box-shadow: 0 4px 12px rgba(255, 214, 10, 0.45) !important;
 }
 
-/* Estados de carga y producto añadido */
-.woocommerce ul.products li.product .button.loading {
-  opacity: .75 !important;
+.woocommerce ul.products li.product .button:active,
+.woocommerce ul.products li.product .add_to_cart_button:active {
+  transform: scale(0.98) !important;
 }
 
-.woocommerce ul.products li.product .button.added::after {
-  content: " ✓" !important;
-  font-weight: 900 !important;
+/* ==========================================================================
+   6. Banner Promocional Amarillo (Promo Banner)
+   ========================================================================== */
+.minikids-promo-container {
+  max-width: 1280px !important;
+  margin: 32px auto 0 !important;
+  padding: 0 16px !important;
 }
 
-.woocommerce ul.products li.product .added_to_cart {
-  display: block !important;
-  margin-top: 8px !important;
-  font-size: 12px !important;
-  font-weight: 800 !important;
-  color: var(--red) !important;
-  text-decoration: underline !important;
-}
-
-/* Selector de ordenación y contador de resultados */
-.woocommerce-ordering {
-  margin-bottom: 24px !important;
-}
-
-.woocommerce-ordering select.orderby {
-  background: #ffffff !important;
-  border: 1.5px solid var(--line) !important;
-  border-radius: 999px !important;
-  padding: 9px 18px !important;
-  font-family: "Nunito Sans", sans-serif !important;
-  font-size: 13.5px !important;
-  font-weight: 700 !important;
-  color: var(--ink) !important;
-  box-shadow: 0 2px 6px rgba(32, 32, 32, .03) !important;
-  outline: none;
-  cursor: pointer;
-  transition: border-color .2s ease, box-shadow .2s ease;
-}
-
-.woocommerce-ordering select.orderby:focus {
-  border-color: var(--yellow) !important;
-  box-shadow: 0 0 0 3px rgba(255, 217, 87, .25) !important;
-}
-
-.woocommerce-result-count {
-  font-family: "Nunito Sans", sans-serif !important;
-  font-size: 14px !important;
-  font-weight: 700 !important;
-  color: var(--muted) !important;
-  margin: 12px 0 !important;
-}
-
-/* ---------- Cabecera de catalogo ---------- */
-.woocommerce-products-header {
-  background: var(--pink);
-  border-radius: var(--mkp-radius);
-  padding: 34px 26px;
-  margin-bottom: 34px;
-}
-
-.woocommerce-products-header__title {
-  margin: 0 !important;
-}
-
-/* ---------- Ficha de producto (mockup-producto.jpg) ---------- */
-.woocommerce-breadcrumb {
-  font-family: "Nunito Sans", sans-serif !important;
-  font-size: 13.5px !important;
-  font-weight: 700 !important;
-  color: var(--muted) !important;
-  margin-bottom: 22px !important;
-}
-
-.woocommerce-breadcrumb a {
-  color: var(--ink) !important;
-  text-decoration: none !important;
-  transition: color .2s ease !important;
-}
-
-.woocommerce-breadcrumb a:hover {
-  color: var(--red) !important;
-}
-
-.single-product div.product {
-  background: #ffffff !important;
-  border: 1.5px solid var(--line) !important;
-  border-radius: 24px !important;
-  padding: 36px 36px 42px !important;
-  box-shadow: 0 6px 24px rgba(32, 32, 32, .04) !important;
-  margin-bottom: 48px !important;
-}
-
-/* Galería e imágenes */
-.single-product .woocommerce-product-gallery {
+.minikids-promo-banner {
+  background: url('/wordpress/wp-content/uploads/minikids/promo-bg-limpio.png') center / cover no-repeat !important;
   border-radius: 20px !important;
-  overflow: hidden !important;
-}
-
-.single-product .woocommerce-product-gallery__wrapper {
-  border-radius: 20px !important;
-  overflow: hidden !important;
-}
-
-.single-product .woocommerce-product-gallery__image img {
-  border-radius: 20px !important;
-  background: #fdfaf7 !important;
-  width: 100% !important;
-  object-fit: contain !important;
-  border: 1px solid var(--line) !important;
-}
-
-.single-product .flex-control-thumbs {
+  min-height: 220px !important;
+  padding: 44px 24px !important;
   display: flex !important;
-  gap: 10px !important;
-  margin-top: 14px !important;
-  padding: 0 !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  box-sizing: border-box !important;
 }
 
-.single-product .flex-control-thumbs li {
-  width: auto !important;
-  margin: 0 !important;
-  float: none !important;
+.minikids-promo-title {
+  font-family: var(--font-display) !important;
+  font-size: clamp(30px, 4vw, 42px) !important;
+  font-weight: 800 !important;
+  line-height: 0.95 !important;
+  letter-spacing: -0.02em !important;
+  color: var(--brand-ink) !important;
+  transform: rotate(-1deg) !important;
+  margin: 0 0 12px !important;
 }
 
-.single-product .flex-control-thumbs img {
-  border-radius: 12px !important;
-  border: 2px solid transparent !important;
-  padding: 4px !important;
-  background: #fdfaf7 !important;
-  cursor: pointer !important;
-  transition: border-color .2s ease !important;
+.minikids-promo-title .promo-highlight {
+  color: var(--brand-blue) !important;
 }
 
-.single-product .flex-control-thumbs img.flex-active,
-.single-product .flex-control-thumbs img:hover {
-  border-color: var(--yellow) !important;
+.minikids-promo-desc {
+  font-family: var(--font-sans) !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  color: rgba(17, 17, 17, 0.85) !important;
+  max-width: 520px !important;
+  margin: 0 auto 20px !important;
 }
 
-/* Columna de resumen / detalles */
-.single-product div.product .summary {
-  padding-left: 18px !important;
-}
-
-/* Insignia 'Más vendido' / 'Sale!' */
-.single-product div.product .summary span.onsale {
-  position: static !important;
+.minikids-promo-btn {
   display: inline-block !important;
-  background: var(--red) !important;
+  background: var(--brand-red) !important;
   color: #ffffff !important;
-  font-family: "Nunito Sans", sans-serif !important;
-  font-weight: 900 !important;
-  font-size: 11.5px !important;
-  text-transform: uppercase !important;
-  letter-spacing: .06em !important;
-  padding: 5px 14px !important;
-  border-radius: 999px !important;
-  box-shadow: 0 3px 8px rgba(237, 75, 67, .25) !important;
+  font-family: var(--font-sans) !important;
+  font-weight: 800 !important;
+  font-size: 15px !important;
+  padding: 12px 38px !important;
+  border-radius: 10px !important;
+  text-decoration: none !important;
+  box-shadow: 0 4px 14px rgba(239, 35, 60, 0.35) !important;
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.minikids-promo-btn:hover {
+  background: #d61a32 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(239, 35, 60, 0.5) !important;
+}
+
+/* ==========================================================================
+   7. Beneficios (4 Columnas)
+   ========================================================================== */
+.minikids-benefits-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 24px !important;
+  margin: 0 !important;
+}
+
+.minikids-benefit-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+}
+
+.minikids-benefit-item .benefit-icon {
+  width: 56px !important;
+  height: 56px !important;
+  border-radius: 16px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  transition: transform 0.3s ease !important;
+}
+
+.minikids-benefit-item:hover .benefit-icon {
+  transform: rotate(-6deg) scale(1.1) !important;
+}
+
+.bg-pastel-blue   { background: var(--pastel-blue) !important; }
+.bg-pastel-yellow { background: var(--pastel-yellow) !important; }
+.bg-pastel-pink   { background: var(--pastel-pink) !important; }
+
+.text-brand-blue { color: var(--brand-blue) !important; }
+.text-brand-ink  { color: var(--brand-ink) !important; }
+.text-brand-red  { color: var(--brand-red) !important; }
+
+.minikids-benefit-item .benefit-title {
+  font-family: var(--font-display) !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  color: var(--brand-ink) !important;
+  margin: 0 0 3px !important;
+}
+
+.minikids-benefit-item .benefit-desc {
+  font-family: var(--font-sans) !important;
+  font-size: 13.5px !important;
+  color: var(--muted-foreground) !important;
+  margin: 0 !important;
+}
+
+/* ==========================================================================
+   8. Footer (5 Columnas)
+   ========================================================================== */
+.minikids-site-footer {
+  border-top: 1px solid var(--border) !important;
+  background: #ffffff !important;
+  padding: 56px 16px 36px !important;
+  margin-top: 48px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.minikids-footer-inner {
+  max-width: 1280px !important;
+  margin: 0 auto !important;
+  display: grid !important;
+  grid-template-columns: 1.4fr 0.8fr 1fr 0.9fr 1.6fr !important;
+  gap: 36px !important;
+}
+
+.minikids-site-footer .footer-logo-img {
+  max-height: 54px !important;
+  width: auto !important;
   margin-bottom: 12px !important;
 }
 
-/* Título */
-.single-product div.product .product_title {
-  font-family: "Baloo 2", sans-serif !important;
-  font-weight: 800 !important;
-  font-size: clamp(28px, 3.2vw, 36px) !important;
-  line-height: 1.15 !important;
-  color: var(--ink) !important;
-  margin: 0 0 10px !important;
-}
-
-/* Valoraciones / Estrellas */
-.single-product .woocommerce-product-rating {
-  display: flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-  margin-bottom: 14px !important;
-  font-family: "Nunito Sans", sans-serif !important;
-  font-size: 13.5px !important;
-  font-weight: 700 !important;
-  color: var(--muted) !important;
-}
-
-.single-product .star-rating {
-  color: #ffb800 !important;
-  font-size: 15px !important;
-}
-
-/* Precios */
-.single-product div.product p.price {
-  font-size: 32px !important;
-  line-height: 1.2 !important;
-  font-weight: 900 !important;
-  color: var(--ink) !important;
-  margin: 14px 0 16px !important;
-  display: flex !important;
-  align-items: center !important;
-  gap: 12px !important;
-}
-
-.single-product div.product p.price ins {
-  text-decoration: none !important;
-}
-
-.single-product div.product p.price ins .woocommerce-Price-amount,
-.single-product div.product p.price > .woocommerce-Price-amount {
-  color: var(--ink) !important;
-  font-size: 32px !important;
-  font-weight: 900 !important;
-}
-
-.single-product div.product p.price del,
-.single-product div.product p.price del .woocommerce-Price-amount {
-  color: var(--muted) !important;
+.minikids-site-footer .footer-tagline {
+  font-family: var(--font-display) !important;
   font-size: 20px !important;
   font-weight: 600 !important;
-  opacity: .7 !important;
+  font-style: italic !important;
+  color: var(--brand-ink) !important;
+  line-height: 1.2 !important;
+  margin: 0 !important;
 }
 
-/* Descripción corta */
-.single-product .woocommerce-product-details__short-description {
-  font-family: "Nunito Sans", sans-serif !important;
-  font-size: 15.5px !important;
-  line-height: 1.65 !important;
-  color: #555555 !important;
-  margin-bottom: 22px !important;
-}
-
-/* Badge de stock con punto verde */
-.single-product .stock.in-stock {
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-  font-family: "Nunito Sans", sans-serif !important;
-  font-weight: 800 !important;
-  font-size: 13.5px !important;
-  color: #247a38 !important;
-  background: #eaf7ed !important;
-  padding: 6px 14px !important;
-  border-radius: 999px !important;
-  margin-bottom: 20px !important;
-}
-
-.single-product .stock.in-stock::before {
-  content: "●";
-  font-size: 13px;
-  color: #2e7d32;
-}
-
-/* Formulario de compra */
-.single-product form.cart {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  align-items: center !important;
-  gap: 14px !important;
-  margin: 20px 0 26px !important;
-  padding: 0 !important;
-  background: transparent !important;
-  border: 0 !important;
-}
-
-/* Selector de cantidad */
-.single-product .quantity {
-  display: inline-flex !important;
-  align-items: center !important;
-  border: 1.5px solid var(--line) !important;
-  border-radius: 999px !important;
-  background: #ffffff !important;
-  padding: 4px 8px !important;
-  box-shadow: 0 2px 6px rgba(32, 32, 32, .03) !important;
-}
-
-.single-product .quantity input.qty {
-  border: 0 !important;
-  background: transparent !important;
-  font-family: "Nunito Sans", sans-serif !important;
-  font-weight: 900 !important;
-  font-size: 16px !important;
-  color: var(--ink) !important;
-  width: 48px !important;
-  height: 40px !important;
-  text-align: center !important;
-  padding: 0 !important;
-}
-
-/* Botón 'Agregar al carrito' (amarillo llamativo de marca como en la maqueta) */
-.single-product button.single_add_to_cart_button {
-  background: var(--yellow) !important;
-  color: var(--ink) !important;
-  border: 0 !important;
-  border-radius: 999px !important;
-  padding: 14px 34px !important;
-  font-family: "Nunito Sans", sans-serif !important;
-  font-weight: 900 !important;
+.minikids-site-footer .footer-heading {
+  font-family: var(--font-display) !important;
   font-size: 15px !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-  box-shadow: 0 4px 16px rgba(255, 217, 87, .4) !important;
-  transition: all .2s ease !important;
-  cursor: pointer !important;
+  font-weight: 800 !important;
+  color: var(--brand-ink) !important;
+  margin: 0 0 16px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.04em !important;
 }
 
-.single-product button.single_add_to_cart_button::before {
-  content: "🛒";
-  font-size: 16px;
+.minikids-site-footer .footer-links {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
 }
 
-.single-product button.single_add_to_cart_button:hover {
-  background: #f7ce45 !important;
-  color: var(--ink) !important;
-  transform: translateY(-2px) !important;
-  box-shadow: 0 8px 24px rgba(255, 217, 87, .55) !important;
-}
-
-/* Metadatos del producto */
-.single-product .product_meta {
-  border-top: 1.5px solid var(--line) !important;
-  padding-top: 20px !important;
-  margin-top: 24px !important;
-  font-family: "Nunito Sans", sans-serif !important;
-  font-size: 13.5px !important;
-  color: var(--muted) !important;
-}
-
-.single-product .product_meta > span {
-  display: block !important;
-  margin-bottom: 6px !important;
-}
-
-.single-product .product_meta a {
-  color: var(--ink) !important;
-  font-weight: 700 !important;
+.minikids-site-footer .footer-links a {
+  font-size: 14px !important;
+  color: var(--muted-foreground) !important;
   text-decoration: none !important;
+  display: inline-block !important;
+  transition: color 0.2s ease, transform 0.2s ease !important;
 }
 
-.single-product .product_meta a:hover {
-  color: var(--red) !important;
+.minikids-site-footer .footer-links a:hover {
+  color: var(--brand-blue) !important;
+  transform: translateX(4px) !important;
 }
 
-/* Pestañas de producto */
-.single-product .woocommerce-tabs {
-  margin-top: 40px !important;
-  border-top: 2px solid var(--line) !important;
-  padding-top: 32px !important;
-}
-
-.single-product .woocommerce-tabs ul.tabs {
+.minikids-site-footer .footer-socials {
   display: flex !important;
   gap: 12px !important;
-  border-bottom: 2px solid var(--line) !important;
-  padding: 0 0 12px !important;
-  margin: 0 0 24px !important;
-  list-style: none !important;
-  overflow-x: auto !important;
 }
 
-.single-product .woocommerce-tabs ul.tabs::before,
-.single-product .woocommerce-tabs ul.tabs::after {
-  display: none !important;
-}
-
-.single-product .woocommerce-tabs ul.tabs li {
-  background: transparent !important;
-  border: 0 !important;
-  border-radius: 999px !important;
-  padding: 0 !important;
-  margin: 0 !important;
-}
-
-.single-product .woocommerce-tabs ul.tabs li::before,
-.single-product .woocommerce-tabs ul.tabs li::after {
-  display: none !important;
-}
-
-.single-product .woocommerce-tabs ul.tabs li a {
-  font-family: "Baloo 2", sans-serif !important;
-  font-size: 17px !important;
-  font-weight: 700 !important;
-  color: var(--muted) !important;
-  padding: 8px 20px !important;
-  border-radius: 999px !important;
-  display: inline-block !important;
-  text-decoration: none !important;
-  transition: all .2s ease !important;
-}
-
-.single-product .woocommerce-tabs ul.tabs li.active a {
-  background: var(--pink) !important;
-  color: var(--red) !important;
-  font-weight: 800 !important;
-}
-
-.single-product .woocommerce-tabs ul.tabs li a:hover {
-  color: var(--red) !important;
-}
-
-.single-product .woocommerce-tabs .woocommerce-Tabs-panel {
-  font-family: "Nunito Sans", sans-serif !important;
-  font-size: 15.5px !important;
-  line-height: 1.7 !important;
-  color: #444444 !important;
-  background: #ffffff !important;
-  padding: 8px 4px !important;
-}
-
-.single-product .woocommerce-tabs .woocommerce-Tabs-panel h2 {
-  font-family: "Baloo 2", sans-serif !important;
-  font-size: 24px !important;
-  font-weight: 800 !important;
-  color: var(--ink) !important;
-  margin-bottom: 14px !important;
-}
-
-/* Productos relacionados */
-.single-product section.related {
-  margin-top: 48px !important;
-}
-
-.single-product section.related > h2 {
-  font-family: "Baloo 2", sans-serif !important;
-  font-size: 30px !important;
-  font-weight: 800 !important;
-  color: var(--ink) !important;
-  text-align: center !important;
-  margin-bottom: 28px !important;
-}
-
-.single-product section.related > h2::after {
-  content: "" !important;
-  display: block !important;
-  width: 60px !important;
-  height: 5px !important;
-  background: var(--yellow) !important;
-  border-radius: 999px !important;
-  margin: 10px auto 0 !important;
-}
-
-/* ---------- Carrito y checkout ---------- */
-.woocommerce-cart-form,
-.woocommerce-checkout-review-order,
-.wc-block-cart,
-.wc-block-checkout {
-  background: var(--cream);
-  border-radius: var(--mkp-radius);
-  padding: 22px;
-}
-
-.woocommerce table.shop_table {
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  overflow: hidden;
-}
-
-.woocommerce table.shop_table th {
-  background: var(--card);
-  font-family: "Baloo 2", sans-serif;
-  font-weight: 700;
-  color: var(--ink);
-}
-
-.woocommerce .cart_totals h2,
-.woocommerce #order_review_heading {
-  font-family: "Baloo 2", sans-serif;
-  font-weight: 800;
-}
-
-/* ---------- Avisos ---------- */
-.woocommerce-message,
-.woocommerce-info,
-.woocommerce-error {
-  border-radius: 14px;
-  border-top-color: var(--red);
-  background: var(--card);
-  color: var(--ink);
-}
-
-.woocommerce-message::before,
-.woocommerce-info::before {
-  color: var(--red);
-}
-
-/* ---------- Ilustracion del osito (para usar en la portada) ---------- */
-.mkp-hero-art {
-  display: grid !important;
-  place-items: center !important;
-  position: relative !important;
-  min-height: 390px !important;
-}
-
-.mkp-hero-art::before {
-  content: "" !important;
-  width: 320px !important;
-  height: 320px !important;
+.minikids-site-footer .footer-socials a {
+  width: 40px !important;
+  height: 40px !important;
   border-radius: 50% !important;
-  background: radial-gradient(circle, #ffe680 0%, var(--yellow) 100%) !important;
-  box-shadow: 0 16px 42px rgba(255, 217, 87, .48) !important;
-  position: absolute !important;
-  animation: pulseSun 6s ease-in-out infinite alternate !important;
+  background: var(--muted) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: var(--brand-ink) !important;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease !important;
 }
 
-.mkp-hero-art::after {
-  content: "★" !important;
-  position: absolute !important;
-  top: 36px !important;
-  right: 36px !important;
-  color: var(--red) !important;
-  font-size: 42px !important;
-  transform: rotate(18deg) !important;
-  animation: spinStar 8s ease-in-out infinite alternate !important;
+.minikids-site-footer .footer-socials a:hover {
+  transform: translateY(-3px) scale(1.1) !important;
+  background: var(--pastel-blue) !important;
+  color: var(--brand-blue) !important;
+  box-shadow: 0 4px 12px rgba(26, 115, 232, 0.25) !important;
 }
 
-@keyframes pulseSun {
-  0% { transform: scale(0.96); }
-  100% { transform: scale(1.04); }
+.minikids-site-footer .footer-newsletter-form {
+  display: flex !important;
+  border: 1px solid var(--input) !important;
+  border-radius: 10px !important;
+  overflow: hidden !important;
+  margin-bottom: 24px !important;
+  transition: border-color 0.2s ease !important;
 }
 
-@keyframes spinStar {
-  0% { transform: rotate(12deg) scale(0.9); }
-  100% { transform: rotate(26deg) scale(1.15); }
+.minikids-site-footer .footer-newsletter-form:focus-within {
+  border-color: var(--brand-blue) !important;
+  box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.15) !important;
 }
 
-.toy-illustration {
-  z-index: 1 !important;
-  position: relative !important;
-  width: 280px !important;
-  height: 250px !important;
-  animation: floatBear 4s ease-in-out infinite alternate !important;
+.minikids-site-footer .footer-newsletter-form input {
+  flex: 1 !important;
+  padding: 11px 14px !important;
+  border: none !important;
+  outline: none !important;
+  font-size: 14px !important;
+  font-family: var(--font-sans) !important;
 }
 
-@keyframes floatBear {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-8px); }
-}
-
-.toy-bear {
-  position: absolute !important;
-  left: 48px !important;
-  bottom: 0 !important;
-  width: 184px !important;
-  height: 182px !important;
-  border-radius: 48% 48% 42% 42% !important;
-  background: #c8895b !important;
-  box-shadow: inset -14px -14px 0 rgba(110, 60, 32, .15), 0 14px 32px rgba(189, 128, 84, .3) !important;
-}
-
-.toy-bear::before,
-.toy-bear::after {
-  content: "" !important;
-  position: absolute !important;
-  top: -25px !important;
-  width: 68px !important;
-  height: 68px !important;
-  border-radius: 50% !important;
-  background: #c8895b !important;
-  box-shadow: inset 0 -6px 0 rgba(110, 60, 32, .12) !important;
-}
-
-.toy-bear::before { left: 7px !important; }
-.toy-bear::after { right: 7px !important; }
-
-.toy-bear .scarf {
-  position: absolute !important;
-  left: 20px !important;
-  bottom: 22px !important;
-  width: 144px !important;
-  height: 32px !important;
-  border-radius: 16px !important;
-  background: var(--red) !important;
-  transform: rotate(-3deg) !important;
-  box-shadow: 0 4px 10px rgba(237, 75, 67, .35) !important;
-}
-
-.bear-face {
-  position: absolute !important;
-  left: 50% !important;
-  top: 52px !important;
-  width: 132px !important;
-  height: 98px !important;
-  border-radius: 50% !important;
-  background: #f7cb99 !important;
-  transform: translateX(-50%) !important;
-}
-
-.bear-eye {
-  position: absolute !important;
-  top: 20px !important;
-  width: 15px !important;
-  height: 17px !important;
-  border-radius: 50% !important;
-  background: #2b1910 !important;
-}
-
-.bear-eye.left { left: 29px !important; }
-.bear-eye.right { right: 29px !important; }
-
-.bear-eye::after {
-  content: "";
-  position: absolute;
-  top: 3px;
-  right: 3px;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: #ffffff;
-}
-
-.bear-muzzle {
-  position: absolute !important;
-  left: 50% !important;
-  top: 38px !important;
-  width: 60px !important;
-  height: 36px !important;
-  border-radius: 50% !important;
-  background: #fff0db !important;
-  transform: translateX(-50%) !important;
-}
-
-.bear-muzzle::before {
-  content: "" !important;
-  position: absolute !important;
-  left: 50% !important;
-  top: 4px !important;
-  width: 18px !important;
-  height: 12px !important;
-  border-radius: 50% 50% 58% 58% !important;
-  background: #2b1910 !important;
-  transform: translateX(-50%) !important;
-}
-
-.bear-muzzle::after {
-  content: "" !important;
-  position: absolute !important;
-  left: 50% !important;
-  top: 14px !important;
-  width: 26px !important;
-  height: 12px !important;
-  border-bottom: 3px solid #2b1910 !important;
-  border-radius: 0 0 60% 60% !important;
-  transform: translateX(-50%) !important;
-}
-
-.toy-star {
-  position: absolute !important;
-  right: 0 !important;
-  bottom: 22px !important;
-  color: #4ec2a5 !important;
-  font-size: 110px !important;
-  line-height: 1 !important;
-  transform: rotate(16deg) !important;
-  filter: drop-shadow(0 6px 14px rgba(78, 194, 165, .35)) !important;
-}
-
-.spark {
-  position: absolute !important;
-  font-size: 28px !important;
-  line-height: 1 !important;
-}
-
-.spark.one {
-  left: 10px !important;
-  top: 36px !important;
+.minikids-site-footer .footer-newsletter-form button {
+  background: var(--brand-blue) !important;
   color: #ffffff !important;
-  filter: drop-shadow(0 2px 6px rgba(0,0,0,.15)) !important;
+  border: none !important;
+  padding: 11px 20px !important;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  cursor: pointer !important;
+  transition: background 0.2s ease !important;
 }
 
-.spark.two {
-  right: 16px !important;
-  bottom: 130px !important;
-  color: var(--red) !important;
-  font-size: 32px !important;
+.minikids-site-footer .footer-newsletter-form button:hover {
+  background: #155fc0 !important;
 }
 
-/* ---------- Cabecera y Navegación ---------- */
-.mkp-announcement-bar {
-  background: var(--yellow) !important;
-  color: var(--ink) !important;
-  border-bottom: 1px solid rgba(32, 32, 32, .06);
-}
-
-.mkp-announcement-bar p {
-  margin: 0 !important;
-  color: var(--ink) !important;
-  font-family: "Nunito Sans", sans-serif !important;
-  font-weight: 800 !important;
+.minikids-site-footer .footer-bottom-copy {
   font-size: 13px !important;
-  letter-spacing: .02em;
+  color: var(--muted-foreground) !important;
 }
 
-.mkp-main-header {
-  background: #ffffff !important;
-  border-bottom: 2px solid var(--line);
-  box-shadow: 0 4px 20px rgba(32, 32, 32, .03);
-}
-
-.mkp-main-header .alignwide {
-  align-items: center !important;
-}
-
-.mkp-main-header .wp-block-navigation__container {
-  align-items: center !important;
-}
-
-.mkp-main-header .wp-block-image {
-  margin: 0 !important;
-}
-
-.mkp-main-header .wp-block-image img {
-  display: block;
-  max-width: 185px;
-  height: auto;
-  transition: transform .2s ease;
-}
-
-.mkp-main-header .wp-block-image img:hover {
-  transform: scale(1.02);
-}
-
-/* Menú de navegación */
-.wp-block-navigation .wp-block-navigation-item__content {
-  font-family: "Nunito Sans", sans-serif !important;
+/* ==========================================================================
+   9. Ficha Individual de Producto (Single Product Next.js Style)
+   ========================================================================== */
+.single-product .entry-summary .product_title {
+  font-family: var(--font-display) !important;
+  font-size: clamp(28px, 3.5vw, 42px) !important;
   font-weight: 800 !important;
-  font-size: 15px !important;
-  color: var(--ink) !important;
-  padding: 8px 14px !important;
-  border-radius: 20px !important;
-  transition: all .2s ease !important;
-  text-decoration: none !important;
+  line-height: 1.15 !important;
+  color: var(--brand-ink) !important;
+  margin: 0 0 12px !important;
 }
 
-.wp-block-navigation .wp-block-navigation-item__content:hover {
-  background: var(--pink) !important;
-  color: var(--red) !important;
-}
-
-/* Enlace Carrito como pastilla amarilla */
-.wp-block-navigation-item a[href*="/cart/"] {
-  background: var(--yellow) !important;
-  color: var(--ink) !important;
+.single-product div.product .woocommerce-product-gallery {
   border-radius: 24px !important;
-  padding: 8px 18px !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 7px !important;
-  font-weight: 900 !important;
-  box-shadow: 0 2px 8px rgba(255, 217, 87, .35);
-  transition: all .2s ease !important;
-}
-
-.wp-block-navigation-item a[href*="/cart/"]::before {
-  content: "🛒";
-  font-size: 14px;
-}
-
-.wp-block-navigation-item a[href*="/cart/"]:hover {
-  background: #f7ce45 !important;
-  color: var(--ink) !important;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 14px rgba(255, 217, 87, .5);
-}
-
-/* ---------- Portada y Hero ---------- */
-/* Ocultar título genérico 'Inicio' en la portada */
-.home .wp-block-post-title {
-  display: none !important;
-}
-
-.mkp-hero {
-  background: linear-gradient(135deg, #fff7f4 0%, #ffe9e6 55%, #fff3dc 100%) !important;
-  border: 2px solid #fae5e0 !important;
-  border-radius: 28px !important;
-  padding: 52px 46px !important;
-  margin-bottom: 44px !important;
-  box-shadow: 0 14px 44px rgba(237, 75, 67, .07) !important;
-  position: relative !important;
   overflow: hidden !important;
 }
 
-.mkp-hero .mkp-eyebrow {
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 6px !important;
-  background: #ffffff !important;
-  color: var(--red) !important;
-  font-family: "Nunito Sans", sans-serif !important;
-  font-weight: 900 !important;
-  font-size: 13px !important;
-  text-transform: uppercase !important;
-  letter-spacing: .06em !important;
-  padding: 7px 18px !important;
-  border-radius: 999px !important;
-  box-shadow: 0 3px 12px rgba(237, 75, 67, .12) !important;
-  margin-bottom: 18px !important;
-  width: fit-content !important;
+.single-product div.product .woocommerce-product-gallery img {
+  border-radius: 24px !important;
+  background: var(--pastel-cream) !important;
+  padding: 24px !important;
+  object-fit: contain !important;
+  mix-blend-mode: multiply !important;
+  box-sizing: border-box !important;
 }
 
-.mkp-hero .mkp-eyebrow::before {
-  content: "✨";
-  font-size: 13px;
+.single-product div.product p.price {
+  font-size: clamp(26px, 3vw, 34px) !important;
+  font-weight: 700 !important;
+  color: var(--brand-ink) !important;
+  margin: 14px 0 !important;
+  display: flex !important;
+  align-items: baseline !important;
+  gap: 12px !important;
 }
 
-.mkp-hero h1 {
-  font-family: "Baloo 2", sans-serif !important;
-  font-size: clamp(38px, 4.8vw, 60px) !important;
+.single-product div.product p.price del {
+  font-size: 18px !important;
+  color: #8d99ae !important;
+  text-decoration: line-through !important;
+  font-weight: 500 !important;
+  opacity: 0.8 !important;
+}
+
+.single-product div.product p.price ins {
+  font-size: clamp(28px, 3.2vw, 36px) !important;
+  color: var(--brand-red) !important;
   font-weight: 800 !important;
-  line-height: 1.05 !important;
-  color: var(--ink) !important;
-  margin: 0 0 16px !important;
-  letter-spacing: -0.02em !important;
-}
-
-.mkp-hero p:not(.mkp-eyebrow) {
-  font-family: "Nunito Sans", sans-serif !important;
-  font-size: 17px !important;
-  font-weight: 600 !important;
-  line-height: 1.55 !important;
-  color: #555555 !important;
-  margin: 0 0 28px !important;
-  max-width: 520px !important;
-}
-
-.mkp-hero .wp-block-button__link {
-  background: var(--red) !important;
-  color: #ffffff !important;
-  font-family: "Nunito Sans", sans-serif !important;
-  font-weight: 900 !important;
-  font-size: 15px !important;
-  padding: 14px 34px !important;
-  border-radius: 999px !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-  box-shadow: 0 6px 22px rgba(237, 75, 67, .38) !important;
-  transition: all .25s ease !important;
   text-decoration: none !important;
 }
 
-.mkp-hero .wp-block-button__link::after {
-  content: " →";
-  font-weight: 900;
-  transition: transform .2s ease;
-}
-
-.mkp-hero .wp-block-button__link:hover {
-  background: var(--red-dark) !important;
-  transform: translateY(-3px) scale(1.02) !important;
-  box-shadow: 0 10px 28px rgba(237, 75, 67, .5) !important;
-}
-
-.mkp-hero .wp-block-button__link:hover::after {
-  transform: translateX(4px);
-}
-
-/* Título de sección "Favoritos de la semana" */
-.home .entry-content > h2.wp-block-heading {
-  font-family: "Baloo 2", sans-serif !important;
-  font-size: 32px !important;
+/* Botón Añadir al carrito en Ficha */
+.single-product form.cart button.single_add_to_cart_button {
+  background: var(--brand-yellow) !important;
+  color: var(--brand-ink) !important;
+  font-family: var(--font-sans) !important;
   font-weight: 800 !important;
-  color: var(--ink) !important;
-  text-align: center !important;
-  margin: 52px 0 24px !important;
+  font-size: 16px !important;
+  padding: 14px 36px !important;
+  border-radius: 12px !important;
+  border: none !important;
+  box-shadow: 0 4px 14px rgba(255, 214, 10, 0.45) !important;
+  cursor: pointer !important;
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.single-product form.cart button.single_add_to_cart_button:hover {
+  background: var(--brand-yellow-dark) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(255, 214, 10, 0.6) !important;
+}
+
+/* Stepper de cantidad */
+.single-product form.cart .quantity input.qty {
+  border: 1.5px solid var(--border) !important;
+  border-radius: 10px !important;
+  padding: 10px 12px !important;
+  font-weight: 700 !important;
+  color: var(--brand-ink) !important;
+}
+
+/* Badges de Confianza */
+.minikids-product-trust-badges {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 12px !important;
+  background: var(--muted) !important;
+  border-radius: 16px !important;
+  padding: 16px !important;
+  margin-top: 24px !important;
+}
+
+.trust-badge-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: var(--brand-ink) !important;
+}
+
+/* Tabs de Producto */
+.woocommerce-tabs ul.tabs {
+  border-bottom: 2px solid var(--border) !important;
+  padding: 0 !important;
+  margin: 0 0 24px !important;
+  display: flex !important;
+  gap: 24px !important;
+}
+
+.woocommerce-tabs ul.tabs li {
+  border: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.woocommerce-tabs ul.tabs li a {
+  font-family: var(--font-display) !important;
+  font-size: 17px !important;
+  font-weight: 700 !important;
+  color: var(--muted-foreground) !important;
+  padding: 12px 4px !important;
+  display: inline-block !important;
   position: relative !important;
-  letter-spacing: -0.01em !important;
 }
 
-.home .entry-content > h2.wp-block-heading::after {
-  content: "" !important;
+.woocommerce-tabs ul.tabs li.active a {
+  color: var(--brand-blue) !important;
+}
+
+.woocommerce-tabs ul.tabs li.active a::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: -2px !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 2px !important;
+  background: var(--brand-blue) !important;
+}
+
+/* ==========================================================================
+   10. Carrito y Checkout (Blocks de WooCommerce & Clásicos)
+   ========================================================================== */
+.wc-block-components-button,
+.woocommerce-cart .wc-proceed-to-checkout a.button,
+.woocommerce-checkout #place_order {
+  background: var(--brand-yellow) !important;
+  color: var(--brand-ink) !important;
+  font-family: var(--font-sans) !important;
+  font-weight: 800 !important;
+  font-size: 15px !important;
+  border-radius: 12px !important;
+  border: none !important;
+  box-shadow: 0 4px 14px rgba(255, 214, 10, 0.4) !important;
+  padding: 14px 28px !important;
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.wc-block-components-button:hover,
+.woocommerce-cart .wc-proceed-to-checkout a.button:hover,
+.woocommerce-checkout #place_order:hover {
+  background: var(--brand-yellow-dark) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(255, 214, 10, 0.6) !important;
+}
+
+/* Badges de Edad y Stock */
+.minikids-product-meta-badges {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  margin: 16px 0 20px !important;
+}
+
+.minikids-product-meta-badges .meta-badge {
+  display: inline-block !important;
+  padding: 6px 14px !important;
+  border-radius: 9999px !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  line-height: 1.2 !important;
+}
+
+.minikids-product-meta-badges .badge-age {
+  background: var(--pastel-yellow) !important;
+  color: var(--brand-ink) !important;
+}
+
+.minikids-product-meta-badges .badge-stock {
+  background: var(--pastel-green) !important;
+  color: #148043 !important;
+}
+
+/* Breadcrumbs WooCommerce */
+.woocommerce-breadcrumb {
+  font-size: 14px !important;
+  color: var(--muted-foreground) !important;
+  margin: 0 0 24px !important;
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 6px !important;
+}
+
+.woocommerce-breadcrumb a {
+  color: var(--muted-foreground) !important;
+  text-decoration: none !important;
+  transition: color 0.2s ease !important;
+}
+
+.woocommerce-breadcrumb a:hover {
+  color: var(--brand-blue) !important;
+}
+
+/* Category Pills en Tienda */
+.minikids-cat-pills-wrap {
+  margin: 0 auto 32px !important;
+  max-width: 1280px !important;
+}
+
+.minikids-category-pills {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 10px !important;
+  justify-content: center !important;
+}
+
+.minikids-pill .wp-block-button__link {
+  font-family: var(--font-sans) !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  padding: 8px 18px !important;
+  border-radius: 9999px !important;
+  transition: all 0.2s ease !important;
+  text-decoration: none !important;
+}
+
+.minikids-pill.is-style-outline .wp-block-button__link {
+  border: 1.5px solid var(--border) !important;
+  background: #ffffff !important;
+  color: var(--muted-foreground) !important;
+}
+
+.minikids-pill.is-style-outline .wp-block-button__link:hover {
+  border-color: var(--brand-sky) !important;
+  color: var(--brand-blue) !important;
+  background: var(--pastel-blue) !important;
+  transform: translateY(-1px) !important;
+}
+
+.minikids-pill-active .wp-block-button__link,
+.minikids-pill.is-style-fill .wp-block-button__link {
+  background: var(--brand-blue) !important;
+  color: #ffffff !important;
+  border: 1.5px solid var(--brand-blue) !important;
+  box-shadow: 0 4px 12px rgba(26, 115, 232, 0.3) !important;
+}
+
+/* ==========================================================================
+   Checkout: Layout General, Jerarquía Visual y Centrado
+   ========================================================================== */
+.woocommerce-checkout .entry-header {
+  text-align: center !important;
+  margin: 36px auto 28px auto !important;
+  max-width: 900px !important;
+}
+
+.woocommerce-checkout .entry-header .page-title {
+  font-family: var(--font-display) !important;
+  font-size: clamp(32px, 4vw, 42px) !important;
+  font-weight: 800 !important;
+  color: var(--brand-ink) !important;
+  text-align: center !important;
+  margin: 0 !important;
+  display: inline-block !important;
+  position: relative !important;
+}
+
+.woocommerce-checkout .entry-header .page-title::after {
+  content: '' !important;
   display: block !important;
-  width: 64px !important;
-  height: 5px !important;
-  background: var(--yellow) !important;
-  border-radius: 999px !important;
-  margin: 10px auto 0 !important;
+  width: 54px !important;
+  height: 4px !important;
+  background: var(--brand-yellow) !important;
+  border-radius: 4px !important;
+  margin: 10px auto 0 auto !important;
 }
 
-/* ---------- Responsive ---------- */
-@media (max-width: 1080px) {
-  .woocommerce ul.products {
+.wp-block-woocommerce-checkout,
+.wc-block-checkout {
+  max-width: 1180px !important;
+  margin: 0 auto !important;
+  padding: 0 16px 50px 16px !important;
+  box-sizing: border-box !important;
+}
+
+@media (min-width: 960px) {
+  .wc-block-checkout.is-large {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) 420px !important;
+    gap: 36px !important;
+    align-items: start !important;
+  }
+}
+
+/* Pasos del checkout (tarjetas limpias con bordes redondeados y sombras suaves) */
+.wc-block-components-checkout-step {
+  background: #ffffff !important;
+  border: 1.5px solid var(--border) !important;
+  border-radius: 20px !important;
+  padding: 28px 24px !important;
+  margin-bottom: 24px !important;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.03) !important;
+  box-sizing: border-box !important;
+}
+
+.wc-block-components-checkout-step__title {
+  font-family: var(--font-display) !important;
+  font-size: 20px !important;
+  font-weight: 800 !important;
+  color: var(--brand-ink) !important;
+  margin: 0 0 18px 0 !important;
+}
+
+/* Sidebar & Resumen de Pedido en Checkout */
+.wc-block-components-sidebar,
+.wc-block-cart__totals,
+.wc-block-checkout__order-summary,
+.woocommerce-checkout-review-order {
+  border: 1.5px solid var(--border) !important;
+  border-radius: 20px !important;
+  background: #ffffff !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
+  padding: 28px 24px !important;
+  box-sizing: border-box !important;
+}
+
+@media (min-width: 960px) {
+  .wc-block-checkout__order-summary {
+    position: sticky !important;
+    top: 90px !important;
+  }
+}
+
+.wc-block-components-totals-footer-item .wc-block-components-totals-item__value,
+.order-total .woocommerce-Price-amount {
+  color: var(--brand-ink) !important;
+  font-size: 24px !important;
+  font-weight: 800 !important;
+  font-family: var(--font-display) !important;
+}
+
+/* Botón principal de procesar pedido */
+.wc-block-components-checkout-place-order-button {
+  background: var(--brand-yellow) !important;
+  color: var(--brand-ink) !important;
+  font-family: var(--font-sans) !important;
+  font-weight: 800 !important;
+  font-size: 16px !important;
+  border-radius: 14px !important;
+  padding: 16px 32px !important;
+  border: none !important;
+  box-shadow: 0 4px 14px rgba(255, 214, 10, 0.45) !important;
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease !important;
+  width: 100% !important;
+  cursor: pointer !important;
+}
+
+.wc-block-components-checkout-place-order-button:hover {
+  background: var(--brand-yellow-dark) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(255, 214, 10, 0.6) !important;
+}
+
+/* ==========================================================================
+   Inputs de Checkout Uniformes (Solución Definitiva de Etiquetas Floating & Normales)
+   ========================================================================== */
+.wc-block-components-text-input {
+  position: relative !important;
+  margin-bottom: 18px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.wc-block-components-text-input input,
+.woocommerce form .form-row input.input-text,
+.woocommerce form .form-row textarea {
+  width: 100% !important;
+  height: 54px !important;
+  min-height: 54px !important;
+  border: 1.5px solid #dce2e6 !important;
+  border-radius: 12px !important;
+  background: #ffffff !important;
+  padding: 22px 14px 6px 14px !important;
+  font-family: var(--font-sans) !important;
+  font-size: 14.5px !important;
+  color: var(--brand-ink) !important;
+  box-sizing: border-box !important;
+  outline: none !important;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease !important;
+}
+
+.woocommerce form .form-row textarea {
+  height: auto !important;
+  min-height: 90px !important;
+  padding: 14px !important;
+}
+
+.wc-block-components-text-input input:focus,
+.woocommerce form .form-row input.input-text:focus,
+.woocommerce form .form-row textarea:focus {
+  border-color: var(--brand-blue) !important;
+  box-shadow: 0 0 0 3.5px rgba(26, 115, 232, 0.15) !important;
+  background: #ffffff !important;
+}
+
+/* Etiqueta del input: perfectamente alineada y sin solapamiento */
+.wc-block-components-text-input label {
+  position: absolute !important;
+  left: 14px !important;
+  top: 17px !important;
+  font-family: var(--font-sans) !important;
+  font-size: 14.5px !important;
+  color: #70757a !important;
+  pointer-events: none !important;
+  transform-origin: left top !important;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), top 0.2s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s ease !important;
+  z-index: 2 !important;
+  margin: 0 !important;
+  line-height: 1 !important;
+}
+
+/* Estado flotante: cuando el campo tiene foco, valor o clase active */
+.wc-block-components-text-input.is-active label,
+.wc-block-components-text-input:focus-within label,
+.wc-block-components-text-input input:focus ~ label,
+.wc-block-components-text-input input:not(:placeholder-shown) ~ label {
+  top: 7px !important;
+  transform: scale(0.76) !important;
+  color: var(--brand-blue) !important;
+  font-weight: 700 !important;
+}
+
+/* Estado inactivo cuando está vacío */
+.wc-block-components-text-input:not(.is-active):not(:focus-within) input:placeholder-shown + label {
+  top: 17px !important;
+  transform: none !important;
+  color: #70757a !important;
+  font-weight: 500 !important;
+}
+
+/* Estados de error coherentes en todos los campos */
+.wc-block-components-text-input.has-error input {
+  border-color: #ef233c !important;
+  box-shadow: 0 0 0 2px rgba(239, 35, 60, 0.15) !important;
+}
+
+.wc-block-components-text-input.has-error label {
+  color: #ef233c !important;
+}
+
+.wc-block-components-validation-error {
+  font-family: var(--font-sans) !important;
+  font-size: 12.5px !important;
+  color: #ef233c !important;
+  margin-top: 5px !important;
+  display: block !important;
+}
+
+/* Barra de progreso de envío gratis en el Carrito (Centrada y armónica) */
+.minikids-shipping-progress-banner {
+  background: var(--pastel-blue) !important;
+  border: 1.5px solid #cce4fa !important;
+  border-radius: 20px !important;
+  padding: 18px 24px !important;
+  margin: 0 auto 32px auto !important;
+  max-width: 680px !important;
+  text-align: center !important;
+  box-shadow: 0 4px 14px rgba(26, 115, 232, 0.08) !important;
+  box-sizing: border-box !important;
+}
+
+.minikids-shipping-progress-banner .shipping-progress-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  gap: 10px !important;
+  font-family: var(--font-sans) !important;
+  font-size: 15px !important;
+  color: var(--brand-ink) !important;
+  width: 100% !important;
+}
+
+.minikids-shipping-progress-banner .shipping-icon {
+  font-size: 22px !important;
+  display: inline-block !important;
+}
+
+.minikids-shipping-progress-banner .shipping-progress-track {
+  height: 10px !important;
+  background: #ffffff !important;
+  border-radius: 9999px !important;
+  overflow: hidden !important;
+  margin: 12px auto 0 auto !important;
+  max-width: 520px !important;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.08) !important;
+}
+
+.minikids-shipping-progress-banner .shipping-progress-fill {
+  height: 100% !important;
+  background: var(--brand-blue) !important;
+  border-radius: 9999px !important;
+  transition: width 0.4s ease !important;
+}
+
+/* Carrito: Items, Tablas y Botones */
+.woocommerce-cart .wp-block-woocommerce-cart {
+  padding-top: 10px !important;
+}
+
+.wc-block-cart-items,
+.woocommerce-cart table.cart {
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  background: #ffffff !important;
+}
+
+.wc-block-cart-items th,
+.woocommerce-cart table.cart th {
+  background: var(--muted) !important;
+  color: var(--brand-ink) !important;
+  font-family: var(--font-sans) !important;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  padding: 14px 18px !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+
+.wc-block-cart-items td,
+.woocommerce-cart table.cart td {
+  padding: 16px 18px !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+
+.wc-block-cart-item__image img,
+.woocommerce-cart table.cart td.product-thumbnail img {
+  border-radius: 12px !important;
+  border: 1px solid var(--border) !important;
+  background: var(--pastel-cream) !important;
+  padding: 4px !important;
+}
+
+.woocommerce-cart table.cart td.product-name a,
+.wc-block-components-product-name {
+  font-family: var(--font-sans) !important;
+  font-weight: 700 !important;
+  color: var(--brand-ink) !important;
+  text-decoration: none !important;
+}
+
+.woocommerce-cart table.cart td.product-name a:hover,
+.wc-block-components-product-name:hover {
+  color: var(--brand-blue) !important;
+}
+
+.wc-block-components-product-price,
+.woocommerce-cart table.cart td.product-price,
+.woocommerce-cart table.cart td.product-subtotal {
+  font-family: var(--font-sans) !important;
+  font-weight: 800 !important;
+  color: var(--brand-ink) !important;
+}
+
+/* Stepper de cantidad en carrito */
+.wc-block-components-quantity-selector {
+  border: 1.5px solid var(--border) !important;
+  border-radius: 10px !important;
+  overflow: hidden !important;
+}
+
+.wc-block-components-quantity-selector button {
+  background: #ffffff !important;
+  color: var(--brand-ink) !important;
+  transition: background 0.2s ease !important;
+}
+
+.wc-block-components-quantity-selector button:hover {
+  background: var(--pastel-yellow) !important;
+}
+
+/* Botón eliminar */
+.wc-block-cart-item__remove-link,
+.woocommerce-cart table.cart a.remove {
+  color: var(--muted-foreground) !important;
+  border-radius: 8px !important;
+  transition: all 0.2s ease !important;
+}
+
+.wc-block-cart-item__remove-link:hover,
+.woocommerce-cart table.cart a.remove:hover {
+  color: var(--brand-red) !important;
+  background: var(--pastel-pink) !important;
+}
+
+/* Cupón de descuento */
+.wc-block-components-totals-coupon input,
+.woocommerce-cart .coupon input.input-text {
+  border: 1.5px solid var(--border) !important;
+  border-radius: 10px !important;
+  padding: 10px 14px !important;
+  font-family: var(--font-sans) !important;
+  font-size: 14px !important;
+}
+
+.wc-block-components-totals-coupon button,
+.woocommerce-cart .coupon button.button {
+  border-radius: 10px !important;
+  background: var(--brand-ink) !important;
+  color: #ffffff !important;
+  font-family: var(--font-sans) !important;
+  font-weight: 700 !important;
+  padding: 10px 20px !important;
+  border: none !important;
+  transition: background 0.2s ease !important;
+}
+
+.wc-block-components-totals-coupon button:hover,
+.woocommerce-cart .coupon button.button:hover {
+  background: #2a2a2a !important;
+}
+
+/* Mobile Navigation & Header Enhancements */
+.ct-header-trigger {
+  color: var(--brand-ink) !important;
+  border-radius: 10px !important;
+  padding: 8px !important;
+  transition: background 0.2s ease !important;
+}
+
+.ct-header-trigger:hover,
+.ct-header-trigger:focus {
+  background: var(--pastel-yellow) !important;
+}
+
+#offcanvas,
+.ct-drawer-canvas {
+  background: rgba(17, 17, 17, 0.4) !important;
+  backdrop-filter: blur(4px) !important;
+}
+
+#offcanvas .ct-panel-inner {
+  background: #ffffff !important;
+  border-left: 1.5px solid var(--border) !important;
+  box-shadow: -8px 0 32px rgba(17, 17, 17, 0.12) !important;
+  padding: 24px 20px !important;
+}
+
+#offcanvas .ct-toggle-close {
+  background: var(--pastel-yellow) !important;
+  border-radius: 50% !important;
+  width: 36px !important;
+  height: 36px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: var(--brand-ink) !important;
+  transition: transform 0.2s ease, background 0.2s ease !important;
+  margin-bottom: 20px !important;
+}
+
+#offcanvas .ct-toggle-close:hover {
+  transform: rotate(90deg) scale(1.08) !important;
+  background: var(--brand-yellow) !important;
+}
+
+#offcanvas .mobile-menu ul {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+}
+
+#offcanvas .mobile-menu .menu-item a,
+.mobile-menu a.ct-menu-link {
+  font-family: var(--font-display) !important;
+  font-size: 19px !important;
+  font-weight: 700 !important;
+  color: var(--brand-ink) !important;
+  padding: 12px 18px !important;
+  border-radius: 12px !important;
+  display: block !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+}
+
+#offcanvas .mobile-menu .menu-item a:hover,
+.mobile-menu a.ct-menu-link:hover {
+  background: var(--pastel-yellow) !important;
+  color: var(--brand-ink) !important;
+  transform: translateX(6px) !important;
+}
+
+#offcanvas .mobile-menu .menu-item.current-menu-item a,
+#offcanvas .mobile-menu .menu-item.current_page_item a {
+  background: var(--pastel-blue) !important;
+  color: var(--brand-blue) !important;
+  font-weight: 800 !important;
+}
+
+/* ==========================================================================
+   Carrito Flotante (Slide-in Cart Drawer Next.js Parity)
+   ========================================================================== */
+.minikids-cart-drawer {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 99999 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+  transition: visibility 0.3s ease !important;
+}
+
+.minikids-cart-drawer.active {
+  pointer-events: auto !important;
+  visibility: visible !important;
+}
+
+.minikids-cart-drawer-backdrop {
+  position: absolute !important;
+  inset: 0 !important;
+  background: rgba(17, 17, 17, 0.45) !important;
+  backdrop-filter: blur(4px) !important;
+  -webkit-backdrop-filter: blur(4px) !important;
+  opacity: 0 !important;
+  transition: opacity 0.3s ease !important;
+}
+
+.minikids-cart-drawer.active .minikids-cart-drawer-backdrop {
+  opacity: 1 !important;
+}
+
+.minikids-cart-drawer-panel {
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100% !important;
+  max-width: 440px !important;
+  background: #ffffff !important;
+  box-shadow: -10px 0 40px rgba(17, 17, 17, 0.16) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  transform: translateX(100%) !important;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  z-index: 100000 !important;
+}
+
+.minikids-cart-drawer.active .minikids-cart-drawer-panel {
+  transform: translateX(0) !important;
+}
+
+.minikids-cart-drawer-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 20px 24px !important;
+  border-bottom: 1px solid var(--border) !important;
+  background: #ffffff !important;
+}
+
+.minikids-cart-drawer-header .drawer-title {
+  font-family: var(--font-display) !important;
+  font-size: 22px !important;
+  font-weight: 800 !important;
+  margin: 0 !important;
+  color: var(--brand-ink) !important;
+}
+
+.minikids-cart-drawer-header .cart-count-badge {
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  color: var(--muted-foreground) !important;
+}
+
+.minikids-cart-close {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 50% !important;
+  width: 38px !important;
+  height: 38px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: var(--brand-ink) !important;
+  cursor: pointer !important;
+  transition: background 0.2s ease, transform 0.2s ease !important;
+}
+
+.minikids-cart-close:hover {
+  background: var(--pastel-yellow) !important;
+  transform: rotate(90deg) !important;
+}
+
+.minikids-cart-drawer-shipping {
+  background: var(--pastel-blue) !important;
+  padding: 12px 24px !important;
+  border-bottom: 1px solid #cce4fa !important;
+}
+
+.minikids-cart-drawer-shipping p {
+  margin: 0 !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  color: var(--brand-ink) !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.minikids-cart-drawer-body {
+  flex: 1 !important;
+  overflow-y: auto !important;
+  padding: 20px 24px !important;
+}
+
+/* Estilos de productos dentro del drawer */
+.minikids-cart-drawer-body .woocommerce-mini-cart {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.minikids-cart-drawer-body .woocommerce-mini-cart-item {
+  position: relative !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 14px !important;
+  padding: 16px 0 !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+
+.minikids-cart-drawer-body .woocommerce-mini-cart-item a:not(.remove) {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  font-family: var(--font-sans) !important;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  color: var(--brand-ink) !important;
+  text-decoration: none !important;
+  line-height: 1.3 !important;
+}
+
+.minikids-cart-drawer-body .woocommerce-mini-cart-item img {
+  width: 64px !important;
+  height: 64px !important;
+  aspect-ratio: 1/1 !important;
+  border-radius: 12px !important;
+  border: 1px solid var(--border) !important;
+  background: #ffffff !important;
+  object-fit: contain !important;
+  padding: 4px !important;
+  flex-shrink: 0 !important;
+}
+
+.minikids-cart-drawer-body .woocommerce-mini-cart-item .quantity {
+  display: block !important;
+  font-size: 14px !important;
+  font-weight: 800 !important;
+  color: var(--brand-ink) !important;
+  margin-top: 6px !important;
+}
+
+.minikids-cart-drawer-body .woocommerce-mini-cart-item a.remove {
+  position: absolute !important;
+  top: 14px !important;
+  right: 0 !important;
+  color: var(--muted-foreground) !important;
+  font-size: 18px !important;
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 6px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.2s ease !important;
+}
+
+.minikids-cart-drawer-body .woocommerce-mini-cart-item a.remove:hover {
+  background: var(--pastel-pink) !important;
+  color: var(--brand-red) !important;
+}
+
+.minikids-cart-drawer-body .woocommerce-mini-cart__total {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  font-size: 16px !important;
+  font-weight: 800 !important;
+  padding: 18px 0 0 !important;
+  margin-top: 10px !important;
+  border-top: 2px dashed var(--border) !important;
+  color: var(--brand-ink) !important;
+}
+
+.minikids-cart-drawer-body .woocommerce-mini-cart__buttons {
+  display: none !important;
+}
+
+.minikids-cart-drawer-body .woocommerce-mini-cart__empty-message {
+  text-align: center !important;
+  padding: 40px 16px !important;
+  font-family: var(--font-sans) !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  color: var(--muted-foreground) !important;
+}
+
+.minikids-cart-drawer-footer {
+  padding: 20px 24px !important;
+  border-top: 1px solid var(--border) !important;
+  background: #ffffff !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+}
+
+.minikids-cart-drawer-footer .drawer-viewcart-btn {
+  background: var(--pastel-blue) !important;
+  color: var(--brand-blue) !important;
+  border: 1.5px solid #cce4fa !important;
+  font-family: var(--font-sans) !important;
+  font-weight: 700 !important;
+  font-size: 14.5px !important;
+  text-align: center !important;
+  padding: 12px 20px !important;
+  border-radius: 12px !important;
+  text-decoration: none !important;
+  display: block !important;
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease !important;
+}
+
+.minikids-cart-drawer-footer .drawer-viewcart-btn:hover {
+  background: #d0e7fc !important;
+  border-color: var(--brand-blue) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(26, 115, 232, 0.15) !important;
+}
+
+.minikids-cart-drawer-footer .drawer-checkout-btn {
+  background: var(--brand-yellow) !important;
+  color: var(--brand-ink) !important;
+  font-family: var(--font-sans) !important;
+  font-weight: 800 !important;
+  font-size: 15px !important;
+  text-align: center !important;
+  padding: 14px 20px !important;
+  border-radius: 12px !important;
+  text-decoration: none !important;
+  box-shadow: 0 4px 12px rgba(255, 214, 10, 0.4) !important;
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.minikids-cart-drawer-footer .drawer-checkout-btn:hover {
+  background: var(--brand-yellow-dark) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 16px rgba(255, 214, 10, 0.6) !important;
+}
+
+.minikids-cart-drawer-footer .drawer-continue-btn {
+  background: transparent !important;
+  border: none !important;
+  color: var(--brand-blue) !important;
+  font-family: var(--font-sans) !important;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  cursor: pointer !important;
+  text-align: center !important;
+  padding: 8px !important;
+  transition: opacity 0.2s ease !important;
+}
+
+.minikids-cart-drawer-footer .drawer-continue-btn:hover {
+  text-decoration: underline !important;
+}
+
+/* ==========================================================================
+   Encabezado de la Tienda (Centrado Armónico y Alineación de Globo/Emoji)
+   ========================================================================== */
+.entry-content > .minikids-tienda-header,
+.minikids-tienda-header {
+  text-align: center !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  max-width: 900px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding: 40px 16px 20px 16px !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+}
+
+.minikids-tienda-header .minikids-section-title {
+  text-align: center !important;
+  font-family: var(--font-display) !important;
+  font-size: clamp(30px, 4vw, 42px) !important;
+  font-weight: 800 !important;
+  color: var(--brand-ink) !important;
+  margin: 0 0 10px 0 !important;
+  line-height: 1.2 !important;
+  width: 100% !important;
+  display: block !important;
+}
+
+.minikids-tienda-header .minikids-hero-cursive {
+  text-align: center !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  font-family: var(--font-accent) !important;
+  font-size: clamp(22px, 2.8vw, 28px) !important;
+  color: var(--brand-red) !important;
+  margin: 0 auto !important;
+  transform: rotate(-1deg) !important;
+  line-height: 1.25 !important;
+}
+
+.minikids-tienda-header .minikids-hero-cursive .tienda-balloon-icon,
+.minikids-tienda-header .minikids-hero-cursive span {
+  display: inline-block !important;
+  vertical-align: middle !important;
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+@media (max-width: 1120px) {
+  .minikids-category-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+  .woocommerce ul.products.columns-6 {
     grid-template-columns: repeat(3, 1fr) !important;
   }
-}
-
-@media (max-width: 780px) {
-  .single-product div.product { padding: 18px; }
-  .woocommerce-products-header { padding: 24px 18px; }
-  .mkp-main-header .wp-block-image img { max-width: 140px; }
-  .mkp-announcement-bar p { font-size: 11.5px !important; }
-  .woocommerce ul.products {
+  .woocommerce:not(.home) ul.products {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+  .minikids-footer-inner {
     grid-template-columns: repeat(2, 1fr) !important;
-    gap: 14px !important;
-  }
-  .woocommerce ul.products li.product {
-    padding: 12px 10px 16px !important;
-  }
-  .woocommerce ul.products li.product .woocommerce-loop-product__title {
-    font-size: 15px !important;
-    min-height: 38px !important;
-  }
-  .mkp-hero {
-    padding: 34px 22px 28px !important;
-    border-radius: 20px !important;
-    text-align: center !important;
-  }
-  .mkp-hero .mkp-eyebrow {
-    margin-left: auto !important;
-    margin-right: auto !important;
-  }
-  .mkp-hero p:not(.mkp-eyebrow) {
-    margin-left: auto !important;
-    margin-right: auto !important;
-  }
-  .mkp-hero .wp-block-buttons {
-    justify-content: center !important;
-  }
-  .mkp-hero-art {
-    min-height: 290px !important;
-    margin-top: 18px !important;
-  }
-  .mkp-hero-art::before {
-    width: 240px !important;
-    height: 240px !important;
   }
 }
 
-@media (max-width: 480px) {
-  .woocommerce ul.products {
+@media (max-width: 768px) {
+  .minikids-category-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .woocommerce ul.products,
+  .woocommerce ul.products.columns-6,
+  .woocommerce:not(.home) ul.products {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .minikids-benefits-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .minikids-footer-inner {
+    grid-template-columns: 1fr !important;
+  }
+  .minikids-hero::before {
+    background: rgba(255, 255, 255, 0.88) !important;
+  }
+  .minikids-product-trust-badges {
     grid-template-columns: 1fr !important;
   }
 }
 
-/* ---------- Accesibilidad: Movimiento Reducido (WCAG 2.3.3) ---------- */
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+/* ==========================================================================
+   Catálogo Interactivo: Buscador y Filtros de Categoría
+   ========================================================================== */
+.minikids-catalog-search-container {
+  max-width: 640px !important;
+  margin: 0 auto 24px !important;
+  padding: 0 16px !important;
+}
+
+.minikids-catalog-search-box {
+  display: flex !important;
+  align-items: center !important;
+  background: #ffffff !important;
+  border: 2px solid var(--border) !important;
+  border-radius: 50px !important;
+  padding: 8px 20px !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04) !important;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s !important;
+}
+
+.minikids-catalog-search-box:focus-within {
+  border-color: var(--brand-blue) !important;
+  box-shadow: 0 6px 20px rgba(26, 115, 232, 0.15) !important;
+  transform: translateY(-1px) !important;
+}
+
+.minikids-catalog-search-box .search-icon {
+  color: var(--muted-foreground) !important;
+  margin-right: 12px !important;
+  flex-shrink: 0 !important;
+}
+
+.minikids-catalog-search-box input {
+  flex: 1 !important;
+  border: none !important;
+  outline: none !important;
+  background: transparent !important;
+  font-family: var(--font-sans) !important;
+  font-size: 15px !important;
+  color: var(--brand-ink) !important;
+  padding: 6px 0 !important;
+}
+
+.minikids-catalog-search-box input::placeholder {
+  color: var(--muted-foreground) !important;
+}
+
+#minikids-search-clear {
+  background: var(--muted) !important;
+  border: none !important;
+  border-radius: 50% !important;
+  width: 26px !important;
+  height: 26px !important;
+  font-size: 13px !important;
+  color: var(--brand-ink) !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-left: 8px !important;
+  transition: background 0.2s !important;
+}
+
+#minikids-search-clear:hover {
+  background: var(--pastel-pink) !important;
+  color: var(--brand-red) !important;
+}
+
+/* Category Pills Buttons */
+.minikids-category-pills {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  margin: 0 auto 20px !important;
+  max-width: 960px !important;
+  padding: 0 16px !important;
+}
+
+.minikids-category-pills button.minikids-pill,
+.minikids-pill {
+  font-family: var(--font-sans) !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  padding: 8px 18px !important;
+  border-radius: 50px !important;
+  border: 1.5px solid var(--border) !important;
+  background: #ffffff !important;
+  color: var(--brand-ink) !important;
+  cursor: pointer !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  outline: none !important;
+  user-select: none !important;
+}
+
+.minikids-category-pills button.minikids-pill:hover,
+.minikids-pill:hover {
+  border-color: var(--brand-blue) !important;
+  color: var(--brand-blue) !important;
+  background: var(--pastel-blue) !important;
+  transform: translateY(-1px) !important;
+}
+
+.minikids-category-pills button.minikids-pill.minikids-pill-active,
+.minikids-pill-active {
+  background: var(--brand-blue) !important;
+  color: #ffffff !important;
+  border-color: var(--brand-blue) !important;
+  box-shadow: 0 4px 12px rgba(26, 115, 232, 0.3) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Botón para resetear filtros colocado junto a las demás píldoras (Oculto por defecto, visible solo con .is-visible) */
+.minikids-category-pills button.minikids-pill-reset,
+.minikids-pill-reset {
+  display: none !important;
+  background: var(--pastel-pink) !important;
+  color: var(--brand-red) !important;
+  border-color: #fca5a5 !important;
+  font-weight: 800 !important;
+  align-items: center !important;
+  gap: 6px !important;
+  box-shadow: 0 2px 8px rgba(239, 35, 60, 0.12) !important;
+  transition: all 0.2s ease !important;
+}
+
+.minikids-category-pills button.minikids-pill-reset.is-visible,
+.minikids-pill-reset.is-visible {
+  display: inline-flex !important;
+}
+
+.minikids-category-pills button.minikids-pill-reset:hover,
+.minikids-pill-reset:hover {
+  background: var(--brand-red) !important;
+  color: #ffffff !important;
+  border-color: var(--brand-red) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 14px rgba(239, 35, 60, 0.3) !important;
+}
+
+.minikids-filter-status {
+  display: none !important;
+}
+
+/* ==========================================================================
+   Página de Contacto MiniKids (Alineación perfecta y formulario robusto)
+   ========================================================================== */
+.minikids-contacto-hero {
+  text-align: center !important;
+  padding: 40px 16px 24px !important;
+  max-width: 800px !important;
+  margin: 0 auto !important;
+}
+
+.minikids-contacto-hero .minikids-section-title {
+  font-size: clamp(32px, 4.5vw, 46px) !important;
+  font-weight: 800 !important;
+  margin: 0 0 6px !important;
+}
+
+.minikids-contacto-desc {
+  font-family: var(--font-sans) !important;
+  font-size: 16px !important;
+  color: var(--muted-foreground) !important;
+  line-height: 1.6 !important;
+  margin: 12px auto 0 !important;
+  max-width: 620px !important;
+}
+
+.minikids-contacto-container {
+  max-width: 1140px !important;
+  margin: 20px auto 60px auto !important;
+  padding: 0 20px !important;
+}
+
+.minikids-contacto-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1.35fr !important;
+  gap: 36px !important;
+  align-items: start !important;
+}
+
+.minikids-contacto-cards {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 20px !important;
+}
+
+.contacto-info-card {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 18px !important;
+  padding: 24px !important;
+  border-radius: 20px !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+}
+
+.contacto-info-card:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06) !important;
+}
+
+.contacto-info-card.card-horario { background: var(--pastel-blue) !important; }
+.contacto-info-card.card-canales { background: var(--pastel-green) !important; }
+.contacto-info-card.card-envios  { background: var(--pastel-pink) !important; }
+
+.contacto-card-icon {
+  width: 52px !important;
+  height: 52px !important;
+  border-radius: 16px !important;
+  background: #ffffff !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05) !important;
+}
+
+.contacto-card-text h3 {
+  font-family: var(--font-display) !important;
+  font-size: 18px !important;
+  font-weight: 800 !important;
+  margin: 0 0 6px !important;
+  color: var(--brand-ink) !important;
+}
+
+.contacto-card-text p {
+  font-family: var(--font-sans) !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  color: #444444 !important;
+  margin: 0 !important;
+}
+
+.minikids-contacto-form-card {
+  background: #ffffff !important;
+  border: 1.5px solid var(--border) !important;
+  border-radius: 24px !important;
+  padding: 36px 32px !important;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.05) !important;
+}
+
+.form-card-title {
+  font-family: var(--font-display) !important;
+  font-size: 26px !important;
+  font-weight: 800 !important;
+  color: var(--brand-ink) !important;
+  margin: 0 0 6px !important;
+}
+
+.form-card-desc {
+  font-family: var(--font-sans) !important;
+  font-size: 14.5px !important;
+  color: var(--muted-foreground) !important;
+  margin: 0 0 24px !important;
+}
+
+.contacto-form .form-row-2 {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 16px !important;
+}
+
+.contacto-form .form-group {
+  margin-bottom: 18px !important;
+}
+
+.contacto-form label {
+  display: block !important;
+  font-family: var(--font-sans) !important;
+  font-size: 13.5px !important;
+  font-weight: 700 !important;
+  color: var(--brand-ink) !important;
+  margin-bottom: 6px !important;
+}
+
+.contacto-form input,
+.contacto-form textarea {
+  width: 100% !important;
+  padding: 12px 16px !important;
+  border: 1.5px solid var(--border) !important;
+  border-radius: 12px !important;
+  font-family: var(--font-sans) !important;
+  font-size: 14.5px !important;
+  color: var(--brand-ink) !important;
+  background: #fafbfc !important;
+  box-sizing: border-box !important;
+  outline: none !important;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s !important;
+}
+
+.contacto-form input:focus,
+.contacto-form textarea:focus {
+  border-color: var(--brand-blue) !important;
+  background: #ffffff !important;
+  box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.15) !important;
+}
+
+.contacto-form .form-actions {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: wrap !important;
+  gap: 14px !important;
+  margin-top: 10px !important;
+}
+
+.btn-submit-contacto {
+  background: var(--brand-yellow) !important;
+  color: var(--brand-ink) !important;
+  font-family: var(--font-sans) !important;
+  font-weight: 800 !important;
+  font-size: 15px !important;
+  padding: 13px 32px !important;
+  border: none !important;
+  border-radius: 50px !important;
+  cursor: pointer !important;
+  box-shadow: 0 4px 14px rgba(255, 214, 10, 0.45) !important;
+  transition: transform 0.2s, background 0.2s, box-shadow 0.2s !important;
+}
+
+.btn-submit-contacto:hover {
+  background: var(--brand-yellow-dark) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 18px rgba(255, 214, 10, 0.6) !important;
+}
+
+.btn-whatsapp-direct {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  background: var(--pastel-green) !important;
+  color: #148043 !important;
+  font-family: var(--font-sans) !important;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  padding: 12px 22px !important;
+  border-radius: 50px !important;
+  text-decoration: none !important;
+  transition: background 0.2s, transform 0.2s !important;
+}
+
+.btn-whatsapp-direct:hover {
+  background: #c3eed6 !important;
+  transform: translateY(-1px) !important;
+}
+
+.contact-feedback-success {
+  margin-top: 20px !important;
+  padding: 16px 20px !important;
+  background: var(--pastel-green) !important;
+  border: 1px solid #a3e9c4 !important;
+  border-radius: 12px !important;
+  color: #148043 !important;
+  font-weight: 700 !important;
+  font-size: 14.5px !important;
+  text-align: center !important;
+}
+
+@media (max-width: 860px) {
+  .minikids-contacto-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .contacto-form .form-row-2 {
+    grid-template-columns: 1fr !important;
   }
 }
+
+/* ==========================================================================
+   Página de Mi Cuenta / Perfil MiniKids (woocommerce-account)
+   ========================================================================== */
+.woocommerce-account .woocommerce {
+  max-width: 1140px !important;
+  margin: 30px auto 60px auto !important;
+  padding: 0 16px !important;
+}
+
+.minikids-account-welcome-banner {
+  background: linear-gradient(135deg, var(--pastel-yellow) 0%, var(--pastel-cream) 100%) !important;
+  border: 1.5px solid #f9e28f !important;
+  border-radius: 20px !important;
+  padding: 24px 28px !important;
+  margin-bottom: 32px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 20px !important;
+  box-shadow: 0 4px 16px rgba(255, 214, 10, 0.15) !important;
+}
+
+.minikids-account-welcome-banner .welcome-badge-icon {
+  font-size: 40px !important;
+  width: 64px !important;
+  height: 64px !important;
+  background: #ffffff !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06) !important;
+}
+
+.minikids-account-welcome-banner .welcome-name {
+  font-family: var(--font-display) !important;
+  font-size: 24px !important;
+  font-weight: 800 !important;
+  color: var(--brand-ink) !important;
+  margin: 0 0 4px !important;
+}
+
+.minikids-account-welcome-banner .welcome-tagline {
+  font-family: var(--font-sans) !important;
+  font-size: 14.5px !important;
+  color: #444444 !important;
+  margin: 0 !important;
+}
+
+/* Header para formulario de Login/Registro de usuarios invitados */
+.minikids-account-auth-header {
+  text-align: center !important;
+  max-width: 620px !important;
+  margin: 20px auto 36px auto !important;
+}
+
+.minikids-account-auth-header .auth-icon {
+  font-size: 44px !important;
+  margin-bottom: 8px !important;
+}
+
+.minikids-account-auth-header .auth-title {
+  font-family: var(--font-display) !important;
+  font-size: 32px !important;
+  font-weight: 800 !important;
+  color: var(--brand-ink) !important;
+  margin: 0 0 8px !important;
+}
+
+.minikids-account-auth-header .auth-subtitle {
+  font-family: var(--font-sans) !important;
+  font-size: 15px !important;
+  color: var(--muted-foreground) !important;
+  margin: 0 !important;
+}
+
+/* Navegación lateral de Mi Cuenta (Píldoras y botones de pestaña) */
+.woocommerce-MyAccount-navigation ul {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+}
+
+.woocommerce-MyAccount-navigation ul li a {
+  display: block !important;
+  font-family: var(--font-sans) !important;
+  font-weight: 700 !important;
+  font-size: 15px !important;
+  color: var(--brand-ink) !important;
+  padding: 12px 20px !important;
+  border-radius: 12px !important;
+  background: #ffffff !important;
+  border: 1px solid var(--border) !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+}
+
+.woocommerce-MyAccount-navigation ul li a:hover {
+  background: var(--pastel-yellow) !important;
+  color: var(--brand-ink) !important;
+  transform: translateX(3px) !important;
+}
+
+.woocommerce-MyAccount-navigation ul li.is-active a {
+  background: var(--brand-blue) !important;
+  color: #ffffff !important;
+  border-color: var(--brand-blue) !important;
+  box-shadow: 0 4px 12px rgba(26, 115, 232, 0.3) !important;
+}
+
+/* Área de contenido de Mi Cuenta */
+.woocommerce-MyAccount-content {
+  background: #ffffff !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 20px !important;
+  padding: 32px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
+}
+
+/* Formularios de Login y Registro de WooCommerce */
+.woocommerce form.login,
+.woocommerce form.register {
+  border: 1.5px solid var(--border) !important;
+  border-radius: 20px !important;
+  padding: 32px !important;
+  background: #ffffff !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
+}
+
+.woocommerce form.login input.input-text,
+.woocommerce form.register input.input-text {
+  border-radius: 10px !important;
+  border: 1.5px solid var(--border) !important;
+  padding: 12px 14px !important;
+  font-size: 14.5px !important;
+}
+
+.woocommerce form.login button.button,
+.woocommerce form.register button.button {
+  background: var(--brand-yellow) !important;
+  color: var(--brand-ink) !important;
+  font-family: var(--font-sans) !important;
+  font-weight: 800 !important;
+  font-size: 15px !important;
+  padding: 12px 28px !important;
+  border-radius: 10px !important;
+  border: none !important;
+  cursor: pointer !important;
+  box-shadow: 0 4px 12px rgba(255, 214, 10, 0.4) !important;
+  transition: transform 0.2s, background 0.2s !important;
+}
+
+.woocommerce form.login button.button:hover,
+.woocommerce form.register button.button:hover {
+  background: var(--brand-yellow-dark) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* No Results State */
+.minikids-no-results {
+  text-align: center !important;
+  padding: 48px 20px !important;
+  background: #ffffff !important;
+  border: 2px dashed var(--border) !important;
+  border-radius: 20px !important;
+  margin: 32px auto !important;
+  max-width: 500px !important;
+}
+
+.minikids-no-results .no-results-emoji {
+  font-size: 48px !important;
+  margin: 0 0 12px !important;
+}
+
+.minikids-no-results .no-results-title {
+  font-family: var(--font-display) !important;
+  font-size: 20px !important;
+  font-weight: 800 !important;
+  color: var(--brand-ink) !important;
+  margin: 0 0 8px !important;
+}
+
+.minikids-no-results .no-results-desc {
+  font-size: 14px !important;
+  color: var(--muted-foreground) !important;
+  margin: 0 0 20px !important;
+}
+
+.minikids-no-results .btn-reset-catalog {
+  background: var(--brand-yellow) !important;
+  color: var(--brand-ink) !important;
+  font-weight: 800 !important;
+  font-size: 14px !important;
+  padding: 10px 24px !important;
+  border-radius: 50px !important;
+  border: none !important;
+  cursor: pointer !important;
+  transition: transform 0.2s, background 0.2s, box-shadow 0.2s !important;
+}
+
+.minikids-no-results .btn-reset-catalog:hover {
+  background: var(--brand-yellow-dark) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 16px rgba(255, 214, 10, 0.5) !important;
+}
+
