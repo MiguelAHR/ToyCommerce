@@ -234,3 +234,76 @@ En lugar de usar estilos en línea, el CSS aprovecha la estructura semántica qu
 | **Cambiar el monto de Envío Gratis (S/ 149)** | En `WP-Admin → WooCommerce → Ajustes → Envío`. | Actualiza también la variable `$threshold = 149` en `wp-content/mu-plugins/minikids-estetica.php` (línea 190). |
 | **Cambiar el número o mensaje de WhatsApp** | En `WP-Admin → Páginas → Contacto`. | Edita el enlace `https://wa.me/51991117308?text=...` en `wp-content/mu-plugins/minikids-estetica.php` (líneas 291 y 335). |
 | **Agregar una nueva categoría al filtro en vivo** | Crea la categoría en `Productos → Categorías`. | Añade un `<button class="minikids-pill" data-cat="nuevo-slug">` en `minikids-estetica.php` (línea 231) y regístralo en `catLabels` de `minikids-catalogo.js`. |
+
+---
+
+## 5. Catálogo de Skills Utilizadas por el Agente de IA (`.agent/skills/`)
+
+Para garantizar que cualquier agente de IA (Antigravity, Cursor, Claude Code, Windsurf, etc.) trabaje bajo las mismas reglas de ingeniería y nunca rompa el sitio, el proyecto cuenta con **11 Skills especializadas** alojadas en `.agent/skills/<nombre-skill>/SKILL.md`.
+
+### 5.1. Tabla Maestra de Skills del Proyecto
+
+| # | Nombre de la Skill (`name`) | Ruta de la Skill | Fase / Propósito Principal | Reglas Críticas que Inyecta al Agente |
+| :- | :--- | :--- | :--- | :--- |
+| **1** | `wordpress-blocksy-woocommerce` | `.agent/skills/wordpress-blocksy-woocommerce/SKILL.md` | **Arquitectura Base y Seguridad de Temas/Plugins** | Prohibido editar `themes/blocksy/` o `plugins/woocommerce/`. Todo va en `wp-content/mu-plugins/`. Preservar `.widget_shopping_cart_content` para AJAX y tablas HPOS (`wp_wc_orders`). Nunca aplicar `overflow: hidden` en `.ct-container` o `#main-container` (rompe `position: sticky` y drawers). |
+| **2** | `wp-env-setup` | `.agent/skills/wp-env-setup/SKILL.md` | **Fase 1: Entorno, Logs y Modo Prueba** | Configurar `WP_DEBUG = true`, `WP_DEBUG_LOG = true` y `WP_DEBUG_DISPLAY = false` (para no corromper respuestas JSON de REST/MCP). Validar PHP 8.2+, MariaDB 10.4+ y pasarelas en modo prueba/sandbox. |
+| **3** | `design-system-audit` | `.agent/skills/design-system-audit/SKILL.md` | **Fase 2: Sistema de Diseño y Tokens (`:root`)** | Prohibido usar colores hexadecimales arbitrarios fuera de las variables `:root` (`--brand-yellow`, `--brand-blue`, `--brand-red`, `--brand-ink`, tonos pastel). Escala de espaciado en múltiplos de `4px`/`8px` y radios consistentes (`16px–20px` en tarjetas, `50px` en píldoras). |
+| **4** | `frontend-design` | `.agent/skills/frontend-design/SKILL.md` | **Fase 2 y 3: Pulido Estético y Microinteracciones** | Mantener acabado artesanal y lúdico fiel a la identidad MiniKids: paleta pastel armoniosa, tipografía oscura de alto contraste (`#111111`) y microinteracciones con elevación `-2px` a `-4px` en hover. |
+| **5** | `ecommerce-cro-ux` | `.agent/skills/ecommerce-cro-ux/SKILL.md` | **Fase 3 y 4: Conversión (CRO), Carrito y Formularios** | Feedback inmediato al añadir al carrito (apertura automática del drawer), barra de progreso de envío gratis (meta `S/ 149`), inputs con `font-size >= 16px` en móvil para evitar auto-zoom en iOS, y objetivos táctiles mínimos de `44×44px`. |
+| **6** | `modern-web-guidance` | `.agent/skills/modern-web-guidance/SKILL.md` | **Transversal (HTML/CSS/JS Moderno)** | Ejecutar antes de escribir CSS/JS complejo para usar APIs modernas estándar (`:has()`, `100dvh`, `aspect-ratio`, `content-visibility`) sin añadir librerías externas pesadas. |
+| **7** | `browser-visual-qa` | `.agent/skills/browser-visual-qa/SKILL.md` | **Fase 3 y 6: QA Visual Multi-Breakpoint** | Inspección automatizada en 6 anchos (`360px`, `390px`, `768px`, `1024px`, `1280px`, `1440px`). Verificar que `document.documentElement.scrollWidth <= window.innerWidth` (0 desborde horizontal) y validar estados vacíos (búsqueda sin resultados, carrito vacío). |
+| **8** | `woo-functional-e2e` | `.agent/skills/woo-functional-e2e/SKILL.md` | **Fase 4: Pruebas E2E de Compra y HPOS** | Verificar extremo a extremo: filtrado instantáneo sin recarga, cálculo del umbral de envío gratis (`S/ 149`), carrito lateral AJAX, validación de campos en Checkout Blocks (`minikids/celular`) y creación limpia del pedido en `wp_wc_orders`. |
+| **9** | `a11y-audit` | `.agent/skills/a11y-audit/SKILL.md` | **Fase 5: Accesibilidad WCAG 2.2 AA** | Garantizar contraste mínimo `4.5:1` en texto normal, navegación completa por teclado (`Tab` + `:focus-visible`), `aria-modal="true"` en el drawer del carrito y etiquetas accesibles en buscador y formularios. |
+| **10** | `perf-audit` | `.agent/skills/perf-audit/SKILL.md` | **Fase 5: Rendimiento y Core Web Vitals** | Mantener el payload HTML inicial `< 100 KB`, LCP `< 2.5 s`, CLS `< 0.1` (imágenes con `aspect-ratio: 1/1` explícito) e INP `< 200 ms` (filtrado DOM en `0 ms`). |
+| **11** | `bug-triage` | `.agent/skills/bug-triage/SKILL.md` | **Fase 1 a 8: Ciclo de Vida de Bugs (`bugs.md`)** | Clasificación estricta de severidad (`P0` a `P3`) y flujo obligatorio: *Detectar → Registrar → Corregir en `mu-plugins` → Verificar con evidencia → Prueba de regresión*. |
+
+---
+
+## 6. Contexto de Sincronización para el Equipo (Qué cambió respecto a la versión anterior del repositorio)
+
+Si otro integrante del equipo descargó la versión anterior del repositorio (commit `5af7f9a` — *"Portada corregida, MCP saneado y guia del proyecto"* o anteriores), aquí tiene el **resumen exacto de los cambios introducidos en la versión actual** (`77b3cda` → `8833d47`) y cómo sincronizar su entorno y su Agente de IA:
+
+### 6.1. Diferencias Clave entre la Versión Anterior (`5af7f9a`) y la Versión Actual
+
+1. **Correcciones de UI/UX y Lógica en `wp-content/mu-plugins/` (Commit `77b3cda`):**
+   - **WhatsApp Corregido (`+51 991 117 308`):** En `minikids-estetica.php` y en la página Contacto (ID 17) se actualizó el enlace oficial a `https://wa.me/51991117308?text=...` con mensaje cordial codificado y texto visible `+51 991 117 308`.
+   - **Navbar Compacto (60px) y Centrado Vertical:** Se eliminó el botón redundante de lupa del header, se redujo la altura a `60px` y se centraron verticalmente los enlaces junto al carrito.
+   - **Carrito sin Precio Fijo ni Solapamiento:** Se ocultó el monto fijo del navbar (`.ct-header-cart .ct-label[data-price="yes"]`) y se desacopló `.ct-icon-container` (`position: static !important`) dentro de un botón circular de `42×42px` para que el badge rojo `.ct-dynamic-count-cart` nunca tape el icono SVG.
+   - **Mini Carrito Lateral con Botón "Ver carrito":** Se aseguró la presencia de los dos botones de acción en el drawer (`Ver carrito` hacia `/carrito/` y `Finalizar compra` hacia `/finalizar-compra/`).
+   - **Diferenciación Automática de Precios (Normal vs. Oferta):** Reglas CSS en `minikids-estetica.css` para que `.product:not(.sale) .price` se vea sobrio en `--brand-ink` y `.product.sale .price` destaque el precio rebajado `<ins>` en rojo `--brand-red` con el original `<del>` tachado.
+   - **Encabezado de Tienda Centrado y Píldora "Limpiar filtros":** Se centró el bloque *"Todos los Juguetes / Elige una nueva aventura para cada día"* y se configuró `.minikids-pill-reset` para que solo aparezca cuando hay una categoría o búsqueda activa.
+   - **Sincronización Completa del Tema y Plugins:** Se subieron al repositorio los archivos completos de `themes/blocksy`, `plugins/blocksy-companion`, `plugins/culqi-full-integration` y las imágenes optimizadas en `uploads/minikids/`.
+
+2. **Instalación Plug-and-Play para cualquier Puerto de XAMPP (Commit `3def10a`):**
+   - Se incluyó `wordpress/wp-config.php` en el repositorio con **autodetección dinámica de `WP_HOME` y `WP_SITEURL`** a partir de `$_SERVER['HTTP_HOST']`. Así funciona sin cambios tanto en `http://localhost/wordpress` (puerto 80) como en `http://localhost:8088/wordpress` (puerto 8088).
+   - Se añadió la guía paso a paso `INSTRUCCIONES-INSTALACION.md`.
+
+3. **Documentación Académica y Técnica (Commits `7fed1d5` y `8833d47`):**
+   - `docs/DOCUMENTACION-PROYECTO-MINIKIDS.docx`: Memoria académica y técnica completa para el curso de E-Business y Analítica Web.
+   - `docs/IMPLEMENTACION-MCP-LOGICA-Y-DISENO.md`: Este documento técnico sobre MCP, lógica por procedimientos, sistema de diseño y catálogo de skills.
+
+---
+
+### 6.2. Prompt Listo para Copiar y Pegar al Agente de IA del Compañero de Equipo
+
+Tu compañero puede copiar el siguiente bloque y pegárselo directamente a su agente de IA como contexto inicial:
+
+```markdown
+# CONTEXTO DEL PROYECTO MINIKIDS PERÚ (WORDPRESS + BLOCKSY + WOOCOMMERCE HPOS)
+
+Estás trabajando en el proyecto **MiniKids Perú (ToyCommerce)**. Antes de realizar cualquier cambio, lee los archivos `docs/IMPLEMENTACION-MCP-LOGICA-Y-DISENO.md`, `docs/GUIA-PROYECTO.md` y las skills en `.agent/skills/*/SKILL.md`.
+
+## Reglas Inquebrantables de Arquitectura
+1. **Cero intrusión en Core/Tema/Plugins:** NUNCA edites archivos dentro de `wp-content/themes/blocksy/` ni `wp-content/plugins/woocommerce/`.
+2. **Todo vive en `wp-content/mu-plugins/`:**
+   - `minikids-estetica.php`: Lógica procedimental por hooks (`wp_enqueue_scripts`, `template_redirect`, `blocksy:header:before`, `blocksy:footer:before`, `woocommerce_single_product_summary`, `the_content`, `wp_footer`, `woocommerce_init`).
+   - `minikids-estetica.css`: Sistema de diseño basado en Design Tokens (`:root`), navbar sticky de 60px, botón de carrito de 42x42px con `.ct-icon-container { position: static !important }` para que el badge no tape el SVG, y diferenciación automática entre `.product:not(.sale)` y `.product.sale`.
+   - `minikids-bloques.css`: Estilos de la portada nativa en Gutenberg.
+   - `minikids-catalogo.js`: Filtrado instantáneo en cliente (0ms) con normalización de tildes (`NFD`), actualización de URL (`history.pushState`) y visibilidad condicional de `.minikids-pill-reset`.
+   - `minikids-cart-drawer.js`: Apertura automática del drawer en `added_to_cart`, sincronización de `.ct-dynamic-count-cart` y floating labels en Checkout Blocks.
+   - `minikids-mcp-abilities.php`: Servidor de 8 abilities MCP (`minikids/list-content`, `get-content`, `update-content`, `get-option`, `update-option`, `list-plugins`, `read-file`, `write-file`) con sandbox en `wp-content/` y backups `.bak-YYYYMMDD-HHMMSS`.
+3. **Compatibilidad Híbrida (Manual + IA):**
+   - Al editar páginas desde código o MCP, usa siempre `wp_update_post()` o `minikids/update-content` respetando los comentarios de bloques de Gutenberg (`<!-- wp:... -->`).
+   - Nunca apliques `overflow: hidden` a `#main-container` o `.ct-container` (rompe el `position: sticky` del header y el drawer lateral).
+   - Conserva siempre `.widget_shopping_cart_content` dentro de `#minikids-cart-drawer` para que `wc-cart-fragments.js` de WooCommerce actualice el carrito por AJAX.
+```
