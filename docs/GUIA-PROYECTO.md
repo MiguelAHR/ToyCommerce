@@ -180,13 +180,13 @@ Basic Auth con el usuario administrador:
 
 ```
 usuario:    admin
-contraseña: DY87SfS6EmzTzxlUKsjweAn9
+contraseña: <CREDENCIAL_PRIVADA>
 ```
 
 Cabecera ya codificada en Base64:
 
 ```
-Authorization: Basic YWRtaW46RFk4N1NmUzZFbXpUenhsVUtzandlQW45
+Authorization: Basic <BASIC_AUTH_PRIVADO>
 ```
 
 > 🔒 Esta contraseña de aplicación está en texto plano en el proyecto.
@@ -196,7 +196,7 @@ Authorization: Basic YWRtaW46RFk4N1NmUzZFbXpUenhsVUtzandlQW45
 
 ```powershell
 # Lista de herramientas disponibles
-$h = @{ Authorization = 'Basic YWRtaW46RFk4N1NmUzZFbXpUenhsVUtzandlQW45' }
+$h = @{ Authorization = 'Basic <BASIC_AUTH_PRIVADO>' }
 Invoke-RestMethod -Uri 'http://localhost:8088/wordpress/wp-json/mcp/mcp-adapter-default-server' `
                   -Headers $h -Method Post `
                   -ContentType 'application/json' `
@@ -223,7 +223,7 @@ Crea `opencode.json` en la raíz de tu proyecto:
       "url": "http://localhost:8088/wordpress/wp-json/mcp/mcp-adapter-default-server",
       "enabled": true,
       "headers": {
-        "Authorization": "Basic YWRtaW46RFk4N1NmUzZFbXpUenhsVUtzandlQW45"
+        "Authorization": "Basic <BASIC_AUTH_PRIVADO>"
       }
     }
   }
@@ -254,7 +254,7 @@ proxy te da acceso a más herramientas:
       "environment": {
         "WP_API_URL": "http://localhost:8088/wordpress/wp-json/mcp/mcp-adapter-default-server",
         "WP_API_USERNAME": "admin",
-        "WP_API_PASSWORD": "DY87SfS6EmzTzxlUKsjweAn9"
+        "WP_API_PASSWORD": "<CREDENCIAL_PRIVADA>"
       }
     }
   }

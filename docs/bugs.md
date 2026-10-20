@@ -293,3 +293,28 @@
 - **Estado:** **Cerrado**
 
 
+
+
+### BUG-018 · P1 · Correos de compra suprimidos en local
+- Causa: minikeds-dev2-local devolvía éxito sin transporte para todo wp_mail.
+- Corrección: habilitación explícita en Negocio y transporte Brevo en mu-plugins; plantillas nativas WooCommerce y HPOS.
+- Verificación: dos pasadas Store API; resumen cliente/Nuevo pedido aceptados en sandbox, más dos mensajes reales con evento delivered.
+- Estado: Cerrado en funciones comprobadas.
+
+### BUG-019 · P2 · Ausencia de Libro y página de empresa editable
+- Corrección: bloques Gutenberg para Nosotros/Libro/Privacidad, menú nativo, datos del proveedor en Ajustes y registros privados con respuesta administrativa.
+- Evidencia: brain/attention-http-checks.json y wp-content/qa-evidencia/.
+- Verificación: dos pasadas funcionales y visuales multi-breakpoint; editor de bloques válido.
+- Estado: Cerrado; dos regresiones de administración aprobadas.
+
+### BUG-020 · P2 · Atributos de celular no soportados y warnings del proxy alternativo
+- Causa: placeholder/type en attributes de campos adicionales Woo; proxy legacy asume description en todas las rutas REST.
+- Corrección: atributos inválidos retirados mediante MCP; proxy alternativo desactivado conservando MCP Adapter, sin editar terceros.
+- Verificación: Store API conserva celular en HPOS; ocho abilities descubiertas y escritura con backup probada.
+- Estado: Cerrado en funciones comprobadas.
+
+### BUG-021 · P2 · Búsqueda vacía sin mensaje visible
+- Causa: inyección buscaba comentarios Gutenberg cuando the_content ya los había procesado.
+- Corrección: garantizar estado vacío único en HTML renderizado, con status accesible; etiqueta de búsqueda añadida.
+- Verificación: búsqueda sin resultados y Limpiar restauran catálogo; drawer conserva fragmentos Ajax.
+- Estado: Cerrado; dos pasadas de búsqueda/reset y drawer aprobadas.

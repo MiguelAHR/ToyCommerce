@@ -1,0 +1,22 @@
+<?php
+if(PHP_SAPI!=='cli')exit;
+$_SERVER['HTTP_HOST']='localhost:8082';$_SERVER['REQUEST_URI']='/wordpress/';require dirname(__DIR__).'/wordpress/wp-load.php';
+if(DB_NAME!=='minikeds_dev2'||(defined('MKPN_MAIL_SANDBOX')&&MKPN_MAIL_SANDBOX))throw new RuntimeException('Entorno de entrega inesperado');
+$idsFile=dirname(__DIR__).'/local-private/attention-qa.json';$ids=json_decode(file_get_contents($idsFile),true);
+$file=dirname(__DIR__).'/local-private/mail-delivery-qa.json';
+if(is_file($file))throw new RuntimeException('Prueba ya realizada. No enviar de nuevo automáticamente.');
+$accepted=[];
+add_action('mkpn_mail_accepted',function($atts,$messageId)use(&$accepted){$accepted[]=['subject'=>$atts['subject'],'message_id'=>$messageId];},10,2);
+foreach(['new_order','customer_on_hold_order'] as $type)add_filter('woocommerce_email_subject_'.$type,fn($subject)=>'[Validación local sin compra real] '.$subject);
+WC()->mailer();
+$product=wc_get_products(['limit'=>1,'status'=>'publish','stock_status'=>'instock'])[0];
+$order=wc_create_order(['status'=>'pending']);$order->update_meta_data('_mkpn_qa','yes');
+$itemId=$order->add_product($product,1);$item=$order->get_item($itemId);$item->set_name('Validación técnica sin compra real · '.$product->get_name());$item->save();
+$order->set_address(['first_name'=>'Validación','last_name'=>'MiniKids','email'=>'vektronova@gmail.com','phone'=>'999999999','country'=>'PE','city'=>'Lima','state'=>'LMA','address_1'=>'Prueba técnica local, no despachar'],'billing');
+$order->set_customer_note('Validación técnica de correo solicitada para MiniKids. Este registro no representa una compra real ni requiere cobro o despacho.');
+$order->set_payment_method('bacs');$order->set_payment_method_title('Transferencia bancaria');$order->calculate_totals();$order->save();
+$ids['orders'][]=$order->get_id();file_put_contents($idsFile,wp_json_encode($ids));
+$order->update_status('on-hold','Validación de entrega real a la cuenta del propietario, sin compra real.');
+$result=['order_id'=>$order->get_id(),'accepted'=>$accepted,'customer'=>$order->get_meta('_mkpn_mail_customer_on_hold_order'),'admin'=>$order->get_meta('_mkpn_mail_new_order')];
+file_put_contents($file,wp_json_encode($result,JSON_PRETTY_PRINT));
+echo wp_json_encode(['order_id'=>$order->get_id(),'accepted_count'=>count($accepted),'customer_accepted'=>$result['customer']['accepted']??false,'admin_accepted'=>$result['admin']['accepted']??false]),PHP_EOL;

@@ -118,6 +118,7 @@ add_action('blocksy:footer:before', function () {
                     <li><a href="#">Términos y condiciones</a></li>
                     <li><a href="/wordpress/contacto/">Contacto</a></li>
                 </ul>
+                <?php wp_nav_menu(['theme_location'=>'minikids_atencion','container'=>false,'menu_class'=>'footer-links mkp-attention-links','fallback_cb'=>false]); ?>
             </div>
             <div class="footer-col">
                 <h3 class="footer-heading">Síguenos</h3>
@@ -222,7 +223,7 @@ add_filter('the_content', function ($content) {
         <div class="minikids-catalog-search-container">
           <div class="minikids-catalog-search-box">
             <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-            <input type="text" id="minikids-catalog-search" placeholder="Buscar juguetes por nombre o categoría..." autocomplete="off" />
+            <input type="text" id="minikids-catalog-search" aria-label="Buscar juguetes por nombre o categor?a" placeholder="Buscar juguetes por nombre o categoría..." autocomplete="off" />
             <button type="button" id="minikids-search-clear" aria-label="Limpiar búsqueda" style="display:none;">✕</button>
           </div>
         </div>
@@ -241,7 +242,7 @@ add_filter('the_content', function ($content) {
         </div>';
         
         $no_results = '
-        <div class="minikids-no-results" style="display:none;">
+        <div class="minikids-no-results" role="status" aria-live="polite" style="display:none;">
           <p class="no-results-emoji">🧸</p>
           <h3 class="no-results-title">No encontramos juguetes para esa búsqueda</h3>
           <p class="no-results-desc">Prueba con otra palabra clave o explora todas las categorías.</p>
@@ -254,6 +255,7 @@ add_filter('the_content', function ($content) {
         } else {
             $content = $search_box . $content . $no_results;
         }
+        if (strpos($content, 'class="minikids-no-results"') === false) $content .= $no_results;
     }
     return $content;
 });
@@ -432,8 +434,6 @@ add_action('woocommerce_init', function() {
                 'required'                   => true,
                 'attributes'                 => array(
                     'autocomplete' => 'tel',
-                    'placeholder'  => 'Ej. 991 117 380',
-                    'type'         => 'tel',
                     'aria-label'   => 'Número de celular',
                 ),
                 'validate_callback'          => function($value, $field) {

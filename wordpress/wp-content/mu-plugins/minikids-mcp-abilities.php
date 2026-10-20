@@ -298,12 +298,15 @@ add_action('wp_abilities_api_init', function () {
             'properties' => [
                 'path'    => ['type' => 'string', 'description' => 'Ruta relativa a wp-content.'],
                 'content' => ['type' => 'string', 'description' => 'Contenido completo del archivo.'],
+                'backup' => ['type' => 'boolean', 'default' => true, 'description' => 'Respaldo obligatorio antes de escribir.'],
             ],
             'required'   => ['path', 'content'],
             'additionalProperties' => false,
         ],
         'execute_callback' => function ($input = []) {
             $input = is_array($input) ? $input : [];
+            if (isset($input['backup']) && $input['backup'] !== true) return new WP_Error('mkp_backup_required', 'El respaldo es obligatorio.');
+            if (!str_starts_with(str_replace('\\', '/', $input['path'] ?? ''), 'mu-plugins/')) return new WP_Error('mkp_own_code_only', 'Solo se permite escribir c?digo propio en mu-plugins.');
             $path  = mkp_mcp_resolve_path($input['path'] ?? '');
             if (is_wp_error($path)) {
                 return $path;
@@ -316,7 +319,7 @@ add_action('wp_abilities_api_init', function () {
             $backup = null;
             if (is_file($path)) {
                 $backup = $path . '.bak-' . gmdate('Ymd-His');
-                copy($path, $backup);
+                if (!copy($path, $backup)) return new WP_Error('mkp_backup_failed', 'No se pudo crear el respaldo; archivo conservado.');
             }
             $bytes = file_put_contents($path, (string) ($input['content'] ?? ''));
             if ($bytes === false) {

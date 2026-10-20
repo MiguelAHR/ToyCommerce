@@ -1,0 +1,114 @@
+[
+  {
+    "name": "Pasada1: HTTP /nosotros/",
+    "passed": true
+  },
+  {
+    "name": "Pasada1: HTTP /libro-de-reclamaciones/",
+    "passed": true
+  },
+  {
+    "name": "Pasada1: HTTP /tienda/",
+    "passed": true
+  },
+  {
+    "name": "Pasada1: datos y formulario",
+    "passed": true
+  },
+  {
+    "name": "Pasada1: nonce inválido rechazado",
+    "passed": true
+  },
+  {
+    "name": "Pasada1: registro y constancia",
+    "passed": true
+  },
+  {
+    "name": "Pasada1: duplicado rechazado",
+    "passed": true
+  },
+  {
+    "name": "Pasada1: reclamaciones sin REST público",
+    "passed": true
+  },
+  {
+    "name": "Pasada1: Store API disponible",
+    "passed": true
+  },
+  {
+    "name": "Pasada1: carrito Store API",
+    "passed": true
+  },
+  {
+    "name": "Pasada1: compra real sin cobro",
+    "passed": true
+  },
+  {
+    "name": "Pasada1: pedido HPOS y celular",
+    "passed": true
+  },
+  {
+    "name": "Pasada1: resumen cliente y admin",
+    "passed": true
+  },
+  {
+    "name": "Pasada1: hoja privada y dos constancias",
+    "passed": true
+  },
+  {
+    "name": "Pasada2: HTTP /nosotros/",
+    "passed": true
+  },
+  {
+    "name": "Pasada2: HTTP /libro-de-reclamaciones/",
+    "passed": true
+  },
+  {
+    "name": "Pasada2: HTTP /tienda/",
+    "passed": true
+  },
+  {
+    "name": "Pasada2: datos y formulario",
+    "passed": true
+  },
+  {
+    "name": "Pasada2: nonce inválido rechazado",
+    "passed": true
+  },
+  {
+    "name": "Pasada2: registro y constancia",
+    "passed": true
+  },
+  {
+    "name": "Pasada2: duplicado rechazado",
+    "passed": true
+  },
+  {
+    "name": "Pasada2: reclamaciones sin REST público",
+    "passed": true
+  },
+  {
+    "name": "Pasada2: Store API disponible",
+    "passed": true
+  },
+  {
+    "name": "Pasada2: carrito Store API",
+    "passed": true
+  },
+  {
+    "name": "Pasada2: compra real sin cobro",
+    "passed": true
+  },
+  {
+    "name": "Pasada2: pedido HPOS y celular",
+    "passed": true
+  },
+  {
+    "name": "Pasada2: resumen cliente y admin",
+    "passed": true
+  },
+  {
+    "name": "Pasada2: hoja privada y dos constancias",
+    "passed": true
+  }
+]

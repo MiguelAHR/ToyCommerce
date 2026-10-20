@@ -19,3 +19,11 @@ wordpress/wp-content/ai1wm-backups/
 
 # Registros de XAMPP
 xampp-logs/
+
+# Configuración y evidencias privadas de esta instalación local
+/local-private/
+tools/__pycache__/
+wordpress/wp-content/qa-evidencia/
+brain/.graphify-cache/
+brain/.graphify_cache/
+brain/graphify-out/cache/
