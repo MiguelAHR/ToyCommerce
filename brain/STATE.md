@@ -1,5 +1,14 @@
 # Estado minikeds_dev2
 
+## Publicación completada: 2026-10-20
+
+- Push inicial completado en MiguelAHR/ToyCommerce main, commit7e3a3aa. Publicación expresa del usuario reemplaza la restricción histórica de solo local para este despliegue.
+- Dominio vigente de esta versión: https://minikids.vitorstream.shop/; admin /wp-admin/. Local conserva http://localhost:8082/wordpress/ y su DB minikeds_dev2.
+- VPS: current apunta a releases/toycommerce-20261020; DB nueva minikeds_dev2_prod; versión anterior previous-20261020 y DB minikids_dev intactas. Respaldos completos antes/después y cron actualizados. Nunca reimportar la copia local sobre producción con pedidos nuevos.
+- Credenciales de producción y MCP nuevas y privadas, acceso local sin cambios. Copia de acceso solo local-private/access-production.txt. Configuración y Brevo fuera de raíz web; credencial Brevo editable desde Negocio. Solo BACS/COD habilitados, HPOS activo,17 productos, páginas nuevas y correo activado.
+- Portabilidad corregida vía MCP con backup: pie usa home_url y buscador recibe shopUrl localizado. Migración DB serializada con WP-CLI; no cambios en terceros. Primer cambio detectó permiso del directorio privado y restauró automáticamente el sitio anterior; corregido chmod750 antes de activación definitiva.
+- Dos pasadas HTTP públicas48/48; navegador68/68, más14/14 comprobaciones de logo/fotos y ficha móvil tras corregir recursos CSS. MCP real autenticado y Gutenberg de ambas páginas probados; proveedor Brevo cuenta200 (sin enviar correos adicionales). Sitios vecinos conservan respuestas200/307/200. Resultados en brain/production-*-checks.json; evidencias solo privadas. Integridad13729 archivos terceros/core sin diferencias; tres respaldos/metadatos Git excluidos del paquete.
+
 ## Actualización vigente: MCP y atención (2026-10-19)
 
 - Pull fast-forward 7fed1d5→837216e, conservando configuración privada, administrador y DB local. Leídas guía MCP, guía del proyecto y11 skills; AGENTS.md las establece como norma permanente. No se reimportó SQL. Puerto vigente8082/subcarpeta wordpress, aunque docs históricas dicen8088.

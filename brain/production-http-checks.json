@@ -1,0 +1,194 @@
+[
+  {
+    "name": "P1 /",
+    "passed": true
+  },
+  {
+    "name": "P1 URLs /",
+    "passed": true
+  },
+  {
+    "name": "P1 /tienda/",
+    "passed": true
+  },
+  {
+    "name": "P1 URLs /tienda/",
+    "passed": true
+  },
+  {
+    "name": "P1 /nosotros/",
+    "passed": true
+  },
+  {
+    "name": "P1 URLs /nosotros/",
+    "passed": true
+  },
+  {
+    "name": "P1 /libro-de-reclamaciones/",
+    "passed": true
+  },
+  {
+    "name": "P1 URLs /libro-de-reclamaciones/",
+    "passed": true
+  },
+  {
+    "name": "P1 /cart/",
+    "passed": true
+  },
+  {
+    "name": "P1 URLs /cart/",
+    "passed": true
+  },
+  {
+    "name": "P1 /checkout/",
+    "passed": true
+  },
+  {
+    "name": "P1 URLs /checkout/",
+    "passed": true
+  },
+  {
+    "name": "P1 /my-account/",
+    "passed": true
+  },
+  {
+    "name": "P1 URLs /my-account/",
+    "passed": true
+  },
+  {
+    "name": "P1 /wp-login.php",
+    "passed": true
+  },
+  {
+    "name": "P1 URLs /wp-login.php",
+    "passed": true
+  },
+  {
+    "name": "P1 productos",
+    "passed": true
+  },
+  {
+    "name": "P1 im\u00e1genes",
+    "passed": true
+  },
+  {
+    "name": "P1 Store API carrito",
+    "passed": true
+  },
+  {
+    "name": "P1 privado /wp-config.php",
+    "passed": true
+  },
+  {
+    "name": "P1 privado /local-private/config.json",
+    "passed": true
+  },
+  {
+    "name": "P1 privado /database/wordpress-sanitized.sql",
+    "passed": true
+  },
+  {
+    "name": "P1 privado /wp-content/mu-plugins/minikids-estetica.php.bak-20261020",
+    "passed": true
+  },
+  {
+    "name": "P1 privado /wp-content/qa-evidencia/test.png",
+    "passed": true
+  },
+  {
+    "name": "P2 /",
+    "passed": true
+  },
+  {
+    "name": "P2 URLs /",
+    "passed": true
+  },
+  {
+    "name": "P2 /tienda/",
+    "passed": true
+  },
+  {
+    "name": "P2 URLs /tienda/",
+    "passed": true
+  },
+  {
+    "name": "P2 /nosotros/",
+    "passed": true
+  },
+  {
+    "name": "P2 URLs /nosotros/",
+    "passed": true
+  },
+  {
+    "name": "P2 /libro-de-reclamaciones/",
+    "passed": true
+  },
+  {
+    "name": "P2 URLs /libro-de-reclamaciones/",
+    "passed": true
+  },
+  {
+    "name": "P2 /cart/",
+    "passed": true
+  },
+  {
+    "name": "P2 URLs /cart/",
+    "passed": true
+  },
+  {
+    "name": "P2 /checkout/",
+    "passed": true
+  },
+  {
+    "name": "P2 URLs /checkout/",
+    "passed": true
+  },
+  {
+    "name": "P2 /my-account/",
+    "passed": true
+  },
+  {
+    "name": "P2 URLs /my-account/",
+    "passed": true
+  },
+  {
+    "name": "P2 /wp-login.php",
+    "passed": true
+  },
+  {
+    "name": "P2 URLs /wp-login.php",
+    "passed": true
+  },
+  {
+    "name": "P2 productos",
+    "passed": true
+  },
+  {
+    "name": "P2 im\u00e1genes",
+    "passed": true
+  },
+  {
+    "name": "P2 Store API carrito",
+    "passed": true
+  },
+  {
+    "name": "P2 privado /wp-config.php",
+    "passed": true
+  },
+  {
+    "name": "P2 privado /local-private/config.json",
+    "passed": true
+  },
+  {
+    "name": "P2 privado /database/wordpress-sanitized.sql",
+    "passed": true
+  },
+  {
+    "name": "P2 privado /wp-content/mu-plugins/minikids-estetica.php.bak-20261020",
+    "passed": true
+  },
+  {
+    "name": "P2 privado /wp-content/qa-evidencia/test.png",
+    "passed": true
+  }
+]

@@ -1,0 +1,274 @@
+[
+  {
+    "name": "P1 inicio 360",
+    "passed": true
+  },
+  {
+    "name": "P1 tienda 360",
+    "passed": true
+  },
+  {
+    "name": "P1 carrito 360",
+    "passed": true
+  },
+  {
+    "name": "P1 nosotros 360",
+    "passed": true
+  },
+  {
+    "name": "P1 libro 360",
+    "passed": true
+  },
+  {
+    "name": "P1 inicio 390",
+    "passed": true
+  },
+  {
+    "name": "P1 tienda 390",
+    "passed": true
+  },
+  {
+    "name": "P1 carrito 390",
+    "passed": true
+  },
+  {
+    "name": "P1 nosotros 390",
+    "passed": true
+  },
+  {
+    "name": "P1 libro 390",
+    "passed": true
+  },
+  {
+    "name": "P1 inicio 768",
+    "passed": true
+  },
+  {
+    "name": "P1 tienda 768",
+    "passed": true
+  },
+  {
+    "name": "P1 carrito 768",
+    "passed": true
+  },
+  {
+    "name": "P1 nosotros 768",
+    "passed": true
+  },
+  {
+    "name": "P1 libro 768",
+    "passed": true
+  },
+  {
+    "name": "P1 inicio 1024",
+    "passed": true
+  },
+  {
+    "name": "P1 tienda 1024",
+    "passed": true
+  },
+  {
+    "name": "P1 carrito 1024",
+    "passed": true
+  },
+  {
+    "name": "P1 nosotros 1024",
+    "passed": true
+  },
+  {
+    "name": "P1 libro 1024",
+    "passed": true
+  },
+  {
+    "name": "P1 inicio 1280",
+    "passed": true
+  },
+  {
+    "name": "P1 tienda 1280",
+    "passed": true
+  },
+  {
+    "name": "P1 carrito 1280",
+    "passed": true
+  },
+  {
+    "name": "P1 nosotros 1280",
+    "passed": true
+  },
+  {
+    "name": "P1 libro 1280",
+    "passed": true
+  },
+  {
+    "name": "P1 inicio 1440",
+    "passed": true
+  },
+  {
+    "name": "P1 tienda 1440",
+    "passed": true
+  },
+  {
+    "name": "P1 carrito 1440",
+    "passed": true
+  },
+  {
+    "name": "P1 nosotros 1440",
+    "passed": true
+  },
+  {
+    "name": "P1 libro 1440",
+    "passed": true
+  },
+  {
+    "name": "P2 inicio 360",
+    "passed": true
+  },
+  {
+    "name": "P2 tienda 360",
+    "passed": true
+  },
+  {
+    "name": "P2 carrito 360",
+    "passed": true
+  },
+  {
+    "name": "P2 nosotros 360",
+    "passed": true
+  },
+  {
+    "name": "P2 libro 360",
+    "passed": true
+  },
+  {
+    "name": "P2 inicio 390",
+    "passed": true
+  },
+  {
+    "name": "P2 tienda 390",
+    "passed": true
+  },
+  {
+    "name": "P2 carrito 390",
+    "passed": true
+  },
+  {
+    "name": "P2 nosotros 390",
+    "passed": true
+  },
+  {
+    "name": "P2 libro 390",
+    "passed": true
+  },
+  {
+    "name": "P2 inicio 768",
+    "passed": true
+  },
+  {
+    "name": "P2 tienda 768",
+    "passed": true
+  },
+  {
+    "name": "P2 carrito 768",
+    "passed": true
+  },
+  {
+    "name": "P2 nosotros 768",
+    "passed": true
+  },
+  {
+    "name": "P2 libro 768",
+    "passed": true
+  },
+  {
+    "name": "P2 inicio 1024",
+    "passed": true
+  },
+  {
+    "name": "P2 tienda 1024",
+    "passed": true
+  },
+  {
+    "name": "P2 carrito 1024",
+    "passed": true
+  },
+  {
+    "name": "P2 nosotros 1024",
+    "passed": true
+  },
+  {
+    "name": "P2 libro 1024",
+    "passed": true
+  },
+  {
+    "name": "P2 inicio 1280",
+    "passed": true
+  },
+  {
+    "name": "P2 tienda 1280",
+    "passed": true
+  },
+  {
+    "name": "P2 carrito 1280",
+    "passed": true
+  },
+  {
+    "name": "P2 nosotros 1280",
+    "passed": true
+  },
+  {
+    "name": "P2 libro 1280",
+    "passed": true
+  },
+  {
+    "name": "P2 inicio 1440",
+    "passed": true
+  },
+  {
+    "name": "P2 tienda 1440",
+    "passed": true
+  },
+  {
+    "name": "P2 carrito 1440",
+    "passed": true
+  },
+  {
+    "name": "P2 nosotros 1440",
+    "passed": true
+  },
+  {
+    "name": "P2 libro 1440",
+    "passed": true
+  },
+  {
+    "name": "Catálogo y buscador",
+    "passed": true
+  },
+  {
+    "name": "Búsqueda en vivo vacía",
+    "passed": true
+  },
+  {
+    "name": "Drawer Ajax",
+    "passed": true
+  },
+  {
+    "name": "Ficha móvil",
+    "passed": true
+  },
+  {
+    "name": "Checkout móvil",
+    "passed": true
+  },
+  {
+    "name": "Administración de negocio",
+    "passed": true
+  },
+  {
+    "name": "Gutenberg 10",
+    "passed": true
+  },
+  {
+    "name": "Gutenberg 143",
+    "passed": true
+  }
+]

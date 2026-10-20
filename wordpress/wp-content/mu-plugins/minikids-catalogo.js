@@ -35,7 +35,7 @@
         }
 
         // Si estamos en otra página, redirigir a la tienda con el término
-        window.location.href = '/wordpress/tienda/?q=' + encodeURIComponent(cleanQ);
+        window.location.href = minikidsCatalog.shopUrl + '?q=' + encodeURIComponent(cleanQ);
       }
     });
 

@@ -318,3 +318,15 @@
 - Corrección: garantizar estado vacío único en HTML renderizado, con status accesible; etiqueta de búsqueda añadida.
 - Verificación: búsqueda sin resultados y Limpiar restauran catálogo; drawer conserva fragmentos Ajax.
 - Estado: Cerrado; dos pasadas de búsqueda/reset y drawer aprobadas.
+
+### BUG-022 · P1 · Permiso de configuración al activar la release
+- Causa: umask077 redujo los permisos del directorio privado recién creado; FPM no podía atravesarlo.
+- Corrección: directorio root:minikids750 y configuración640, fuera de la raíz web. El primer intento se revirtió automáticamente sin tocar la base anterior.
+- Verificación: lectura como usuario del pool, dos pasadas HTTP públicas y login/editor real.
+- Estado: Cerrado; producción responde sin el error y conserva respaldo anterior.
+
+### BUG-023 · P2 · Rutas de subcarpeta al publicar en dominio raíz
+- Causa: pie, buscador, logo y fondo promocional usaban /wordpress/ en código propio.
+- Corrección: home_url, URL localizada al buscador y recursos CSS relativos a su hoja. Edición local/producción por MCP con backup obligatorio; migración serializada de contenido con WP-CLI.
+- Verificación: navegador en seis tamaños, dos pasadas HTTP, búsqueda vacía, drawer Ajax, checkout y Gutenberg. Revisión adicional de logo/fotos y ficha móvil registrada en brain/production-assets-checks.json.
+- Estado: Cerrado;48/48 HTTP,68/68 navegador y14/14 recursos/ficha, incluidas dos pasadas posteriores al ajuste CSS. Sin cambios en terceros.

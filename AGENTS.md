@@ -1,5 +1,7 @@
 # MiniKids Perú / ToyCommerce: reglas permanentes
 
+Publicación autorizada expresamente el 2026-10-20: esta versión sirve https://minikids.vitorstream.shop/. Conservar la web anterior y su DB como respaldo. No reimportar la base local sobre pedidos nuevos de producción. Ver docs/DESPLIEGUE-VPS.md.
+
 1. Antes de modificar archivos, leer brain/STATE.md, consultar brain/graphify-out/graph.json y leer docs/IMPLEMENTACION-MCP-LOGICA-Y-DISENO.md, docs/GUIA-PROYECTO.md y las11 skills .agent/skills/*/SKILL.md. Las URLs/BD vigentes están en STATE: esta copia usa8082, no8088.
 2. Cero intrusión: no editar WordPress base, themes/blocksy ni plugins/woocommerce ni otros terceros. Lógica, estilos y JS propios solo en wordpress/wp-content/mu-plugins. Tools/docs son auxiliares de desarrollo, no código de aplicación distribuido.
 3. Edición híbrida: contenido mediante las8 abilities minikids, preservando <!-- wp:... -->; usar get-content antes de update-content. Archivos propios con read-file/write-file y backup=true; nunca escribir terceros desde MCP. Creación inicial de páginas/menús por APIs nativas WordPress, nunca SQL de actualización.

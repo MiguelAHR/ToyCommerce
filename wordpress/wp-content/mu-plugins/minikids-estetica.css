@@ -134,7 +134,7 @@ header.ct-header [data-column="end"] > [data-items] {
   display: inline-block !important;
   width: 145px !important;
   height: 44px !important;
-  background: url('/wordpress/wp-content/uploads/minikids/logo-minikids.png') no-repeat left center / contain !important;
+  background: url('../uploads/minikids/logo-minikids.png') no-repeat left center / contain !important;
   text-indent: -9999px !important;
   overflow: hidden !important;
   transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
@@ -811,7 +811,7 @@ header.ct-header [data-column="end"] > [data-items] {
 }
 
 .minikids-promo-banner {
-  background: url('/wordpress/wp-content/uploads/minikids/promo-bg-limpio.png') center / cover no-repeat !important;
+  background: url('../uploads/minikids/promo-bg-limpio.png') center / cover no-repeat !important;
   border-radius: 20px !important;
   min-height: 220px !important;
   padding: 44px 24px !important;

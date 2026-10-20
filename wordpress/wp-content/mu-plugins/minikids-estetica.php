@@ -58,6 +58,7 @@ add_action('wp_enqueue_scripts', function () {
         filemtime(dirname(__FILE__) . '/minikids-catalogo.js'),
         true
     );
+    wp_localize_script('minikids-catalogo', 'minikidsCatalog', array('shopUrl' => home_url('/tienda/')));
 }, 36);
 
 // 3.3 Redirección de archivos individuales de categoría y búsquedas generales al catálogo unificado
@@ -96,17 +97,17 @@ add_action('blocksy:footer:before', function () {
     <footer class="minikids-site-footer">
         <div class="minikids-footer-inner">
             <div class="footer-col brand-col">
-                <img src="/wordpress/wp-content/uploads/minikids/logo-minikids.png" alt="Mini Kids" class="footer-logo-img"/>
+                <img src="<?php echo esc_url(home_url('/wp-content/uploads/minikids/logo-minikids.png')); ?>" alt="Mini Kids" class="footer-logo-img"/>
                 <p class="footer-tagline">Jugar hoy,<br><span style="padding-left:14px">un mejor mañana</span> <span style="color:#ef233c">❤️</span></p>
             </div>
             <div class="footer-col">
                 <h3 class="footer-heading">Tienda</h3>
                 <ul class="footer-links">
-                    <li><a href="/wordpress/">Inicio</a></li>
-                    <li><a href="/wordpress/tienda/">Juguetes</a></li>
-                    <li><a href="/wordpress/#categorias">Categorías</a></li>
-                    <li><a href="/wordpress/#productos">Novedades</a></li>
-                    <li><a href="/wordpress/#ofertas">Ofertas</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/')); ?>">Inicio</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/tienda/')); ?>">Juguetes</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/#categorias')); ?>">Categorías</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/#productos')); ?>">Novedades</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/#ofertas')); ?>">Ofertas</a></li>
                 </ul>
             </div>
             <div class="footer-col">
@@ -116,7 +117,7 @@ add_action('blocksy:footer:before', function () {
                     <li><a href="#">Cambios y devoluciones</a></li>
                     <li><a href="#">Envíos</a></li>
                     <li><a href="#">Términos y condiciones</a></li>
-                    <li><a href="/wordpress/contacto/">Contacto</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/contacto/')); ?>">Contacto</a></li>
                 </ul>
                 <?php wp_nav_menu(['theme_location'=>'minikids_atencion','container'=>false,'menu_class'=>'footer-links mkp-attention-links','fallback_cb'=>false]); ?>
             </div>
@@ -409,8 +410,8 @@ add_action('wp_footer', function () {
             </div>
 
             <footer class="minikids-cart-drawer-footer">
-                <a href="<?php echo esc_url( function_exists('wc_get_page_permalink') ? wc_get_page_permalink('cart') : '/wordpress/cart/' ); ?>" class="drawer-viewcart-btn">Ver carrito</a>
-                <a href="<?php echo esc_url( function_exists('wc_get_page_permalink') ? wc_get_page_permalink('checkout') : '/wordpress/checkout/' ); ?>" class="drawer-checkout-btn">Finalizar compra &gt;</a>
+                <a href="<?php echo esc_url( function_exists('wc_get_page_permalink') ? wc_get_page_permalink('cart') : home_url('/cart/') ); ?>" class="drawer-viewcart-btn">Ver carrito</a>
+                <a href="<?php echo esc_url( function_exists('wc_get_page_permalink') ? wc_get_page_permalink('checkout') : home_url('/checkout/') ); ?>" class="drawer-checkout-btn">Finalizar compra &gt;</a>
                 <button type="button" class="drawer-continue-btn">Seguir comprando</button>
             </footer>
         </aside>

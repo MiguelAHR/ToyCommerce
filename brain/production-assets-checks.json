@@ -1,0 +1,58 @@
+[
+  {
+    "name": "P1 logo y fotos 360",
+    "passed": true
+  },
+  {
+    "name": "P1 logo y fotos 390",
+    "passed": true
+  },
+  {
+    "name": "P1 logo y fotos 768",
+    "passed": true
+  },
+  {
+    "name": "P1 logo y fotos 1024",
+    "passed": true
+  },
+  {
+    "name": "P1 logo y fotos 1280",
+    "passed": true
+  },
+  {
+    "name": "P1 logo y fotos 1440",
+    "passed": true
+  },
+  {
+    "name": "P2 logo y fotos 360",
+    "passed": true
+  },
+  {
+    "name": "P2 logo y fotos 390",
+    "passed": true
+  },
+  {
+    "name": "P2 logo y fotos 768",
+    "passed": true
+  },
+  {
+    "name": "P2 logo y fotos 1024",
+    "passed": true
+  },
+  {
+    "name": "P2 logo y fotos 1280",
+    "passed": true
+  },
+  {
+    "name": "P2 logo y fotos 1440",
+    "passed": true
+  },
+  {
+    "name": "P1 ficha producto móvil",
+    "passed": true
+  },
+  {
+    "name": "P2 ficha producto móvil",
+    "passed": true
+  }
+]

@@ -4,11 +4,11 @@ from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
 class MCP:
-    def __init__(self):
-        a=json.loads((ROOT/'local-private/mcp-auth.json').read_text())
+    def __init__(self,auth_path=None):
+        a=json.loads((Path(auth_path) if auth_path else ROOT/'local-private/mcp-auth.json').read_text())
         self.url=a['url'];self.serial=0
         self.headers={'Authorization':'Basic '+base64.b64encode((a['username']+':'+a['password']).encode()).decode(),
-                      'Content-Type':'application/json','Accept':'application/json, text/event-stream'}
+                      'Content-Type':'application/json','Accept':'application/json, text/event-stream','User-Agent':'MiniKids-MCP/1.0'}
         result=self.request('initialize',{'protocolVersion':'2025-06-18','capabilities':{},'clientInfo':{'name':'minikids-local','version':'1.0'}})
         self.headers['MCP-Protocol-Version']=result['protocolVersion']
         self.request('notifications/initialized',{},notification=True)
