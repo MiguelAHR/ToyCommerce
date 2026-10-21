@@ -1340,23 +1340,34 @@ header.ct-header [data-column="end"] > [data-items] {
   border-radius: 3px 3px 0 0 !important;
 }
 
-/* Panel: [Características y Cuidados] */
+/* Panel: [Cuidados y Recomendaciones] */
 .woocommerce-Tabs-panel--description {
   padding: 8px 0 24px !important;
 }
 
-.minikids-product-specs-box {
-  display: grid !important;
-  grid-template-columns: repeat(2, 1fr) !important;
-  gap: 24px !important;
-  margin: 8px 0 24px !important;
-  align-items: stretch !important;
+.woocommerce-Tabs-panel--description > h2:first-child {
+  display: none !important;
 }
 
-@media (max-width: 768px) {
-  .minikids-product-specs-box {
-    grid-template-columns: 1fr !important;
-  }
+.woocommerce-product-details__short-description {
+  margin: 12px 0 18px !important;
+  color: #4b5563 !important;
+  font-family: var(--font-sans) !important;
+  font-size: 15.5px !important;
+  line-height: 1.65 !important;
+}
+
+.woocommerce-product-details__short-description p {
+  margin: 0 !important;
+  color: #4b5563 !important;
+  font-size: 15.5px !important;
+  line-height: 1.65 !important;
+}
+
+.minikids-product-specs-box {
+  display: block !important;
+  max-width: 860px !important;
+  margin: 8px 0 24px !important;
 }
 
 .minikids-spec-item {
@@ -1377,11 +1388,11 @@ header.ct-header [data-column="end"] > [data-items] {
 }
 
 .minikids-spec-item.spec-features {
-  border-left: 6px solid var(--brand-blue) !important;
-  background: linear-gradient(180deg, #ffffff 0%, #f9fbff 100%) !important;
+  display: none !important;
 }
 
 .minikids-spec-item.spec-recommendations {
+  width: 100% !important;
   border-left: 6px solid var(--brand-yellow) !important;
   background: linear-gradient(180deg, #ffffff 0%, #fffdf5 100%) !important;
 }

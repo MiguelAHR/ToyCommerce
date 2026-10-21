@@ -191,29 +191,11 @@ add_action('woocommerce_single_product_summary', function () {
     <?php
 }, 35);
 
-// 8.1 Metadatos enriquecidos de la ficha (Código SKU, Categoría, Edad, Stock, Información de envío)
+// 8.1 Metadatos enriquecidos de la ficha (Información de envío)
+// Nota: La edad y el stock se mantienen exclusivamente en los badges superiores para evitar duplicidad y ambigüedad.
 add_action('woocommerce_product_meta_end', function () {
-    global $product;
-    if (!$product) return;
-    
-    $edad = $product->get_attribute('Edad recomendada');
-    if (!$edad) {
-        $edad = get_post_meta($product->get_id(), '_minikids_edad', true);
-    }
-    $stock_qty = $product->get_stock_quantity();
-    $stock_text = ($stock_qty !== null && $stock_qty > 0) ? ($stock_qty . ' en stock') : 'Disponible en stock';
     ?>
     <div class="minikids-meta-additional">
-        <?php if (!empty($edad)): ?>
-            <span class="minikids-meta-row meta-edad">
-                <span class="meta-label">Edad:</span>
-                <span class="meta-value">(<?php echo esc_html($edad); ?>)</span>
-            </span>
-        <?php endif; ?>
-        <span class="minikids-meta-row meta-stock">
-            <span class="meta-label">Stock:</span>
-            <span class="meta-value"><?php echo esc_html($stock_text); ?></span>
-        </span>
         <span class="minikids-meta-row meta-envio">
             <span class="meta-label">Información de envío:</span>
             <span class="meta-value">Envío a todo el país / Compra segura / 30 días de cambio</span>
@@ -225,7 +207,7 @@ add_action('woocommerce_product_meta_end', function () {
 // 8.2 Pestañas personalizadas de la ficha de producto en español amigable
 add_filter('woocommerce_product_tabs', function ($tabs) {
     if (isset($tabs['description'])) {
-        $tabs['description']['title'] = '✨ Características y Cuidados';
+        $tabs['description']['title'] = '💡 Cuidados y Recomendaciones';
     }
     if (isset($tabs['additional_information'])) {
         $tabs['additional_information']['title'] = '📋 Especificaciones';
@@ -235,6 +217,9 @@ add_filter('woocommerce_product_tabs', function ($tabs) {
     }
     return $tabs;
 }, 98);
+
+// Suprimir título por defecto "Description" en la pestaña para evitar texto en inglés
+add_filter('woocommerce_product_description_heading', '__return_empty_string');
 
 // 8.3 Encabezados de productos relacionados, upsells, cross-sells y oferta en español
 add_filter('woocommerce_product_upsells_products_heading', function() {
