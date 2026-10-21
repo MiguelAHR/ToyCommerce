@@ -758,7 +758,7 @@ add_filter('woocommerce_mail_content', function($content) {
         'Total:' => 'Total de compra:',
         "Thanks again! If you need any help with your order, please contact us at ." => '¡Muchas gracias por elegir MiniKids Perú! ¿Dudas o seguimiento? Escríbenos a nuestro WhatsApp oficial: <strong>+51 991 117 308</strong>.',
         "Thanks again! If you need any help with your order, please contact us at" => '¡Muchas gracias por elegir MiniKids Perú! ¿Dudas o seguimiento? Escríbenos a nuestro WhatsApp oficial: <strong>+51 991 117 308</strong>.',
-        'MiniKids Peru</a></p>' => 'MiniKids Perú</a></p><div style="text-align:center;padding:10px 0;"><img src="http://localhost:8088/wordpress/wp-content/uploads/minikids/logo-minikids.png" alt="MiniKids Perú" style="height:55px;width:auto;display:inline-block;" /></div>'
+        'MiniKids Peru</a></p>' => 'MiniKids Perú</a></p><div style="text-align:center;padding:10px 0;"><img src="http://localhost:8088/wordpress/wp-content/uploads/minikids/logo-minikids.png" alt="MiniKids Perú" style="height:55px;width:auto;display:inline-block;" /></div><div style="margin-top:16px;padding:12px 16px;background:#fef3c7;border:1px solid #fde68a;border-radius:10px;text-align:center;font-size:12px;color:#92400e;line-height:1.5;">✉️ <strong>Buzón automático no-reply:</strong> Este correo ha sido generado de forma automática. Por favor no respondas a esta dirección ya que no recibe mensajes entrantes. Para atención y consultas sobre tu pedido, escríbenos a nuestro <a href="https://wa.me/51991117308" target="_blank" style="color:#1a73e8;font-weight:700;text-decoration:underline;">WhatsApp Oficial (+51 991 117 308)</a>.</div>'
     );
     return str_replace(array_keys($replacements), array_values($replacements), $content);
 }, 20);
@@ -844,24 +844,16 @@ add_action('wp_mail_failed', function($wp_error) {
     }
 });
 
-// Filtro global para remitente válido (evita el error RFC 5322 "Invalid address: wordpress@localhost")
+// Filtro global para remitente No-Reply (protege la privacidad del correo personal del administrador)
 add_filter('wp_mail_from', function($from) {
-    $configured = get_option('minikids_smtp_from_email', get_option('woocommerce_email_from_address', 'miguel16hr@gmail.com'));
-    if (!empty($configured) && is_email($configured)) {
-        return $configured;
-    }
-    return 'miguel16hr@gmail.com';
-}, 20);
+    return 'noreply@minikids.pe';
+}, 99);
 
 add_filter('wp_mail_from_name', function($name) {
-    $configured = get_option('minikids_smtp_from_name', get_option('woocommerce_email_from_name', 'MiniKids Perú'));
-    if (!empty($configured)) {
-        return $configured;
-    }
-    return 'MiniKids Perú';
-}, 20);
+    return 'MiniKids Perú (No Responder)';
+}, 99);
 
-// Soporte SMTP nativo para envíos reales a Gmail / Outlook
+// Soporte SMTP nativo con remitente No-Reply y Reply-To restringido
 add_action('phpmailer_init', function($phpmailer) {
     if (get_option('minikids_smtp_enabled', 'no') === 'yes') {
         $phpmailer->isSMTP();
@@ -871,13 +863,17 @@ add_action('phpmailer_init', function($phpmailer) {
         $phpmailer->SMTPSecure = get_option('minikids_smtp_secure', 'tls');
         $phpmailer->Username   = get_option('minikids_smtp_user', '');
         $phpmailer->Password   = get_option('minikids_smtp_pass', '');
-        $from_email            = get_option('minikids_smtp_from_email', get_option('minikids_smtp_user', ''));
-        if (!empty($from_email)) {
-            $phpmailer->From = $from_email;
-        }
-        $phpmailer->FromName   = get_option('minikids_smtp_from_name', 'MiniKids Perú');
+
+        // Remitente visible al cliente
+        $phpmailer->From     = 'noreply@minikids.pe';
+        $phpmailer->FromName = 'MiniKids Perú (No Responder)';
+        $phpmailer->Sender   = 'noreply@minikids.pe';
+
+        // Restringir el Reply-To para que no puedan responder a tu correo personal
+        $phpmailer->clearReplyTos();
+        $phpmailer->addReplyTo('noreply@minikids.pe', 'MiniKids Perú (No Responder)');
     }
-});
+}, 99);
 
 // Panel de Administración: "Correos de Clientes" y Configuración SMTP
 add_action('admin_menu', function() {
