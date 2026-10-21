@@ -20,9 +20,9 @@ add_filter('pre_wp_mail', function($previous,$atts) {
         do_action('wp_mail_failed',new WP_Error('mkpn_mail_failed','El servicio no aceptó el correo.',['status'=>(int)$status]));return false;
     };
     if($previous!==null)return $previous;
-    if(!is_readable(mkpn_brevo_path()))return $error(0);
+    if(!is_readable(mkpn_brevo_path()))return $previous;
     $config=json_decode(file_get_contents(mkpn_brevo_path()),true);
-    if(empty($config['api_key'])||empty($config['sender']))return $error(0);
+    if(empty($config['api_key'])||empty($config['sender']))return $previous;
     $sender=sanitize_email(get_option('woocommerce_email_from_address',$config['sender']));
     if(!$sender)return $error(0);
     $payload=['sender'=>['email'=>$sender,'name'=>get_option('woocommerce_email_from_name',get_bloginfo('name'))],

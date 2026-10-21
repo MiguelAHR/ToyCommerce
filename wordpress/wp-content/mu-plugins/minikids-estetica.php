@@ -660,6 +660,370 @@ add_action('wp_footer', function() {
     <?php
 }, 999);
 
+// 13. Inyección garantizada de iconos SVG en la barra de beneficios de la Home (evita que wp_kses los filtre)
+add_filter('the_content', function($content) {
+    if (strpos($content, 'minikids-benefits-grid') !== false) {
+        $truck_svg = '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1a73e8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-5l-3-4h-5v10Z"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>';
+        $shield_svg = '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#d49600" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>';
+        $card_svg = '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1a73e8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>';
+        $gift_svg = '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ef233c" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13"/><path d="M19 8a3 3 0 1 0-3-3 3 3 0 0 0-4 3 3 3 0 0 0-4-3 3 3 0 1 0-3 3"/></svg>';
+
+        $content = preg_replace(
+            '/(<div class="benefit-icon bg-pastel-blue text-brand-blue">\s*<\/div>)([\s\S]*?Envíos a todo el país)/u',
+            '<div class="benefit-icon bg-pastel-blue text-brand-blue">' . $truck_svg . '</div>$2',
+            $content,
+            1
+        );
+        $content = preg_replace(
+            '/(<div class="benefit-icon bg-pastel-yellow text-brand-ink">\s*<\/div>)([\s\S]*?Compra segura)/u',
+            '<div class="benefit-icon bg-pastel-yellow text-brand-ink">' . $shield_svg . '</div>$2',
+            $content,
+            1
+        );
+        $content = preg_replace(
+            '/(<div class="benefit-icon bg-pastel-blue text-brand-blue">\s*<\/div>)([\s\S]*?Múltiples medios de pago)/u',
+            '<div class="benefit-icon bg-pastel-blue text-brand-blue">' . $card_svg . '</div>$2',
+            $content,
+            1
+        );
+        $content = preg_replace(
+            '/(<div class="benefit-icon bg-pastel-pink text-brand-red">\s*<\/div>)([\s\S]*?Regalos para cada ocasión)/u',
+            '<div class="benefit-icon bg-pastel-pink text-brand-red">' . $gift_svg . '</div>$2',
+            $content,
+            1
+        );
+    }
+    return $content;
+}, 20);
+
+// 14. Personalización del Correo de Resumen de Compra de WooCommerce (Español & Branding MiniKids)
+add_filter('woocommerce_email_subject_customer_processing_order', function($subject, $order) {
+    if (!$order) return $subject;
+    return '¡Tu pedido #' . $order->get_order_number() . ' en MiniKids Perú ha sido recibido! 🎉';
+}, 20, 2);
+
+add_filter('woocommerce_email_heading_customer_processing_order', function($heading, $order) {
+    return '¡Gracias por tu compra en MiniKids! ❤️';
+}, 20, 2);
+
+add_filter('woocommerce_email_subject_customer_on_hold_order', function($subject, $order) {
+    if (!$order) return $subject;
+    return '¡Tu pedido #' . $order->get_order_number() . ' en MiniKids Perú está registrado! 🧸';
+}, 20, 2);
+
+add_filter('woocommerce_email_heading_customer_on_hold_order', function($heading, $order) {
+    return '¡Hemos recibido tu pedido en MiniKids!';
+}, 20, 2);
+
+add_filter('woocommerce_mail_content', function($content) {
+    $replacements = array(
+        'Order summary' => 'Resumen de tu compra 🧸',
+        'Product' => 'Juguete / Producto',
+        'Quantity' => 'Cant.',
+        'Price' => 'Precio',
+        'Payment method:' => 'Método de pago:',
+        'Billing address' => 'Datos de contacto',
+        'Shipping address' => 'Dirección de entrega en Perú',
+        'Additional information' => 'Información de despacho',
+        'Just to let you know &mdash; we’ve received your order, and it is now being processed.' => '¡Te confirmamos que hemos recibido tu pedido con éxito y ya lo estamos preparando con todo el cariño! ❤️',
+        'Just to let you know &#8212; we&#8217;ve received your order, and it is now being processed.' => '¡Te confirmamos que hemos recibido tu pedido con éxito y ya lo estamos preparando con todo el cariño! ❤️',
+        "Just to let you know — we've received your order, and it is now being processed." => '¡Te confirmamos que hemos recibido tu pedido con éxito y ya lo estamos preparando con todo el cariño! ❤️',
+        'Just to let you know — we’ve received your order, and it is now being processed.' => '¡Te confirmamos que hemos recibido tu pedido con éxito y ya lo estamos preparando con todo el cariño! ❤️',
+        'Hi ' => '¡Hola ',
+        "Here’s a reminder of what you’ve ordered:" => 'A continuación te compartimos el detalle de tu compra:',
+        "Here&#8217;s a reminder of what you&#8217;ve ordered:" => 'A continuación te compartimos el detalle de tu compra:',
+        'Order #' => 'Pedido #',
+        'Shipping:' => 'Envío:',
+        'Total:' => 'Total de compra:',
+        "Thanks again! If you need any help with your order, please contact us at ." => '¡Muchas gracias por elegir MiniKids Perú! ¿Dudas o seguimiento? Escríbenos a nuestro WhatsApp oficial: <strong>+51 991 117 308</strong>.',
+        "Thanks again! If you need any help with your order, please contact us at" => '¡Muchas gracias por elegir MiniKids Perú! ¿Dudas o seguimiento? Escríbenos a nuestro WhatsApp oficial: <strong>+51 991 117 308</strong>.',
+        'MiniKids Peru</a></p>' => 'MiniKids Perú</a></p><div style="text-align:center;padding:10px 0;"><img src="http://localhost:8088/wordpress/wp-content/uploads/minikids/logo-minikids.png" alt="MiniKids Perú" style="height:55px;width:auto;display:inline-block;" /></div>'
+    );
+    return str_replace(array_keys($replacements), array_values($replacements), $content);
+}, 20);
+
+add_filter('woocommerce_email_styles', function($css) {
+    $custom_css = '
+    #header_wrapper {
+        background-color: #ffd60a !important;
+        border-bottom: 3px solid #ffc300 !important;
+        padding: 30px 20px !important;
+        text-align: center !important;
+    }
+    #header_wrapper h1 {
+        color: #1f2937 !important;
+        font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+        font-size: 26px !important;
+        font-weight: 800 !important;
+        margin: 0 !important;
+    }
+    #body_content {
+        font-family: "Nunito Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+        color: #374151 !important;
+        font-size: 14.5px !important;
+    }
+    .order_item td {
+        font-size: 14px !important;
+        border-bottom: 1px solid #f3f4f6 !important;
+    }
+    #template_footer {
+        background-color: #f8fafc !important;
+        border-top: 1px solid #e5e7eb !important;
+        text-align: center !important;
+        padding: 20px !important;
+        font-size: 12.5px !important;
+        color: #6b7280 !important;
+    }
+    ';
+    return $css . $custom_css;
+});
+
+// Disparo inmediato garantizado del correo al cliente al completar el checkout
+add_action('woocommerce_checkout_order_processed', function($order_id, $posted_data, $order) {
+    if (!$order) return;
+    $mailer = WC()->mailer();
+    if (isset($mailer->emails['WC_Email_Customer_Processing_Order'])) {
+        $mailer->emails['WC_Email_Customer_Processing_Order']->trigger($order_id, $order);
+    }
+}, 20, 3);
+
+// 15. Sistema de Registro y Visualización de Correos Enviados (Email Logger & Web Viewer)
+add_filter('wp_mail', function($args) {
+    $log = get_option('minikids_email_logs', array());
+    $entry_id = uniqid('mk_mail_');
+    $log[$entry_id] = array(
+        'id'      => $entry_id,
+        'date'    => current_time('mysql'),
+        'to'      => is_array($args['to']) ? implode(', ', $args['to']) : $args['to'],
+        'subject' => $args['subject'],
+        'message' => $args['message'],
+        'status'  => 'Enviado',
+        'error'   => ''
+    );
+    // Conservar los últimos 30 correos
+    if (count($log) > 30) {
+        $log = array_slice($log, -30, 30, true);
+    }
+    update_option('minikids_email_logs', $log);
+    
+    // Guardar ID temporal para actualizar si falla
+    $GLOBALS['minikids_last_mail_id'] = $entry_id;
+    return $args;
+}, 10, 1);
+
+add_action('wp_mail_failed', function($wp_error) {
+    if (!empty($GLOBALS['minikids_last_mail_id'])) {
+        $log = get_option('minikids_email_logs', array());
+        $id = $GLOBALS['minikids_last_mail_id'];
+        if (isset($log[$id])) {
+            $log[$id]['status'] = 'Pendiente SMTP';
+            $log[$id]['error'] = $wp_error->get_error_message();
+            update_option('minikids_email_logs', $log);
+        }
+    }
+});
+
+// Soporte SMTP nativo para envíos reales a Gmail / Outlook
+add_action('phpmailer_init', function($phpmailer) {
+    if (get_option('minikids_smtp_enabled', 'no') === 'yes') {
+        $phpmailer->isSMTP();
+        $phpmailer->Host       = get_option('minikids_smtp_host', 'smtp.gmail.com');
+        $phpmailer->SMTPAuth   = true;
+        $phpmailer->Port       = intval(get_option('minikids_smtp_port', 587));
+        $phpmailer->SMTPSecure = get_option('minikids_smtp_secure', 'tls');
+        $phpmailer->Username   = get_option('minikids_smtp_user', '');
+        $phpmailer->Password   = get_option('minikids_smtp_pass', '');
+        $from_email            = get_option('minikids_smtp_from_email', get_option('minikids_smtp_user', ''));
+        if (!empty($from_email)) {
+            $phpmailer->From = $from_email;
+        }
+        $phpmailer->FromName   = get_option('minikids_smtp_from_name', 'MiniKids Perú');
+    }
+});
+
+// Panel de Administración: "Correos de Clientes" y Configuración SMTP
+add_action('admin_menu', function() {
+    add_submenu_page(
+        'woocommerce',
+        'Bandeja de Correos MiniKids',
+        '📨 Correos Enviados',
+        'manage_woocommerce',
+        'minikids-correos',
+        'minikids_render_email_logs_page'
+    );
+});
+
+// Endpoint para ver el correo HTML en vivo en el navegador
+add_action('admin_init', function() {
+    if (isset($_GET['page']) && $_GET['page'] === 'minikids-correos' && isset($_GET['view_mail']) && current_user_can('manage_woocommerce')) {
+        $log_id = sanitize_text_field($_GET['view_mail']);
+        $log = get_option('minikids_email_logs', array());
+        if (isset($log[$log_id])) {
+            header('Content-Type: text/html; charset=UTF-8');
+            echo $log[$log_id]['message'];
+            exit;
+        }
+    }
+});
+
+function minikids_render_email_logs_page() {
+    // Procesar guardado de ajustes SMTP
+    $msg = '';
+    if (isset($_POST['save_smtp_settings']) && check_admin_referer('minikids_smtp_nonce')) {
+        update_option('minikids_smtp_enabled', isset($_POST['smtp_enabled']) ? 'yes' : 'no');
+        update_option('minikids_smtp_host', sanitize_text_field($_POST['smtp_host']));
+        update_option('minikids_smtp_port', intval($_POST['smtp_port']));
+        update_option('minikids_smtp_secure', sanitize_text_field($_POST['smtp_secure']));
+        update_option('minikids_smtp_user', sanitize_text_field($_POST['smtp_user']));
+        if (!empty($_POST['smtp_pass'])) {
+            update_option('minikids_smtp_pass', sanitize_text_field($_POST['smtp_pass']));
+        }
+        update_option('minikids_smtp_from_email', sanitize_email($_POST['smtp_from_email']));
+        update_option('minikids_smtp_from_name', sanitize_text_field($_POST['smtp_from_name']));
+        $msg = '<div class="notice notice-success is-dismissible"><p><strong>✓ Configuración SMTP guardada correctamente.</strong></p></div>';
+    }
+
+    // Procesar prueba de correo
+    if (isset($_POST['send_test_email']) && check_admin_referer('minikids_smtp_nonce')) {
+        $test_to = sanitize_email($_POST['test_email_to']);
+        if (!empty($test_to)) {
+            $sent = wp_mail(
+                $test_to,
+                '🎉 Prueba de correo exitosa · MiniKids Perú',
+                '<h2>¡Hola desde MiniKids Perú!</h2><p>Este es un correo de prueba para verificar que el envío SMTP está funcionando al 100%.</p><p>Los clientes recibirán el resumen de sus compras con su lista de juguetes, precios y detalles de entrega.</p>'
+            );
+            if ($sent) {
+                $msg = '<div class="notice notice-success is-dismissible"><p><strong>✓ ¡Correo de prueba enviado con éxito a ' . esc_html($test_to) . '! Revisa tu bandeja de entrada o spam.</strong></p></div>';
+            } else {
+                $msg = '<div class="notice notice-error is-dismissible"><p><strong>❌ No se pudo enviar el correo de prueba. Verifica tu usuario, contraseña de aplicación o puerto SMTP.</strong></p></div>';
+            }
+        }
+    }
+
+    $logs = get_option('minikids_email_logs', array());
+    $logs = array_reverse($logs); // Más recientes primero
+
+    $smtp_enabled    = get_option('minikids_smtp_enabled', 'no');
+    $smtp_host       = get_option('minikids_smtp_host', 'smtp.gmail.com');
+    $smtp_port       = get_option('minikids_smtp_port', '587');
+    $smtp_secure     = get_option('minikids_smtp_secure', 'tls');
+    $smtp_user       = get_option('minikids_smtp_user', 'miguel16hr@gmail.com');
+    $smtp_from_email = get_option('minikids_smtp_from_email', 'miguel16hr@gmail.com');
+    $smtp_from_name  = get_option('minikids_smtp_from_name', 'MiniKids Perú');
+    ?>
+    <div class="wrap">
+        <h1 style="display:flex;align-items:center;gap:10px;">📨 Bandeja de Correos y Resúmenes de Compra · MiniKids</h1>
+        <p>Aquí puedes auditar y previsualizar exactamente los correos de resumen de compra generados por WooCommerce para cada cliente, y configurar el envío real por SMTP.</p>
+        <?php echo $msg; ?>
+
+        <div style="display:grid;grid-template-columns:1.8fr 1.2fr;gap:24px;margin-top:20px;">
+            <!-- Columna Izquierda: Historial de Correos Generados -->
+            <div style="background:#fff;border-radius:12px;padding:24px;box-shadow:0 4px 14px rgba(0,0,0,0.06);border:1px solid #e5e7eb;">
+                <h2 style="margin-top:0;font-size:18px;">📬 Registro de Correos Generados para Clientes</h2>
+                <?php if (empty($logs)): ?>
+                    <p style="color:#6b7280;font-style:italic;">Aún no se han registrado correos. Realiza una compra en el Checkout para ver el correo generado aquí.</p>
+                <?php else: ?>
+                    <table class="wp-list-table widefat fixed striped">
+                        <thead>
+                            <tr>
+                                <th style="width:120px;">Fecha</th>
+                                <th style="width:180px;">Destinatario</th>
+                                <th>Asunto</th>
+                                <th style="width:90px;">Estado</th>
+                                <th style="width:110px;">Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($logs as $l): ?>
+                                <tr>
+                                    <td><small><?php echo esc_html($l['date']); ?></small></td>
+                                    <td><strong><?php echo esc_html($l['to']); ?></strong></td>
+                                    <td><?php echo esc_html($l['subject']); ?></td>
+                                    <td>
+                                        <?php if ($l['status'] === 'Enviado'): ?>
+                                            <span style="color:#10b981;font-weight:700;">✓ Enviado</span>
+                                        <?php else: ?>
+                                            <span style="color:#f59e0b;font-weight:700;" title="<?php echo esc_attr($l['error']); ?>">Registrado (HTML)</span>
+                                        <?php endif; ?>
+                                    </td>
+                                    <td>
+                                        <a href="<?php echo admin_url('admin.php?page=minikids-correos&view_mail=' . urlencode($l['id'])); ?>" target="_blank" class="button button-small button-primary">👁️ Ver Correo</a>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                <?php endif; ?>
+            </div>
+
+            <!-- Columna Derecha: Configuración SMTP para Envío a Gmail / Outlook -->
+            <div style="background:#fff;border-radius:12px;padding:24px;box-shadow:0 4px 14px rgba(0,0,0,0.06);border:1px solid #e5e7eb;">
+                <h2 style="margin-top:0;font-size:18px;">⚙️ Configuración de Envío Real (SMTP)</h2>
+                <p style="font-size:13px;color:#4b5563;line-height:1.5;">Para que el correo <strong>llegue en tiempo real a la bandeja de entrada</strong> del cliente desde tu XAMPP local, activa SMTP e ingresa tu correo y contraseña de aplicación de Gmail o tu servidor SMTP.</p>
+
+                <form method="post" action="">
+                    <?php wp_nonce_field('minikids_smtp_nonce'); ?>
+                    <table class="form-table" style="margin-top:0;">
+                        <tr>
+                            <th scope="row" style="width:140px;"><label for="smtp_enabled">Activar SMTP</label></th>
+                            <td>
+                                <input name="smtp_enabled" type="checkbox" id="smtp_enabled" value="yes" <?php checked($smtp_enabled, 'yes'); ?> />
+                                <span class="description">Habilitar envío por SMTP</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="smtp_host">Servidor SMTP</label></th>
+                            <td><input name="smtp_host" type="text" id="smtp_host" value="<?php echo esc_attr($smtp_host); ?>" class="regular-text" style="width:100%;" placeholder="smtp.gmail.com" /></td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="smtp_port">Puerto y Seguridad</label></th>
+                            <td>
+                                <input name="smtp_port" type="number" id="smtp_port" value="<?php echo esc_attr($smtp_port); ?>" style="width:70px;" />
+                                <select name="smtp_secure">
+                                    <option value="tls" <?php selected($smtp_secure, 'tls'); ?>>TLS (587)</option>
+                                    <option value="ssl" <?php selected($smtp_secure, 'ssl'); ?>>SSL (465)</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="smtp_user">Tu Correo Gmail</label></th>
+                            <td><input name="smtp_user" type="email" id="smtp_user" value="<?php echo esc_attr($smtp_user); ?>" class="regular-text" style="width:100%;" placeholder="ejemplo@gmail.com" /></td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="smtp_pass">Contraseña de App</label></th>
+                            <td>
+                                <input name="smtp_pass" type="password" id="smtp_pass" value="" class="regular-text" style="width:100%;" placeholder="Contraseña de aplicación de 16 letras" />
+                                <small style="display:block;color:#6b7280;margin-top:4px;">En Google: Seguridad &gt; Verificación en 2 pasos &gt; Contraseñas de aplicaciones.</small>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="smtp_from_email">Remitente</label></th>
+                            <td>
+                                <input name="smtp_from_name" type="text" id="smtp_from_name" value="<?php echo esc_attr($smtp_from_name); ?>" placeholder="MiniKids Perú" style="width:48%;" />
+                                <input name="smtp_from_email" type="email" id="smtp_from_email" value="<?php echo esc_attr($smtp_from_email); ?>" placeholder="hola@minikids.pe" style="width:48%;" />
+                            </td>
+                        </tr>
+                    </table>
+                    <p class="submit" style="padding-bottom:0;">
+                        <button type="submit" name="save_smtp_settings" class="button button-primary">💾 Guardar Configuración SMTP</button>
+                    </p>
+                </form>
+
+                <hr style="margin:20px 0;border:0;border-top:1px solid #e5e7eb;" />
+
+                <h3 style="font-size:15px;margin:0 0 10px 0;">🚀 Enviar Correo de Prueba</h3>
+                <form method="post" action="" style="display:flex;gap:10px;">
+                    <?php wp_nonce_field('minikids_smtp_nonce'); ?>
+                    <input type="email" name="test_email_to" value="<?php echo esc_attr($smtp_user); ?>" placeholder="correo@ejemplo.com" required style="flex-grow:1;" />
+                    <button type="submit" name="send_test_email" class="button button-secondary">Probar Envío</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <?php
+}
+
+
 
 
 
