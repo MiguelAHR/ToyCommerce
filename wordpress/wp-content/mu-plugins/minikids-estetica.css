@@ -233,6 +233,22 @@ header.ct-header [data-column="end"] > [data-items] {
   display: none !important;
 }
 
+/* Enlaces del Menú Principal en Navbar (Tipografía, Mayúsculas y Hover) */
+header.ct-header nav .menu-item a.ct-menu-link {
+  font-family: var(--font-display) !important;
+  font-size: 14.5px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.02em !important;
+  color: var(--brand-ink) !important;
+  transition: color 0.2s ease !important;
+}
+
+header.ct-header nav .menu-item.current-menu-item a.ct-menu-link,
+header.ct-header nav .menu-item a.ct-menu-link:hover {
+  color: var(--brand-blue) !important;
+}
+
 /* Header Cart Container con centrado vertical absoluto */
 .ct-header-cart {
   position: relative !important;
