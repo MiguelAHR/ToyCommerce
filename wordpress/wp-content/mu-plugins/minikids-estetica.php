@@ -234,12 +234,15 @@ add_filter('woocommerce_product_tabs', function ($tabs) {
     return $tabs;
 }, 98);
 
-// 8.3 Encabezados de productos relacionados, upsells y oferta en español
+// 8.3 Encabezados de productos relacionados, upsells, cross-sells y oferta en español
 add_filter('woocommerce_product_upsells_products_heading', function() {
     return 'Productos relacionados';
 });
 add_filter('woocommerce_product_related_products_heading', function() {
     return 'Productos relacionados';
+});
+add_filter('woocommerce_product_cross_sells_products_heading', function() {
+    return 'También te podría interesar...';
 });
 add_filter('woocommerce_sale_flash', function() {
     return '<span class="onsale">OFERTA</span>';
@@ -250,6 +253,12 @@ add_filter('woocommerce_product_single_add_to_cart_text', function() {
 add_filter('woocommerce_product_add_to_cart_text', function() {
     return 'Agregar al carrito';
 });
+
+// 8.4 Soporte de zoom y lightbox nativo para galería de productos
+add_action('after_setup_theme', function () {
+    add_theme_support('wc-product-gallery-zoom');
+    add_theme_support('wc-product-gallery-lightbox');
+}, 50);
 
 // 9. Barra de Envío Gratis en la página de Carrito (Next.js visual parity)
 add_filter('the_content', function ($content) {
