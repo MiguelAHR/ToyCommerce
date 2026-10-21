@@ -727,6 +727,15 @@ add_filter('woocommerce_email_heading_customer_on_hold_order', function($heading
     return '¡Hemos recibido tu pedido en MiniKids!';
 }, 20, 2);
 
+add_filter('woocommerce_email_subject_new_order', function($subject, $order) {
+    if (!$order) return $subject;
+    return '🔔 [MiniKids Admin] ¡Nuevo pedido recibido! #' . $order->get_order_number() . ' 🎉';
+}, 20, 2);
+
+add_filter('woocommerce_email_heading_new_order', function($heading, $order) {
+    return '🔔 Nuevo Pedido en MiniKids Perú';
+}, 20, 2);
+
 add_filter('woocommerce_mail_content', function($content) {
     $replacements = array(
         'Order summary' => 'Resumen de tu compra 🧸',
@@ -834,6 +843,23 @@ add_action('wp_mail_failed', function($wp_error) {
         }
     }
 });
+
+// Filtro global para remitente válido (evita el error RFC 5322 "Invalid address: wordpress@localhost")
+add_filter('wp_mail_from', function($from) {
+    $configured = get_option('minikids_smtp_from_email', get_option('woocommerce_email_from_address', 'miguel16hr@gmail.com'));
+    if (!empty($configured) && is_email($configured)) {
+        return $configured;
+    }
+    return 'miguel16hr@gmail.com';
+}, 20);
+
+add_filter('wp_mail_from_name', function($name) {
+    $configured = get_option('minikids_smtp_from_name', get_option('woocommerce_email_from_name', 'MiniKids Perú'));
+    if (!empty($configured)) {
+        return $configured;
+    }
+    return 'MiniKids Perú';
+}, 20);
 
 // Soporte SMTP nativo para envíos reales a Gmail / Outlook
 add_action('phpmailer_init', function($phpmailer) {
