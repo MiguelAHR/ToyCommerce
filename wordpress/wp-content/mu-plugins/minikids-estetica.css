@@ -1340,12 +1340,16 @@ header.ct-header [data-column="end"] > [data-items] {
   border-radius: 3px 3px 0 0 !important;
 }
 
+/* Regla de aislamiento para pestañas de WooCommerce (evita que se muestren juntas) */
+.woocommerce-tabs .woocommerce-Tabs-panel[style*="display: none"],
+.woocommerce-tabs .panel[style*="display: none"],
+.woocommerce-Tabs-panel[aria-hidden="true"] {
+  display: none !important;
+}
+
 /* Panel: [Cuidados y Recomendaciones] */
 .woocommerce-Tabs-panel--description {
   padding: 12px 0 28px !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
 }
 
 .woocommerce-Tabs-panel--description > h2:first-child {
@@ -1382,7 +1386,7 @@ header.ct-header [data-column="end"] > [data-items] {
   display: block !important;
   width: 100% !important;
   max-width: 740px !important;
-  margin: 12px auto 24px auto !important;
+  margin: 16px auto 24px auto !important;
 }
 
 .minikids-spec-item {
@@ -1434,9 +1438,6 @@ header.ct-header [data-column="end"] > [data-items] {
 /* Panel: [Especificaciones] */
 .woocommerce-Tabs-panel--additional_information {
   padding: 12px 0 28px !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
 }
 
 .woocommerce-Tabs-panel--additional_information > h2:first-child {
@@ -1451,7 +1452,7 @@ header.ct-header [data-column="end"] > [data-items] {
   border: 1.5px solid var(--border) !important;
   border-radius: 16px !important;
   overflow: hidden !important;
-  margin: 12px auto 24px auto !important;
+  margin: 16px auto 24px auto !important;
   box-shadow: 0 4px 16px rgba(17, 17, 17, 0.04) !important;
 }
 
