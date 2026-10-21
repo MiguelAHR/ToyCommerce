@@ -8,15 +8,15 @@
 ## 📸 1. Galería de Capturas en Alta Resolución
 
 ````carousel
-![Ficha: Set de Bloques de Madera 50 Piezas](C:/Users/USUARIO/.gemini/antigravity/brain/b8b3714d-acf1-43a4-bd6a-271abb963172/captura_1_bloques_madera.png)
+![Ficha: Set de Bloques de Madera 50 Piezas](C:/Users/USUARIO/.gemini/antigravity/brain/b8b3714d-acf1-43a4-bd6a-271abb963172/captura_matriz_1_bloques_madera.png)
 <!-- slide -->
-![Ficha: Peluche Conejito Rosa](C:/Users/USUARIO/.gemini/antigravity/brain/b8b3714d-acf1-43a4-bd6a-271abb963172/captura_2_peluche_conejito.png)
+![Ficha: Peluche Conejito Rosa](C:/Users/USUARIO/.gemini/antigravity/brain/b8b3714d-acf1-43a4-bd6a-271abb963172/captura_matriz_2_peluche_conejito.png)
 <!-- slide -->
-![Ficha: Muñeca de Trapo Dulces Sueños](C:/Users/USUARIO/.gemini/antigravity/brain/b8b3714d-acf1-43a4-bd6a-271abb963172/captura_3_muneca_trapo.png)
+![Ficha: Muñeca de Trapo Dulces Sueños](C:/Users/USUARIO/.gemini/antigravity/brain/b8b3714d-acf1-43a4-bd6a-271abb963172/captura_matriz_3_muneca_trapo.png)
 <!-- slide -->
-![Ficha: Ábaco Pedagógico y Laberinto de Madera](C:/Users/USUARIO/.gemini/antigravity/brain/b8b3714d-acf1-43a4-bd6a-271abb963172/captura_4_abaco_pedagogico.png)
+![Ficha: Ábaco Pedagógico y Laberinto de Madera](C:/Users/USUARIO/.gemini/antigravity/brain/b8b3714d-acf1-43a4-bd6a-271abb963172/captura_matriz_4_abaco_pedagogico.png)
 <!-- slide -->
-![Ficha: Kit de Arte Pequeños Artistas](C:/Users/USUARIO/.gemini/antigravity/brain/b8b3714d-acf1-43a4-bd6a-271abb963172/captura_5_kit_arte.png)
+![Ficha: Kit de Arte Pequeños Artistas](C:/Users/USUARIO/.gemini/antigravity/brain/b8b3714d-acf1-43a4-bd6a-271abb963172/captura_matriz_5_kit_arte.png)
 <!-- slide -->
 ![Carrito: Sección 'También te podría interesar...' con cards estilizadas](C:/Users/USUARIO/.gemini/antigravity/brain/b8b3714d-acf1-43a4-bd6a-271abb963172/captura_6_carrito_cross_sells.png)
 ````
