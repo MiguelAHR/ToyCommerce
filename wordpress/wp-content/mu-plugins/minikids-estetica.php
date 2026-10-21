@@ -381,11 +381,15 @@ add_filter('the_content', function ($content) {
 
                     <div class="contacto-info-card card-canales">
                         <div class="contacto-card-icon bg-pastel-green text-brand-green">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#148043" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2z"/></svg>
                         </div>
                         <div class="contacto-card-text">
-                            <h3>Canales Directos</h3>
+                            <h3>Canal Oficial de WhatsApp</h3>
                             <p><strong>WhatsApp:</strong> +51 991 117 308<br><strong>Email:</strong> hola@minikids.pe</p>
+                            <a href="https://wa.me/51991117308?text=%C2%A1Hola%20MiniKids!%20Me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20y%20asesor%C3%ADa%20sobre%20sus%20juguetes." target="_blank" rel="noopener noreferrer" class="btn-whatsapp-channel-card">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2z"/></svg>
+                                <span>Chatear por WhatsApp (+51 991 117 308)</span>
+                            </a>
                         </div>
                     </div>
 
@@ -635,6 +639,27 @@ add_action('woocommerce_init', function() {
 
     update_option('minikids_matrix_sku_stock_v2', 'done');
 }, 20);
+
+// 12. Botón Flotante Global de Atención por WhatsApp (MiniKids Concierge)
+add_action('wp_footer', function() {
+    ?>
+    <div class="minikids-whatsapp-floating-wrap" id="minikids-floating-whatsapp">
+        <a href="https://wa.me/51991117308?text=%C2%A1Hola%20MiniKids!%20Me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20y%20asesor%C3%ADa%20sobre%20sus%20juguetes." 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="minikids-floating-whatsapp-btn" 
+           aria-label="Atención por WhatsApp al +51 991 117 308">
+            <span class="whatsapp-floating-tooltip">💬 ¿Dudas? ¡Escríbenos por WhatsApp!</span>
+            <div class="whatsapp-floating-icon">
+                <svg width="34" height="34" viewBox="0 0 24 24" fill="white">
+                    <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2z"/>
+                </svg>
+            </div>
+        </a>
+    </div>
+    <?php
+}, 999);
+
 
 
 

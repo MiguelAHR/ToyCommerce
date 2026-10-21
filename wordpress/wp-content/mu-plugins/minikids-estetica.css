@@ -3246,10 +3246,11 @@ header.ct-header nav .menu-item a.ct-menu-link:hover {
 .contacto-form .form-actions {
   display: flex !important;
   align-items: center !important;
-  justify-content: space-between !important;
+  justify-content: flex-start !important;
   flex-wrap: wrap !important;
-  gap: 14px !important;
-  margin-top: 10px !important;
+  gap: 16px !important;
+  margin-top: 14px !important;
+  padding-bottom: 20px !important;
 }
 
 .btn-submit-contacto {
@@ -3258,7 +3259,7 @@ header.ct-header nav .menu-item a.ct-menu-link:hover {
   font-family: var(--font-sans) !important;
   font-weight: 800 !important;
   font-size: 15px !important;
-  padding: 13px 32px !important;
+  padding: 13px 28px !important;
   border: none !important;
   border-radius: 50px !important;
   cursor: pointer !important;
@@ -3276,20 +3277,23 @@ header.ct-header nav .menu-item a.ct-menu-link:hover {
   display: inline-flex !important;
   align-items: center !important;
   gap: 8px !important;
-  background: var(--pastel-green) !important;
-  color: #148043 !important;
+  background: #25d366 !important;
+  color: #ffffff !important;
   font-family: var(--font-sans) !important;
   font-weight: 700 !important;
   font-size: 14px !important;
-  padding: 12px 22px !important;
+  padding: 13px 24px !important;
   border-radius: 50px !important;
   text-decoration: none !important;
-  transition: background 0.2s, transform 0.2s !important;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35) !important;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s !important;
 }
 
 .btn-whatsapp-direct:hover {
-  background: #c3eed6 !important;
-  transform: translateY(-1px) !important;
+  background: #1eb956 !important;
+  color: #ffffff !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.5) !important;
 }
 
 .contact-feedback-success {
@@ -3898,4 +3902,106 @@ header.ct-header nav .menu-item a.ct-menu-link:hover {
     grid-template-columns: 1fr !important;
   }
 }
+
+/* ==========================================================================
+   Botón Flotante Global de Atención por WhatsApp (MiniKids Concierge)
+   ========================================================================== */
+.minikids-whatsapp-floating-wrap {
+  position: fixed !important;
+  bottom: 28px !important;
+  right: 28px !important;
+  z-index: 999999 !important;
+  pointer-events: auto !important;
+}
+
+.minikids-floating-whatsapp-btn {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-end !important;
+  gap: 8px !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+}
+
+.whatsapp-floating-tooltip {
+  background: #ffffff !important;
+  color: #1f2937 !important;
+  font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif) !important;
+  font-weight: 700 !important;
+  font-size: 12.5px !important;
+  padding: 6px 14px !important;
+  border-radius: 20px !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15) !important;
+  border: 1px solid rgba(0, 0, 0, 0.06) !important;
+  white-space: nowrap !important;
+  pointer-events: none !important;
+  animation: pulseWaTooltip 3s ease-in-out infinite !important;
+}
+
+.whatsapp-floating-icon {
+  width: 58px !important;
+  height: 58px !important;
+  background: #25d366 !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45) !important;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease !important;
+  animation: pulseWaGlow 2.4s infinite !important;
+}
+
+.minikids-floating-whatsapp-btn:hover .whatsapp-floating-icon {
+  transform: scale(1.1) rotate(5deg) !important;
+  box-shadow: 0 8px 28px rgba(37, 211, 102, 0.65) !important;
+}
+
+@keyframes pulseWaGlow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 16px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+
+@keyframes pulseWaTooltip {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+/* ==========================================================================
+   Botón Canal Directo WhatsApp en Tarjeta de Información /contacto/
+   ========================================================================== */
+.btn-whatsapp-channel-card {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  margin-top: 10px !important;
+  background: #25d366 !important;
+  color: #ffffff !important;
+  font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif) !important;
+  font-weight: 700 !important;
+  font-size: 13.5px !important;
+  padding: 10px 18px !important;
+  border-radius: 50px !important;
+  text-decoration: none !important;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.35) !important;
+  transition: all 0.2s ease !important;
+}
+
+.btn-whatsapp-channel-card:hover {
+  background: #1eb956 !important;
+  color: #ffffff !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.55) !important;
+}
+
 
