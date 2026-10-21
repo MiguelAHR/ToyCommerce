@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Pregunta 3 - Fichas Técnicas y Matriz de Productos MiniKids</title>
+<style>
+    @page {
+        margin: 2cm 1.8cm;
+        size: A4 portrait;
+    }
+    body {
+        font-family: 'Arial', 'Calibri', sans-serif;
+        font-size: 11pt;
+        line-height: 1.45;
+        color: #1A202C;
+        margin: 0;
+        padding: 0;
+    }
+    h1 {
+        color: #1A365D;
+        font-size: 16pt;
+        border-bottom: 2px solid #1A365D;
+        padding-bottom: 4px;
+        margin-top: 18pt;
+        margin-bottom: 10pt;
+        page-break-after: avoid;
+    }
+    h2 {
+        color: #000000;
+        font-size: 13pt;
+        margin-top: 16pt;
+        margin-bottom: 6pt;
+        page-break-after: avoid;
+    }
+    .bullet-title {
+        font-weight: bold;
+        font-size: 11.5pt;
+        color: #000000;
+        margin-top: 12pt;
+        margin-bottom: 6pt;
+        page-break-after: avoid;
+    }
+    p {
+        margin-top: 0;
+        margin-bottom: 7pt;
+        text-align: justify;
+    }
+    ul, ol {
+        margin-top: 0;
+        margin-bottom: 9pt;
+        padding-left: 22px;
+    }
+    li {
+        margin-bottom: 4pt;
+        text-align: justify;
+    }
+    /* Estilo exacto del cuadro de Selección del producto del compañero */
+    .product-box-table {
+        width: 92%;
+        margin: 8pt auto 14pt auto;
+        border-collapse: collapse;
+        page-break-inside: avoid;
+    }
+    .product-box-header {
+        background-color: #000000;
+        color: #FFFFFF;
+        font-family: 'Arial', sans-serif;
+        font-size: 13pt;
+        font-weight: bold;
+        text-align: center;
+        padding: 8px 12px;
+        border: 1.5px solid #000000;
+    }
+    .product-box-body {
+        background-color: #FFFFFF;
+        text-align: center;
+        padding: 6px;
+        border: 1.5px solid #000000;
+    }
+    .product-box-body img {
+        max-width: 98%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+    }
+    /* Tablas generales y Matriz final */
+    table.data-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10pt;
+        margin-bottom: 16pt;
+        font-size: 9pt;
+    }
+    table.data-table th, table.data-table td {
+        border: 1px solid #4A5568;
+        padding: 6px 8px;
+        text-align: left;
+        vertical-align: top;
+    }
+    table.data-table th {
+        background-color: #1A365D;
+        color: #FFFFFF;
+        font-weight: bold;
+        text-align: center;
+    }
+    table.data-table tr:nth-child(even) {
+        background-color: #F7FAFC;
+    }
+    .guide-box {
+        background-color: #F8FAFC;
+        border: 1px solid #CBD5E0;
+        border-left: 5px solid #2B6CB0;
+        padding: 12px 16px;
+        margin-bottom: 18pt;
+    }
+    .page-break {
+        page-break-before: always;
+    }
+</style>
+</head>
+<body>
+
+<h1>ESTRUCTURA MODELO POR ALUMNO (GUÍA DE LOS 4 PUNTOS)</h1>
+
+<div class="guide-box">
+    <p><strong>Explicación rápida de qué va en cada uno de los 4 puntos según el formato del equipo:</strong></p>
+    <ul>
+        <li><strong>&#10148; Selección del producto:</strong> Va únicamente el recuadro con encabezado negro indicando <em>«Nombre del producto: [Nombre]»</em> y debajo la captura de pantalla de la ficha en la tienda web.</li>
+        <li><strong>&#10148; Demostración del diseño:</strong> Se explica cómo está maquetada visualmente la pantalla mostrada (distribución en 2 columnas, colores corporativos amarillo/blanco/crema, tipografía y jerarquía visual para padres de familia).</li>
+        <li><strong>&#10148; Componentes de la ficha:</strong> Se enumeran las partes interactivas y técnicas que se ven en la captura (migas de pan, imagen con etiqueta <em>SALE</em>, título, precio, insignias de <em>Edad</em> y <em>En stock</em>, selector de cantidad, botón amarillo <em>Add to cart</em>, barra de beneficios <em>Envío / Compra segura / 30 días de cambio</em>, <em>SKU</em> y <em>Categoría</em>).</li>
+        <li><strong>&#10148; Descripción y comentario:</strong> Se divide en dos párrafos claros:
+            <br>1) <strong>Descripción del producto:</strong> Resumen comercial y pedagógico del juguete.
+            <br>2) <strong>Comentario del estudiante:</strong> Apreciación personal sobre la usabilidad y efectividad de la ficha.
+        </li>
+    </ul>
+</div>
+
+<!-- ==================================================================== -->
+<!-- 1. RENZO JOSÉ ARANDA GARRIDO -->
+<!-- ==================================================================== -->
+<h2>1. Renzo José Aranda Garrido</h2>
+
+<div class="bullet-title">&#10148; Selección del producto</div>
+<table class="product-box-table">
+    <tr>
+        <td class="product-box-header">Nombre del producto: Kit de arte pequeños artistas</td>
+    </tr>
+    <tr>
+        <td class="product-box-body">
+            <img src="C:/Users/USUARIO/Documents/Admin/ToyCommerce/docs/evidencias_docente/13_producto_kit_arte.png" alt="Kit de arte pequeños artistas">
+        </td>
+    </tr>
+</table>
+
+<div class="bullet-title">&#10148; Demostración del diseño</div>
+<p>El diseño de la ficha emplea una composición limpia de dos columnas simétricas (<em>Split Layout</em>) que facilita la lectura rápida sin saturar la pantalla:</p>
+<ul>
+    <li><strong>Columna izquierda (Área visual):</strong> Presenta la fotografía del producto dentro de un contenedor con fondo crema suave (<code>#FDF6EC</code>) y bordes redondeados, destacando el colorido de las pinturas y pinceles junto a la etiqueta azul <strong>«SALE»</strong> en la esquina superior izquierda.</li>
+    <li><strong>Columna derecha (Área de decisión y compra):</strong> Organiza la información en orden de prioridad visual: título en negro de alto impacto, precio promocional resaltado en color rojo (<code>S/ 20.90</code>) junto al precio anterior tachado (<code>S/ 24.90</code>), resumen funcional, etiquetas de edad y stock en pastillas de color, y el botón principal de compra en amarillo corporativo (<code>#FFD600</code>).</li>
+</ul>
+
+<div class="bullet-title">&#10148; Componentes de la ficha</div>
+<ol>
+    <li><strong>Cintillo superior y barra de navegación:</strong> Aviso superior amarillo con horario de atención y menú principal con logotipo de MiniKids y carrito de compras.</li>
+    <li><strong>Migas de pan (Breadcrumbs):</strong> Ruta de ubicación <code>HOME &gt; CREATIVIDAD &gt; KIT DE ARTE PEQUEÑOS ARTISTAS</code>.</li>
+    <li><strong>Galería de producto e insignia de oferta:</strong> Imagen principal nítida acompañada del distintivo azul <code>SALE</code>.</li>
+    <li><strong>Título y bloque de precios:</strong> Nombre del juguete en fuente <em>bold</em> y precio de oferta <strong>S/ 20.90</strong> comparado con el precio regular tachado (S/ 24.90).</li>
+    <li><strong>Insignias informativas (Badges):</strong> Pastilla amarilla <strong>«Edad: 4+ años»</strong>, pastilla verde <strong>«En stock»</strong> e indicador de inventario exacto (<em>«9 in stock»</em>).</li>
+    <li><strong>Selector de cantidad y botón de acción (CTA):</strong> Control numérico (<code>- 1 +</code>) y botón ancho amarillo <strong>«Add to cart»</strong> de alta visibilidad táctil.</li>
+    <li><strong>Bloque de garantías de compra:</strong> Franja gris clara con tres sellos de confianza: <em>Envío a todo el país</em>, <em>Compra segura</em> y <em>30 días de cambio</em>.</li>
+    <li><strong>Metadatos de catálogo:</strong> Código identificador <code>SKU: MK-CRE-001</code> y clasificación <code>CATEGORY: CREATIVIDAD</code>.</li>
+</ol>
+
+<div class="bullet-title">&#10148; Descripción y comentario</div>
+<p><strong>Descripción del producto:</strong> El <em>Kit de arte pequeños artistas</em> es un set de materiales de pintura y dibujo diseñado para niños a partir de los 4 años. Cubre la etapa de expresión creativa y manualidades, estimulando la sensibilidad artística, el reconocimiento de mezclas de colores y la coordinación motriz fina mediante pinceles ergonómicos y pinturas seguras no tóxicas.</p>
+<p><strong>Comentario del estudiante:</strong> Considero que esta ficha técnica es sumamente efectiva porque transmite valor inmediato a un precio muy accesible (S/ 20.90). Mostrar el stock disponible exacto ("9 in stock") junto con el descuento genera un sentido de oportunidad real en los padres de familia, mientras que la pastilla de "Edad: 4+ años" resuelve de un vistazo la duda principal sobre si el juguete es apropiado para el niño.</p>
+
+<!-- ==================================================================== -->
+<!-- 2. MIGUEL ANGEL BENAVIDES SOTO -->
+<!-- ==================================================================== -->
+<div class="page-break"></div>
+<h2>2. Miguel Angel Benavides Soto</h2>
+
+<div class="bullet-title">&#10148; Selección del producto</div>
+<table class="product-box-table">
+    <tr>
+        <td class="product-box-header">Nombre del producto: Peluche conejito rosa</td>
+    </tr>
+    <tr>
+        <td class="product-box-body">
+            <img src="C:/Users/USUARIO/Documents/Admin/ToyCommerce/docs/evidencias_docente/06_producto_conejita.png" alt="Peluche Conejita Rosa">
+        </td>
+    </tr>
+</table>
+
+<div class="bullet-title">&#10148; Demostración del diseño</div>
+<p>La ficha presenta un diseño minimalista, cálido y armónico pensado especialmente para productos de primera infancia y bebés:</p>
+<ul>
+    <li><strong>Equilibrio cromático y contraste:</strong> El contenedor crema suave enmarca la fotografía de fondo blanco del peluche rosa pastel, logrando que la textura esponjosa del producto sea el centro de atención visual.</li>
+    <li><strong>Jerarquía limpia en el primer pantallazo:</strong> Todos los elementos necesarios para la toma de decisión (título, precio directo de <code>S/ 26.90</code>, edad desde 0 años y botón amarillo de compra) son visibles sin necesidad de hacer <em>scroll</em>, facilitando una experiencia de compra ágil tanto en computadoras como en celulares.</li>
+</ul>
+
+<div class="bullet-title">&#10148; Componentes de la ficha</div>
+<ol>
+    <li><strong>Cabecera institucional:</strong> Cintillo informativo superior y menú de navegación global con contador de bolsa de compras.</li>
+    <li><strong>Migas de pan (Breadcrumbs):</strong> Ruta jerárquica <code>HOME &gt; PELUCHES &gt; PELUCHE CONEJITA ROSA</code>.</li>
+    <li><strong>Fotografía principal de textura:</strong> Imagen de alta resolución que permite apreciar las costuras, orejas largas y acabado hipoalergénico sin piezas pequeñas.</li>
+    <li><strong>Título y Precio directo:</strong> Encabezado <em>Peluche Conejita Rosa</em> seguido del precio único en negro intenso <strong>S/ 26.90</strong>.</li>
+    <li><strong>Descripción corta e insignias rápidas:</strong> Breve reseña (<em>«Conejita de orejas largas y pelaje extra suave...»</em>) acompañada de las etiquetas <strong>«Edad: 0+ años»</strong> y <strong>«En stock»</strong>.</li>
+    <li><strong>Módulo de conversión:</strong> Selector de unidades interactivo (<code>- 1 +</code>) junto al botón principal amarillo <strong>«Add to cart»</strong>.</li>
+    <li><strong>Barra de confianza postventa:</strong> Iconos informativos de <em>Envío a todo el país</em>, <em>Compra segura</em> y <em>30 días de cambio</em>.</li>
+    <li><strong>Datos técnicos de registro:</strong> Identificador único <code>SKU: MK-GH-CONEJITA-ROSA</code> y categoría <code>CATEGORY: PELUCHES</code>.</li>
+</ol>
+
+<div class="bullet-title">&#10148; Descripción y comentario</div>
+<p><strong>Descripción del producto:</strong> El <em>Peluche Conejita Rosa</em> es un muñeco de apego confeccionado con felpa extra suave e hipoalergénica, diseñado con orejas largas fáciles de sujetar por manos pequeñas. Al contar con ojos y nariz totalmente bordados (sin botones plásticos desprendibles), es 100% seguro para recién nacidos (0+ años), brindando compañía, consuelo emocional y estimulación sensorial táctil.</p>
+<p><strong>Comentario del estudiante:</strong> El diseño de esta ficha destaca por su claridad y transparencia. Al tratarse de un producto para bebés, la etiqueta destacada "Edad: 0+ años" y la fotografía limpia generan confianza inmediata en los padres sobre la seguridad e higiene del peluche. Además, el botón amarillo resalta con fuerza sobre el fondo blanco, guiando al comprador directamente hacia el carrito.</p>
+
+<!-- ==================================================================== -->
+<!-- 3. CRISDEL ALDEMIR GONZALES -->
+<!-- ==================================================================== -->
+<div class="page-break"></div>
+<h2>3. Crisdel Aldemir Gonzales</h2>
+
+<div class="bullet-title">&#10148; Selección del producto</div>
+<table class="product-box-table">
+    <tr>
+        <td class="product-box-header">Nombre del producto: Ábaco Pedagógico y Laberinto de Madera</td>
+    </tr>
+    <tr>
+        <td class="product-box-body">
+            <img src="C:/Users/USUARIO/Documents/Admin/ToyCommerce/docs/evidencias_docente/09_producto_abaco.png" alt="Ábaco Pedagógico y Laberinto de Madera">
+        </td>
+    </tr>
+</table>
+
+<div class="bullet-title">&#10148; Demostración del diseño</div>
+<p>El diseño de esta ficha prioriza la claridad informativa y el enfoque educativo propio de la línea de juguetes didácticos Montessori:</p>
+<ul>
+    <li><strong>Contraste visual de producto:</strong> La fotografía con fondo verde menta resalta los colores vivos (rojo, amarillo, azul y verde) de las cuentas de madera y los rieles curvos del laberinto, permitiendo dimensionar la estructura 3D del juguete.</li>
+    <li><strong>Estructura ordenada por bloques:</strong> Líneas divisoras sutiles separan la promesa educativa del bloque de stock (<em>15 in stock</em>), los controles de compra y las garantías de envío, evitando la fatiga visual del usuario.</li>
+</ul>
+
+<div class="bullet-title">&#10148; Componentes de la ficha</div>
+<ol>
+    <li><strong>Barra superior y navegación:</strong> Encabezado de la tienda con acceso directo a categorías y soporte.</li>
+    <li><strong>Migas de pan (Breadcrumbs):</strong> Ruta de catálogo <code>HOME &gt; DIDÁCTICOS &gt; ÁBACO PEDAGÓGICO Y LABERINTO DE MADERA</code>.</li>
+    <li><strong>Contenedor multimedia:</strong> Imagen detallada donde se observa la base de madera natural pulida y los alambres de colores.</li>
+    <li><strong>Título en dos líneas y precio:</strong> Nombre completo del producto en tipografía grande y precio de venta <strong>S/ 49.90</strong>.</li>
+    <li><strong>Resumen pedagógico e insignias:</strong> Descripción sintética (<em>«Juguete didáctico de matemáticas tempranas y destreza motriz fina»</em>) con las etiquetas <strong>«Edad: 2+ años»</strong> y <strong>«En stock»</strong>.</li>
+    <li><strong>Contador de unidades en almacén:</strong> Indicador explícito <code>15 in stock</code> que respalda la disponibilidad inmediata.</li>
+    <li><strong>Controles de compra y garantías:</strong> Selector de cantidad (<code>- 1 +</code>), botón amarillo <strong>«Add to cart»</strong> y barra inferior con los 3 sellos de garantía y <code>CATEGORY: DIDÁCTICOS</code>.</li>
+</ol>
+
+<div class="bullet-title">&#10148; Descripción y comentario</div>
+<p><strong>Descripción del producto:</strong> El <em>Ábaco Pedagógico y Laberinto de Madera</em> es un juguete educativo multifuncional elaborado en madera natural con pinturas no tóxicas para niños desde los 2 años. Combina circuitos curvos de cuentas deslizantes con el conteo básico, ayudando a desarrollar la coordinación ojo-mano, el pensamiento espacial, el reconocimiento de formas geométricas y las primeras nociones de matemáticas tempranas.</p>
+<p><strong>Comentario del estudiante:</strong> Me parece un acierto cómo la ficha presenta la utilidad pedagógica del producto en una sola oración clave debajo del precio. Los padres que buscan juguetes didácticos quieren saber exactamente qué habilidad desarrollará su hijo; al combinar esa respuesta con la edad sugerida (2+ años) y los sellos de compra segura, la página convence rápidamente sin textos extensos ni confusos.</p>
+
+<!-- ==================================================================== -->
+<!-- 4. MIGUEL ANGEL HUAMANI ROJAS -->
+<!-- ==================================================================== -->
+<div class="page-break"></div>
+<h2>4. Miguel Angel Huamani Rojas</h2>
+
+<div class="bullet-title">&#10148; Selección del producto</div>
+<table class="product-box-table">
+    <tr>
+        <td class="product-box-header">Nombre del producto: Set de Bloques de Madera 50 Piezas</td>
+    </tr>
+    <tr>
+        <td class="product-box-body">
+            <img src="C:/Users/USUARIO/Documents/Admin/ToyCommerce/docs/evidencias_docente/12_producto_bloques_madera.png" alt="Set de Bloques de Madera 50 Piezas">
+        </td>
+    </tr>
+</table>
+
+<div class="bullet-title">&#10148; Demostración del diseño</div>
+<p>La maquetación de la ficha combina elementos de persuasión comercial con una presentación visual atractiva y ordenada:</p>
+<ul>
+    <li><strong>Presentación de variedad y volumen:</strong> La imagen principal exhibe el conjunto completo de los 50 bloques de madera (cilindros, puentes, triángulos y cubos en madera natural y colores primarios), demostrando visualmente la abundancia de piezas que recibe el comprador.</li>
+    <li><strong>Foco en el ahorro y llamada a la acción:</strong> El diseño utiliza el color rojo intenso para destacar el precio rebajado (<code>S/ 34.90</code> frente a <code>S/ 44.90</code>) en sintonía con la etiqueta azul <code>SALE</code>, guiando la vista directamente hacia el botón amarillo de añadir al carrito.</li>
+</ul>
+
+<div class="bullet-title">&#10148; Componentes de la ficha</div>
+<ol>
+    <li><strong>Encabezado de tienda:</strong> Barra superior de horario de atención y menú principal de navegación.</li>
+    <li><strong>Migas de pan (Breadcrumbs):</strong> Secuencia de navegación <code>HOME &gt; DIDÁCTICOS &gt; SET DE BLOQUES DE MADERA 50 PIEZAS</code>.</li>
+    <li><strong>Imagen del producto y etiqueta promocional:</strong> Fotografía en alta definición sobre tarjeta crema con insignia azul <strong>«SALE»</strong>.</li>
+    <li><strong>Título y comparativa de precios:</strong> Nombre destacado y precio promocional <strong>S/ 34.90</strong> junto al precio regular tachado (<code>S/ 44.90</code>).</li>
+    <li><strong>Extracto descriptivo y etiquetas de estado:</strong> Resumen de características con pastilla amarilla <strong>«Edad: 2+ años»</strong> y pastilla verde <strong>«En stock»</strong>.</li>
+    <li><strong>Bloque interactivo de compra:</strong> Selector numérico de unidades (<code>- 1 +</code>) y botón de acción <strong>«Add to cart»</strong> de ancho completo.</li>
+    <li><strong>Sello de respaldo y trazabilidad:</strong> Barra gris de garantías (envío nacional, compra segura, 30 días de cambio) e identificadores inferiores <code>SKU: MK-GH-SET-BLOQ</code> y <code>CATEGORY: DIDÁCTICOS</code>.</li>
+</ol>
+
+<div class="bullet-title">&#10148; Descripción y comentario</div>
+<p><strong>Descripción del producto:</strong> El <em>Set de Bloques de Madera 50 Piezas</em> consta de medio centenar de piezas geométricas de madera pulida con bordes redondeados en diversos colores y formas arquitectónicas, e incluye bolsa de almacenamiento. Está diseñado para niños de 2 años a más, fomentando la imaginación constructiva, la noción de equilibrio y gravedad, la motricidad gruesa y fina, y el juego colaborativo libre de pantallas.</p>
+<p><strong>Comentario del estudiante:</strong> Esta ficha demuestra un excelente equilibrio entre diseño estético y funcionalidad comercial. El descuento de S/ 10.00 (de S/ 44.90 a S/ 34.90) se percibe de inmediato gracias al contraste tipográfico en rojo, y la presencia del código SKU junto con la política de 30 días de cambio transmite la seriedad de una tienda formal y bien estructurada.</p>
+
+<!-- ==================================================================== -->
+<!-- 5. CRISTOPHER MANUEL MENDOZA VICENTE -->
+<!-- ==================================================================== -->
+<div class="page-break"></div>
+<h2>5. Cristopher Manuel Mendoza Vicente</h2>
+
+<div class="bullet-title">&#10148; Selección del producto</div>
+<table class="product-box-table">
+    <tr>
+        <td class="product-box-header">Nombre del producto: Muñeca de Trapo Dulces Sueños</td>
+    </tr>
+    <tr>
+        <td class="product-box-body">
+            <img src="C:/Users/USUARIO/Documents/Admin/ToyCommerce/docs/evidencias_docente/05_producto_muneca.png" alt="Muñeca de Trapo Dulces Sueños">
+        </td>
+    </tr>
+</table>
+
+<div class="bullet-title">&#10148; Demostración del diseño</div>
+<p>El diseño visual proyecta ternura, delicadeza y confianza mediante una paleta de tonos suaves y una estructura de fácil lectura:</p>
+<ul>
+    <li><strong>Armonía visual del producto:</strong> El fondo rosado suave de la fotografía se integra con el marco crema de la galería, resaltando los detalles textiles del vestido floral y las trenzas de lana de la muñeca, mientras la insignia azul <code>SALE</code> aporta el contraste comercial necesario.</li>
+    <li><strong>Distribución ergonómica de compra:</strong> Los bloques de precio en oferta (<code>S/ 49.90</code>), edad sugerida (<code>1+ años</code>), inventario disponible (<code>15 in stock</code>) y el botón amarillo de compra mantienen un espaciado limpio que facilita la interacción desde cualquier pantalla.</li>
+</ul>
+
+<div class="bullet-title">&#10148; Componentes de la ficha</div>
+<ol>
+    <li><strong>Cintillo y menú principal:</strong> Cabecera institucional con acceso al catálogo y carrito.</li>
+    <li><strong>Migas de pan (Breadcrumbs):</strong> Ruta <code>HOME &gt; JUEGOS DE ROL &gt; MUÑECA DE TRAPO DULCES SUEÑOS</code>.</li>
+    <li><strong>Fotografía principal e insignia SALE:</strong> Imagen de cuerpo entero de la muñeca con distintivo azul de descuento en la esquina superior.</li>
+    <li><strong>Título y bloque de ahorro:</strong> Precio de oferta en rojo <strong>S/ 49.90</strong> acompañado del precio normal tachado (<code>S/ 59.90</code>).</li>
+    <li><strong>Descripción breve y badges:</strong> Texto explicativo sobre su confección en algodón, pastilla amarilla <strong>«Edad: 1+ años»</strong>, pastilla verde <strong>«En stock»</strong> y contador <code>15 in stock</code>.</li>
+    <li><strong>Selector y botón de compra:</strong> Selector numérico (<code>- 1 +</code>) y botón amarillo <strong>«Add to cart»</strong>.</li>
+    <li><strong>Garantías y categoría:</strong> Cintillo de beneficios (<em>Envío a todo el país</em>, <em>Compra segura</em>, <em>30 días de cambio</em>) y etiqueta inferior <code>CATEGORY: JUEGOS DE ROL</code>.</li>
+</ol>
+
+<div class="bullet-title">&#10148; Descripción y comentario</div>
+<p><strong>Descripción del producto:</strong> La <em>Muñeca de Trapo Dulces Sueños</em> es una muñeca clásica confeccionada en suave algodón hipoalergénico con vestido estampado removible y facciones bordadas. Recomendada para niños y niñas desde 1 año de edad, pertenece a la categoría de juegos de rol, ayudando a desarrollar la empatía, la expresión de emociones, el lenguaje afectivo y el hábito de cuidado durante la rutina de descanso.</p>
+<p><strong>Comentario del estudiante:</strong> Lo más destacable de esta ficha es cómo logra transmitir seguridad y calidad textil a través de la imagen de alta resolución y la descripción concisa. El comprador identifica al instante que es un producto suave, lavable y con un ahorro atractivo de S/ 10.00, contando con todos los elementos de confianza necesarios para concretar la compra sin dudas.</p>
+
+<!-- ==================================================================== -->
+<!-- MATRIZ DETALLADA DE CADA PRODUCTO -->
+<!-- ==================================================================== -->
+<div class="page-break"></div>
+<h1>MATRIZ DETALLADA DE LOS 5 PRODUCTOS SELECCIONADOS</h1>
+
+<p>A continuación, se presenta la matriz técnica consolidada con las especificaciones comerciales, de diseño UI/UX y pedagógicas de los 5 productos analizados por los integrantes del equipo en la tienda virtual <strong>MiniKids Perú</strong> (<a href="https://minikids.vitorstream.shop">https://minikids.vitorstream.shop</a>):</p>
+
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 12%;">Integrante</th>
+            <th style="width: 13%;">Producto y SKU</th>
+            <th style="width: 10%;">Categoría y Edad</th>
+            <th style="width: 11%;">Precios y Stock</th>
+            <th style="width: 18%;">Diseño Visual (UI/UX)</th>
+            <th style="width: 18%;">Componentes de la Ficha</th>
+            <th style="width: 18%;">Descripción y Beneficio Pedagógico</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>1. Renzo José Aranda Garrido</strong></td>
+            <td><strong>Kit de arte pequeños artistas</strong><br><br><strong>SKU:</strong> <code>MK-CRE-001</code></td>
+            <td><strong>Categoría:</strong> Creatividad<br><br><strong>Edad:</strong> 4+ años</td>
+            <td><strong>Oferta:</strong> S/ 20.90<br><strong>Regular:</strong> <del>S/ 24.90</del><br><strong>Ahorro:</strong> S/ 4.00 (-16%)<br><strong>Stock:</strong> 9 in stock</td>
+            <td>Diseño en 2 columnas con contenedor crema, etiqueta azul <em>SALE</em>, fotografía de pinceles y témperas de alto contraste y precio en rojo.</td>
+            <td>Breadcrumbs, insignia <em>SALE</em>, título, precio tachado/oferta, badges (<em>4+ años</em>, <em>En stock</em>), stock numérico, selector <code>- 1 +</code>, botón amarillo <em>Add to cart</em>, 3 sellos de garantía, SKU y categoría.</td>
+            <td>Set de materiales de arte para expresión creativa y manualidades. Estimula la motricidad fina, sensibilidad artística y uso del color.</td>
+        </tr>
+        <tr>
+            <td><strong>2. Miguel Angel Benavides Soto</strong></td>
+            <td><strong>Peluche Conejita Rosa</strong><br><br><strong>SKU:</strong> <code>MK-GH-CONEJITA-ROSA</code></td>
+            <td><strong>Categoría:</strong> Peluches<br><br><strong>Edad:</strong> 0+ años</td>
+            <td><strong>Precio Final:</strong> S/ 26.90<br><em>(Precio directo sin tachado)</em><br><br><strong>Stock:</strong> En stock</td>
+            <td>Estética cálida y minimalista con tonos pastel, marco crema suave y botón amarillo de alto contraste para compra rápida.</td>
+            <td>Breadcrumbs, foto de textura suave, título, precio directo S/ 26.90, descripción corta, badges (<em>0+ años</em>, <em>En stock</em>), selector <code>- 1 +</code>, botón <em>Add to cart</em>, 3 garantías, SKU y categoría.</td>
+            <td>Muñeco de apego de felpa extra suave e hipoalergénica con orejas largas y facciones bordadas. Brinda seguridad emocional a bebés desde recién nacidos.</td>
+        </tr>
+        <tr>
+            <td><strong>3. Crisdel Aldemir Gonzales</strong></td>
+            <td><strong>Ábaco Pedagógico y Laberinto de Madera</strong><br><br><strong>SKU:</strong> <code>MK-DID-001</code></td>
+            <td><strong>Categoría:</strong> Didácticos<br><br><strong>Edad:</strong> 2+ años</td>
+            <td><strong>Precio Final:</strong> S/ 49.90<br><em>(Precio formativo directo)</em><br><br><strong>Stock:</strong> 15 in stock</td>
+            <td>Fotografía con fondo verde menta que resalta las cuentas multicolores, estructura limpia dividida por líneas sutiles.</td>
+            <td>Breadcrumbs, galería en marco crema, título, precio S/ 49.90, resumen educativo, badges (<em>2+ años</em>, <em>En stock</em>), indicador <em>15 in stock</em>, selector, botón <em>Add to cart</em>, garantías y categoría.</td>
+            <td>Juguete Montessori en madera natural y alambre recubierto. Desarrolla matemáticas tempranas, coordinación ojo-mano y destreza motriz fina.</td>
+        </tr>
+        <tr>
+            <td><strong>4. Miguel Angel Huamani Rojas</strong></td>
+            <td><strong>Set de Bloques de Madera 50 Piezas</strong><br><br><strong>SKU:</strong> <code>MK-GH-SET-BLOQ</code></td>
+            <td><strong>Categoría:</strong> Didácticos<br><br><strong>Edad:</strong> 2+ años</td>
+            <td><strong>Oferta:</strong> S/ 34.90<br><strong>Regular:</strong> <del>S/ 44.90</del><br><strong>Ahorro:</strong> S/ 10.00 (-22%)<br><strong>Stock:</strong> En stock</td>
+            <td>Exhibición del volumen total de piezas geométricas multicolores, etiqueta azul <em>SALE</em> y precio promocional rojo de alto impacto.</td>
+            <td>Breadcrumbs, foto con badge <em>SALE</em>, título, precio oferta/tachado, extracto, badges (<em>2+ años</em>, <em>En stock</em>), selector <code>- 1 +</code>, botón <em>Add to cart</em>, 3 sellos de garantía, SKU y categoría.</td>
+            <td>50 bloques geométricos de madera pulida con bolsa de guardado. Impulsa la construcción espacial, imaginación arquitectónica y noción de equilibrio.</td>
+        </tr>
+        <tr>
+            <td><strong>5. Cristopher Manuel Mendoza Vicente</strong></td>
+            <td><strong>Muñeca de Trapo Dulces Sueños</strong><br><br><strong>SKU:</strong> <code>MK-MUN-001</code></td>
+            <td><strong>Categoría:</strong> Juegos de rol<br><br><strong>Edad:</strong> 1+ años</td>
+            <td><strong>Oferta:</strong> S/ 49.90<br><strong>Regular:</strong> <del>S/ 59.90</del><br><strong>Ahorro:</strong> S/ 10.00 (-17%)<br><strong>Stock:</strong> 15 in stock</td>
+            <td>Composición delicada en tonos rosa pastel y crema, destacando los acabados de algodón y vestido floral junto al badge <em>SALE</em>.</td>
+            <td>Breadcrumbs, foto con etiqueta <em>SALE</em>, título, precio oferta/regular, reseña textil, badges (<em>1+ años</em>, <em>En stock</em>), contador <em>15 in stock</em>, selector, botón <em>Add to cart</em>, garantías y categoría.</td>
+            <td>Muñeca clásica en algodón suave con vestido removible. Fomenta el juego simbólico de roles, el desarrollo de la empatía y el acompañamiento afectivo.</td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

@@ -110,14 +110,16 @@ add_action('blocksy:footer:before', function () {
                 </ul>
             </div>
             <div class="footer-col">
-                <h3 class="footer-heading">Ayuda</h3>
+                <h3 class="footer-heading">Ayuda y Empresa</h3>
                 <ul class="footer-links">
-                    <li><a href="#">Preguntas frecuentes</a></li>
-                    <li><a href="#">Cambios y devoluciones</a></li>
-                    <li><a href="#">Envíos</a></li>
-                    <li><a href="#">Términos y condiciones</a></li>
+                    <li><a href="/wordpress/nosotros/">¿Quiénes somos?</a></li>
                     <li><a href="/wordpress/contacto/">Contacto</a></li>
+                    <li><a href="/wordpress/libro-de-reclamaciones/">Libro de Reclamaciones</a></li>
+                    <li><a href="/wordpress/politica-privacidad/">Política de Privacidad</a></li>
                 </ul>
+                <?php if (function_exists('has_nav_menu') && has_nav_menu('minikids_atencion')) {
+                    wp_nav_menu(['theme_location'=>'minikids_atencion','container'=>false,'menu_class'=>'footer-links mkp-attention-links','fallback_cb'=>false]);
+                } ?>
             </div>
             <div class="footer-col">
                 <h3 class="footer-heading">Síguenos</h3>
