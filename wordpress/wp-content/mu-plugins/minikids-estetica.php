@@ -236,7 +236,7 @@ add_filter('woocommerce_short_description', function ($desc) {
     return '<h4 class="minikids-short-desc-subtitle">Características</h4>' . $desc;
 }, 20);
 
-// 8.3 Encabezados de productos relacionados, upsells, cross-sells y oferta en español
+// 8.3 Encabezados y configuración de productos relacionados (carrusel centrado de máx 3 visibles con scroll)
 add_filter('woocommerce_product_upsells_products_heading', function() {
     return 'Productos relacionados';
 });
@@ -255,6 +255,25 @@ add_filter('woocommerce_product_single_add_to_cart_text', function() {
 add_filter('woocommerce_product_add_to_cart_text', function() {
     return 'Agregar al carrito';
 });
+
+// Unificar upsells en los productos relacionados para mostrar el carrusel completo de hasta 8 ítems
+add_filter('woocommerce_related_products', function ($related_posts, $product_id, $args) {
+    $product = wc_get_product($product_id);
+    if ($product) {
+        $upsells = $product->get_upsell_ids();
+        if (!empty($upsells)) {
+            $related_posts = array_unique(array_merge($upsells, $related_posts));
+        }
+    }
+    return $related_posts;
+}, 20, 3);
+
+// Configurar argumentos para carrusel de 3 visibles por vista
+add_filter('woocommerce_output_related_products_args', function ($args) {
+    $args['posts_per_page'] = 8;
+    $args['columns'] = 3;
+    return $args;
+}, 999);
 
 // 8.4 Soporte de zoom y lightbox nativo para galería de productos
 add_action('after_setup_theme', function () {

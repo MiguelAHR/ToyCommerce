@@ -1300,10 +1300,13 @@ header.ct-header [data-column="end"] > [data-items] {
 .woocommerce-tabs ul.tabs {
   border-bottom: 2px solid var(--border) !important;
   padding: 0 !important;
-  margin: 0 0 28px !important;
+  margin: 0 auto 28px auto !important;
   display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
   gap: 28px !important;
   list-style: none !important;
+  max-width: 900px !important;
 }
 
 .woocommerce-tabs ul.tabs li {
@@ -1638,17 +1641,215 @@ header.ct-header [data-column="end"] > [data-items] {
   box-shadow: 0 6px 18px rgba(255, 214, 10, 0.6) !important;
 }
 
-/* Título de Productos Relacionados */
+/* ==========================================================================
+   Sección de Productos Relacionados Centrada con Scroll Horizontal (Máx 3 visibles)
+   ========================================================================== */
+.single-product section.up-sells {
+  display: none !important; /* Evitar duplicidad ya que los upsells se unifican en relacionados */
+}
+
+.single-product section.related.products {
+  display: block !important;
+  visibility: visible !important;
+  max-width: 1080px !important;
+  margin: 48px auto 32px auto !important;
+  padding: 0 16px !important;
+  text-align: center !important;
+}
+
 .single-product section.related > h2,
-.single-product section.up-sells > h2,
-.single-product .ct-related-products > h2 {
+.single-product section.related .ct-module-title {
   font-family: var(--font-display) !important;
   font-size: clamp(24px, 3vw, 32px) !important;
   font-weight: 800 !important;
   color: var(--brand-ink) !important;
   text-align: center !important;
-  margin-bottom: 28px !important;
+  margin: 0 auto 28px auto !important;
   position: relative !important;
+}
+
+/* Carrusel de ancho fijo con exactamente 3 productos visibles y scroll lateral */
+.single-product section.related ul.products {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  scroll-snap-type: x mandatory !important;
+  -webkit-overflow-scrolling: touch !important;
+  gap: 22px !important;
+  padding: 12px 6px 24px 6px !important;
+  margin: 0 auto !important;
+  list-style: none !important;
+  scrollbar-width: thin !important;
+  scrollbar-color: #cbd5e1 #f1f5f9 !important;
+  justify-content: flex-start !important;
+}
+
+/* Tarjeta individual: Exactamente 3 visibles en desktop (100% - 2 gaps) / 3 */
+.single-product section.related ul.products li.product {
+  flex: 0 0 calc((100% - 44px) / 3) !important;
+  min-width: calc((100% - 44px) / 3) !important;
+  max-width: calc((100% - 44px) / 3) !important;
+  scroll-snap-align: start !important;
+  box-sizing: border-box !important;
+  background: #ffffff !important;
+  border: 1.5px solid var(--border) !important;
+  border-radius: 20px !important;
+  padding: 18px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  text-align: center !important;
+  box-shadow: 0 4px 14px rgba(17, 17, 17, 0.04) !important;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease, border-color 0.2s ease !important;
+  float: none !important;
+  margin: 0 !important;
+}
+
+.single-product section.related ul.products li.product:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 12px 28px rgba(17, 17, 17, 0.08) !important;
+  border-color: var(--brand-yellow) !important;
+}
+
+/* Imagen de producto relacionado */
+.single-product section.related ul.products li.product figure,
+.single-product section.related ul.products li.product .ct-media-container {
+  width: 100% !important;
+  margin: 0 0 12px 0 !important;
+}
+
+.single-product section.related ul.products li.product img {
+  width: 100% !important;
+  aspect-ratio: 1 / 1 !important;
+  background: var(--pastel-cream) !important;
+  border-radius: 14px !important;
+  padding: 12px !important;
+  object-fit: contain !important;
+  mix-blend-mode: multiply !important;
+  display: block !important;
+  margin: 0 auto !important;
+}
+
+/* Título de producto relacionado */
+.single-product section.related ul.products li.product .woocommerce-loop-product__title,
+.single-product section.related ul.products li.product h2 {
+  font-family: var(--font-display) !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  color: var(--brand-ink) !important;
+  line-height: 1.35 !important;
+  margin: 6px 0 8px !important;
+  text-decoration: none !important;
+}
+
+.single-product section.related ul.products li.product .woocommerce-loop-product__title a {
+  color: var(--brand-ink) !important;
+  text-decoration: none !important;
+}
+
+/* Precio de producto relacionado */
+.single-product section.related ul.products li.product .price {
+  font-family: var(--font-sans) !important;
+  font-size: 17px !important;
+  font-weight: 800 !important;
+  color: var(--brand-ink) !important;
+  margin: 4px 0 14px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+}
+
+.single-product section.related ul.products li.product .price del {
+  font-size: 13px !important;
+  color: #8d99ae !important;
+  text-decoration: line-through !important;
+}
+
+.single-product section.related ul.products li.product .price ins {
+  color: var(--brand-red) !important;
+  text-decoration: none !important;
+}
+
+/* Categoría de producto relacionado */
+.single-product section.related ul.products li.product .entry-meta,
+.single-product section.related ul.products li.product .meta-categories {
+  font-size: 12px !important;
+  color: var(--muted-foreground) !important;
+  margin-bottom: 8px !important;
+  list-style: none !important;
+  padding: 0 !important;
+}
+
+.single-product section.related ul.products li.product .meta-categories a {
+  color: var(--brand-blue) !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+}
+
+/* Botón Agregar al carrito de producto relacionado */
+.single-product section.related ul.products li.product .ct-woo-card-actions,
+.single-product section.related ul.products li.product a.button {
+  width: 100% !important;
+  margin-top: auto !important;
+}
+
+.single-product section.related ul.products li.product a.button {
+  background: var(--brand-yellow) !important;
+  color: var(--brand-ink) !important;
+  font-family: var(--font-sans) !important;
+  font-weight: 800 !important;
+  font-size: 13.5px !important;
+  padding: 10px 18px !important;
+  border-radius: 999px !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 3px 10px rgba(255, 214, 10, 0.4) !important;
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease !important;
+  border: none !important;
+  box-sizing: border-box !important;
+}
+
+.single-product section.related ul.products li.product a.button:hover {
+  background: var(--brand-yellow-dark) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 5px 16px rgba(255, 214, 10, 0.6) !important;
+}
+
+/* Scrollbar personalizado */
+.single-product section.related ul.products::-webkit-scrollbar {
+  height: 8px !important;
+}
+.single-product section.related ul.products::-webkit-scrollbar-track {
+  background: #f1f5f9 !important;
+  border-radius: 999px !important;
+}
+.single-product section.related ul.products::-webkit-scrollbar-thumb {
+  background: #cbd5e1 !important;
+  border-radius: 999px !important;
+}
+.single-product section.related ul.products::-webkit-scrollbar-thumb:hover {
+  background: var(--brand-blue) !important;
+}
+
+/* Responsive: 2 visibles en tablet, 1.2 visibles en móvil */
+@media (max-width: 860px) {
+  .single-product section.related ul.products li.product {
+    flex: 0 0 calc((100% - 20px) / 2) !important;
+    min-width: calc((100% - 20px) / 2) !important;
+    max-width: calc((100% - 20px) / 2) !important;
+  }
+}
+@media (max-width: 540px) {
+  .single-product section.related ul.products li.product {
+    flex: 0 0 85% !important;
+    min-width: 85% !important;
+    max-width: 85% !important;
+  }
 }
 
 /* ==========================================================================
