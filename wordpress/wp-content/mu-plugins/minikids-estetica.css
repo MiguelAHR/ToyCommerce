@@ -3722,14 +3722,29 @@ header.ct-header nav .menu-item a.ct-menu-link:hover {
 .about-team-grid {
   display: grid !important;
   grid-template-columns: repeat(4, 1fr) !important;
-  gap: 22px !important;
+  gap: 18px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  align-items: stretch !important;
+}
+
+.about-team-grid > p,
+.about-team-grid > br {
+  display: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  visibility: hidden !important;
 }
 
 .team-member-card {
+  min-width: 0 !important;
+  box-sizing: border-box !important;
   background: #ffffff !important;
   border: 1.5px solid var(--border) !important;
-  border-radius: 22px !important;
-  padding: 26px 20px !important;
+  border-radius: 20px !important;
+  padding: 24px 16px !important;
   text-align: center !important;
   display: flex !important;
   flex-direction: column !important;
@@ -3889,17 +3904,15 @@ header.ct-header nav .menu-item a.ct-menu-link:hover {
   .about-pillars-grid {
     grid-template-columns: repeat(2, 1fr) !important;
   }
-  .about-team-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
 }
 
-@media (max-width: 540px) {
+@media (max-width: 768px) {
   .about-pillars-grid {
     grid-template-columns: 1fr !important;
   }
   .about-team-grid {
     grid-template-columns: 1fr !important;
+    gap: 16px !important;
   }
 }
 

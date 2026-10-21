@@ -696,6 +696,18 @@ add_filter('the_content', function($content) {
     return $content;
 }, 20);
 
+// 13.1 Limpieza estricta de párrafos parásitos en el grid del equipo (¿Quiénes somos? 4 columnas)
+add_filter('the_content', function($content) {
+    if (strpos($content, 'about-team-grid') !== false) {
+        $content = preg_replace_callback('/(<div class="about-team-grid">)([\s\S]*?)(<\/div>\s*<\/div>\s*<!-- Sección 5)/u', function($matches) {
+            $inner = $matches[2];
+            $inner = preg_replace('/<p>\s*<!--([\s\S]*?)-->\s*<\/p>/iu', '<!--$1-->', $inner);
+            return $matches[1] . $inner . $matches[3];
+        }, $content);
+    }
+    return $content;
+}, 99);
+
 // 14. Personalización del Correo de Resumen de Compra de WooCommerce (Español & Branding MiniKids)
 add_filter('woocommerce_email_subject_customer_processing_order', function($subject, $order) {
     if (!$order) return $subject;
@@ -867,6 +879,39 @@ add_action('admin_init', function() {
 });
 
 function minikids_render_email_logs_page() {
+    // Procesar reenvío individual de correo
+    $msg = '';
+    if (isset($_GET['resend_mail']) && check_admin_referer('minikids_resend_mail') && current_user_can('manage_woocommerce')) {
+        $mail_id = sanitize_text_field($_GET['resend_mail']);
+        $logs = get_option('minikids_email_logs', array());
+        if (isset($logs[$mail_id])) {
+            $l = $logs[$mail_id];
+            $headers = array('Content-Type: text/html; charset=UTF-8');
+            $sent = wp_mail($l['to'], $l['subject'], $l['message'], $headers);
+            if ($sent) {
+                $msg = '<div class="notice notice-success is-dismissible"><p><strong>✓ Correo reenviado con éxito a ' . esc_html($l['to']) . '! Revisa la bandeja de entrada o spam.</strong></p></div>';
+            } else {
+                $msg = '<div class="notice notice-error is-dismissible"><p><strong>❌ Error al reenviar a ' . esc_html($l['to']) . '. Activa SMTP e ingresa tu contraseña de aplicación de Gmail a la derecha.</strong></p></div>';
+            }
+        }
+    }
+
+    // Procesar reenvío masivo de pedidos recientes
+    if (isset($_POST['resend_all_orders']) && check_admin_referer('minikids_smtp_nonce') && current_user_can('manage_woocommerce')) {
+        $orders = wc_get_orders(['limit' => 5, 'orderby' => 'date', 'order' => 'DESC']);
+        $count = 0;
+        foreach ($orders as $o) {
+            $to = $o->get_billing_email();
+            if (empty($to)) continue;
+            $mailer = WC()->mailer();
+            if (isset($mailer->emails['WC_Email_Customer_Processing_Order'])) {
+                $mailer->emails['WC_Email_Customer_Processing_Order']->trigger($o->get_id(), $o);
+                $count++;
+            }
+        }
+        $msg = '<div class="notice notice-success is-dismissible"><p><strong>✓ Se procesó el reenvío de ' . $count . ' pedidos recientes a sus correos correspondientes.</strong></p></div>';
+    }
+
     // Procesar guardado de ajustes SMTP
     $msg = '';
     if (isset($_POST['save_smtp_settings']) && check_admin_referer('minikids_smtp_nonce')) {
@@ -946,8 +991,9 @@ function minikids_render_email_logs_page() {
                                             <span style="color:#f59e0b;font-weight:700;" title="<?php echo esc_attr($l['error']); ?>">Registrado (HTML)</span>
                                         <?php endif; ?>
                                     </td>
-                                    <td>
-                                        <a href="<?php echo admin_url('admin.php?page=minikids-correos&view_mail=' . urlencode($l['id'])); ?>" target="_blank" class="button button-small button-primary">👁️ Ver Correo</a>
+                                    <td style="white-space:nowrap;display:flex;gap:6px;">
+                                        <a href="<?php echo admin_url('admin.php?page=minikids-correos&view_mail=' . urlencode($l['id'])); ?>" target="_blank" class="button button-small button-primary">👁️ Ver</a>
+                                        <a href="<?php echo wp_nonce_url(admin_url('admin.php?page=minikids-correos&resend_mail=' . urlencode($l['id'])), 'minikids_resend_mail'); ?>" class="button button-small">🚀 Reenviar</a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
