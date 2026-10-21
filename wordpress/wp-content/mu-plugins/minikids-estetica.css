@@ -134,7 +134,7 @@ header.ct-header [data-column="end"] > [data-items] {
   display: inline-block !important;
   width: 145px !important;
   height: 44px !important;
-  background: url('../uploads/minikids/logo-minikids.png') no-repeat left center / contain !important;
+  background: url('/wordpress/wp-content/uploads/minikids/logo-minikids.png') no-repeat left center / contain !important;
   text-indent: -9999px !important;
   overflow: hidden !important;
   transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
@@ -679,23 +679,34 @@ header.ct-header [data-column="end"] > [data-items] {
 }
 
 /* Sello Oferta */
-.woocommerce ul.products li.product span.onsale {
+.woocommerce ul.products li.product span.onsale,
+.single-product .ct-product-gallery-container span.onsale,
+.woocommerce span.onsale {
   position: absolute !important;
-  top: 10px !important;
-  left: 10px !important;
+  top: 14px !important;
+  left: 14px !important;
   background: var(--brand-red) !important;
   color: #ffffff !important;
   border-radius: 50px !important;
-  padding: 3px 10px !important;
+  padding: 4px 12px !important;
   font-family: var(--font-sans) !important;
-  font-size: 11px !important;
-  font-weight: 800 !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.04em !important;
-  z-index: 2 !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+  z-index: 10 !important;
   min-height: 0 !important;
   min-width: 0 !important;
+  box-shadow: 0 4px 10px rgba(255, 89, 94, 0.4) !important;
+}
+
+.woocommerce ul.products li.product span.onsale::before,
+.single-product .ct-product-gallery-container span.onsale::before,
+.woocommerce span.onsale::before {
+  content: "OFERTA" !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.05em !important;
   line-height: 1.2 !important;
+  color: #ffffff !important;
 }
 
 /* Imagen del producto */
@@ -811,7 +822,7 @@ header.ct-header [data-column="end"] > [data-items] {
 }
 
 .minikids-promo-banner {
-  background: url('../uploads/minikids/promo-bg-limpio.png') center / cover no-repeat !important;
+  background: url('/wordpress/wp-content/uploads/minikids/promo-bg-limpio.png') center / cover no-repeat !important;
   border-radius: 20px !important;
   min-height: 220px !important;
   padding: 44px 24px !important;
@@ -1072,12 +1083,57 @@ header.ct-header [data-column="end"] > [data-items] {
   overflow: hidden !important;
 }
 
-.single-product div.product .woocommerce-product-gallery img {
+/* Imagen Principal de Galería */
+.single-product div.product .flexy-items .flexy-item img,
+.single-product div.product .woocommerce-product-gallery__image img {
   border-radius: 24px !important;
   background: var(--pastel-cream) !important;
   padding: 24px !important;
   object-fit: contain !important;
   mix-blend-mode: multiply !important;
+  box-sizing: border-box !important;
+}
+
+/* Miniaturas de Galería (Flexy Pills Thumbnails) */
+.single-product div.product .flexy-pills[data-type="thumbs"] {
+  margin-top: 16px !important;
+}
+
+.single-product div.product .flexy-pills[data-type="thumbs"] ol {
+  display: flex !important;
+  gap: 12px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  list-style: none !important;
+}
+
+.single-product div.product .flexy-pills[data-type="thumbs"] li {
+  width: 82px !important;
+  height: 82px !important;
+  border-radius: 14px !important;
+  overflow: hidden !important;
+  border: 2.5px solid transparent !important;
+  background: var(--pastel-cream) !important;
+  cursor: pointer !important;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+  box-sizing: border-box !important;
+}
+
+.single-product div.product .flexy-pills[data-type="thumbs"] li.active,
+.single-product div.product .flexy-pills[data-type="thumbs"] li:hover {
+  border-color: var(--brand-yellow) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(255, 214, 10, 0.45) !important;
+}
+
+.single-product div.product .flexy-pills[data-type="thumbs"] li img {
+  width: 100% !important;
+  height: 100% !important;
+  padding: 6px !important;
+  border-radius: 10px !important;
+  object-fit: contain !important;
+  mix-blend-mode: multiply !important;
+  background: transparent !important;
   box-sizing: border-box !important;
 }
 
@@ -1095,8 +1151,9 @@ header.ct-header [data-column="end"] > [data-items] {
   font-size: 18px !important;
   color: #8d99ae !important;
   text-decoration: line-through !important;
-  font-weight: 500 !important;
-  opacity: 0.8 !important;
+  font-weight: 600 !important;
+  opacity: 0.85 !important;
+  order: 2 !important;
 }
 
 .single-product div.product p.price ins {
@@ -1104,6 +1161,7 @@ header.ct-header [data-column="end"] > [data-items] {
   color: var(--brand-red) !important;
   font-weight: 800 !important;
   text-decoration: none !important;
+  order: 1 !important;
 }
 
 /* Botón Añadir al carrito en Ficha */
@@ -1136,6 +1194,11 @@ header.ct-header [data-column="end"] > [data-items] {
   color: var(--brand-ink) !important;
 }
 
+/* Ocultar texto duplicado en inglés de stock nativo de Blocksy */
+.single-product .entry-summary p.stock {
+  display: none !important;
+}
+
 /* Badges de Confianza */
 .minikids-product-trust-badges {
   display: grid !important;
@@ -1154,6 +1217,109 @@ header.ct-header [data-column="end"] > [data-items] {
   font-size: 13px !important;
   font-weight: 600 !important;
   color: var(--brand-ink) !important;
+}
+
+/* Metadatos adicionales de la ficha */
+.minikids-meta-additional {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  margin-top: 14px !important;
+  padding-top: 14px !important;
+  border-top: 1px dashed var(--border) !important;
+  font-family: var(--font-sans) !important;
+  font-size: 14px !important;
+}
+
+.minikids-meta-row {
+  display: flex !important;
+  align-items: baseline !important;
+  gap: 8px !important;
+  color: var(--muted-foreground) !important;
+}
+
+.minikids-meta-row .meta-label {
+  font-weight: 700 !important;
+  color: var(--brand-ink) !important;
+  min-width: 140px !important;
+}
+
+.minikids-meta-row .meta-value {
+  color: #374151 !important;
+  font-weight: 600 !important;
+}
+
+.minikids-meta-row.meta-stock .meta-value {
+  color: #148043 !important;
+  font-weight: 700 !important;
+}
+
+/* Estilos de la caja de Características y Recomendaciones */
+.minikids-product-specs-box {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 20px !important;
+  margin: 16px 0 !important;
+}
+
+@media (max-width: 768px) {
+  .minikids-product-specs-box {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+.minikids-spec-item {
+  background: #ffffff !important;
+  border: 1.5px solid var(--border) !important;
+  border-radius: 18px !important;
+  padding: 20px 24px !important;
+  box-shadow: 0 4px 16px rgba(17, 17, 17, 0.04) !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.minikids-spec-item:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 24px rgba(17, 17, 17, 0.07) !important;
+}
+
+.minikids-spec-item.spec-features {
+  border-left: 5px solid var(--brand-blue) !important;
+}
+
+.minikids-spec-item.spec-recommendations {
+  border-left: 5px solid var(--brand-yellow) !important;
+}
+
+.minikids-spec-item .spec-heading {
+  font-family: var(--font-display) !important;
+  font-size: 18px !important;
+  font-weight: 800 !important;
+  color: var(--brand-ink) !important;
+  margin: 0 0 10px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.minikids-spec-item .spec-text {
+  font-family: var(--font-sans) !important;
+  font-size: 14.5px !important;
+  line-height: 1.6 !important;
+  color: #4b5563 !important;
+  margin: 0 !important;
+}
+
+/* Título de Productos Relacionados */
+.single-product section.related > h2,
+.single-product section.up-sells > h2,
+.single-product .ct-related-products > h2 {
+  font-family: var(--font-display) !important;
+  font-size: clamp(24px, 3vw, 32px) !important;
+  font-weight: 800 !important;
+  color: var(--brand-ink) !important;
+  text-align: center !important;
+  margin-bottom: 28px !important;
+  position: relative !important;
 }
 
 /* Tabs de Producto */

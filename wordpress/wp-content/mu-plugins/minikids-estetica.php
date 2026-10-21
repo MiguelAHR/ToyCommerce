@@ -58,7 +58,6 @@ add_action('wp_enqueue_scripts', function () {
         filemtime(dirname(__FILE__) . '/minikids-catalogo.js'),
         true
     );
-    wp_localize_script('minikids-catalogo', 'minikidsCatalog', array('shopUrl' => home_url('/tienda/')));
 }, 36);
 
 // 3.3 Redirección de archivos individuales de categoría y búsquedas generales al catálogo unificado
@@ -97,17 +96,17 @@ add_action('blocksy:footer:before', function () {
     <footer class="minikids-site-footer">
         <div class="minikids-footer-inner">
             <div class="footer-col brand-col">
-                <img src="<?php echo esc_url(home_url('/wp-content/uploads/minikids/logo-minikids.png')); ?>" alt="Mini Kids" class="footer-logo-img"/>
+                <img src="/wordpress/wp-content/uploads/minikids/logo-minikids.png" alt="Mini Kids" class="footer-logo-img"/>
                 <p class="footer-tagline">Jugar hoy,<br><span style="padding-left:14px">un mejor mañana</span> <span style="color:#ef233c">❤️</span></p>
             </div>
             <div class="footer-col">
                 <h3 class="footer-heading">Tienda</h3>
                 <ul class="footer-links">
-                    <li><a href="<?php echo esc_url(home_url('/')); ?>">Inicio</a></li>
-                    <li><a href="<?php echo esc_url(home_url('/tienda/')); ?>">Juguetes</a></li>
-                    <li><a href="<?php echo esc_url(home_url('/#categorias')); ?>">Categorías</a></li>
-                    <li><a href="<?php echo esc_url(home_url('/#productos')); ?>">Novedades</a></li>
-                    <li><a href="<?php echo esc_url(home_url('/#ofertas')); ?>">Ofertas</a></li>
+                    <li><a href="/wordpress/">Inicio</a></li>
+                    <li><a href="/wordpress/tienda/">Juguetes</a></li>
+                    <li><a href="/wordpress/#categorias">Categorías</a></li>
+                    <li><a href="/wordpress/#productos">Novedades</a></li>
+                    <li><a href="/wordpress/#ofertas">Ofertas</a></li>
                 </ul>
             </div>
             <div class="footer-col">
@@ -117,9 +116,8 @@ add_action('blocksy:footer:before', function () {
                     <li><a href="#">Cambios y devoluciones</a></li>
                     <li><a href="#">Envíos</a></li>
                     <li><a href="#">Términos y condiciones</a></li>
-                    <li><a href="<?php echo esc_url(home_url('/contacto/')); ?>">Contacto</a></li>
+                    <li><a href="/wordpress/contacto/">Contacto</a></li>
                 </ul>
-                <?php wp_nav_menu(['theme_location'=>'minikids_atencion','container'=>false,'menu_class'=>'footer-links mkp-attention-links','fallback_cb'=>false]); ?>
             </div>
             <div class="footer-col">
                 <h3 class="footer-heading">Síguenos</h3>
@@ -154,13 +152,18 @@ add_action('woocommerce_single_product_summary', function () {
     if (!$edad) {
         $edad = $product->get_attribute('pa_edad-recomendada');
     }
+    if (!$edad) {
+        $edad = get_post_meta($product->get_id(), '_minikids_edad', true);
+    }
+    $stock_qty = $product->get_stock_quantity();
+    $stock_label = ($stock_qty !== null && $stock_qty > 0) ? ($stock_qty . ' en stock') : 'En stock';
     ?>
     <div class="minikids-product-meta-badges">
         <?php if (!empty($edad)): ?>
-            <span class="meta-badge badge-age">Edad: <?php echo esc_html($edad); ?></span>
+            <span class="meta-badge badge-age"><span class="badge-icon">👶</span> Edad: <?php echo esc_html($edad); ?></span>
         <?php endif; ?>
         <?php if ($product->is_in_stock()): ?>
-            <span class="meta-badge badge-stock">En stock</span>
+            <span class="meta-badge badge-stock"><span class="badge-dot">●</span> <?php echo esc_html($stock_label); ?></span>
         <?php endif; ?>
     </div>
     <?php
@@ -185,6 +188,68 @@ add_action('woocommerce_single_product_summary', function () {
     </div>
     <?php
 }, 35);
+
+// 8.1 Metadatos enriquecidos de la ficha (Código SKU, Categoría, Edad, Stock, Información de envío)
+add_action('woocommerce_product_meta_end', function () {
+    global $product;
+    if (!$product) return;
+    
+    $edad = $product->get_attribute('Edad recomendada');
+    if (!$edad) {
+        $edad = get_post_meta($product->get_id(), '_minikids_edad', true);
+    }
+    $stock_qty = $product->get_stock_quantity();
+    $stock_text = ($stock_qty !== null && $stock_qty > 0) ? ($stock_qty . ' en stock') : 'Disponible en stock';
+    ?>
+    <div class="minikids-meta-additional">
+        <?php if (!empty($edad)): ?>
+            <span class="minikids-meta-row meta-edad">
+                <span class="meta-label">Edad:</span>
+                <span class="meta-value">(<?php echo esc_html($edad); ?>)</span>
+            </span>
+        <?php endif; ?>
+        <span class="minikids-meta-row meta-stock">
+            <span class="meta-label">Stock:</span>
+            <span class="meta-value"><?php echo esc_html($stock_text); ?></span>
+        </span>
+        <span class="minikids-meta-row meta-envio">
+            <span class="meta-label">Información de envío:</span>
+            <span class="meta-value">Envío a todo el país / Compra segura / 30 días de cambio</span>
+        </span>
+    </div>
+    <?php
+});
+
+// 8.2 Pestañas personalizadas de la ficha de producto en español amigable
+add_filter('woocommerce_product_tabs', function ($tabs) {
+    if (isset($tabs['description'])) {
+        $tabs['description']['title'] = '✨ Características y Cuidados';
+    }
+    if (isset($tabs['additional_information'])) {
+        $tabs['additional_information']['title'] = '📋 Especificaciones';
+    }
+    if (isset($tabs['reviews'])) {
+        $tabs['reviews']['title'] = '⭐ Opiniones de Padres';
+    }
+    return $tabs;
+}, 98);
+
+// 8.3 Encabezados de productos relacionados, upsells y oferta en español
+add_filter('woocommerce_product_upsells_products_heading', function() {
+    return 'Productos relacionados';
+});
+add_filter('woocommerce_product_related_products_heading', function() {
+    return 'Productos relacionados';
+});
+add_filter('woocommerce_sale_flash', function() {
+    return '<span class="onsale">OFERTA</span>';
+});
+add_filter('woocommerce_product_single_add_to_cart_text', function() {
+    return 'Agregar al carrito';
+});
+add_filter('woocommerce_product_add_to_cart_text', function() {
+    return 'Agregar al carrito';
+});
 
 // 9. Barra de Envío Gratis en la página de Carrito (Next.js visual parity)
 add_filter('the_content', function ($content) {
@@ -224,7 +289,7 @@ add_filter('the_content', function ($content) {
         <div class="minikids-catalog-search-container">
           <div class="minikids-catalog-search-box">
             <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-            <input type="text" id="minikids-catalog-search" aria-label="Buscar juguetes por nombre o categor?a" placeholder="Buscar juguetes por nombre o categoría..." autocomplete="off" />
+            <input type="text" id="minikids-catalog-search" placeholder="Buscar juguetes por nombre o categoría..." autocomplete="off" />
             <button type="button" id="minikids-search-clear" aria-label="Limpiar búsqueda" style="display:none;">✕</button>
           </div>
         </div>
@@ -243,7 +308,7 @@ add_filter('the_content', function ($content) {
         </div>';
         
         $no_results = '
-        <div class="minikids-no-results" role="status" aria-live="polite" style="display:none;">
+        <div class="minikids-no-results" style="display:none;">
           <p class="no-results-emoji">🧸</p>
           <h3 class="no-results-title">No encontramos juguetes para esa búsqueda</h3>
           <p class="no-results-desc">Prueba con otra palabra clave o explora todas las categorías.</p>
@@ -256,7 +321,6 @@ add_filter('the_content', function ($content) {
         } else {
             $content = $search_box . $content . $no_results;
         }
-        if (strpos($content, 'class="minikids-no-results"') === false) $content .= $no_results;
     }
     return $content;
 });
@@ -410,8 +474,8 @@ add_action('wp_footer', function () {
             </div>
 
             <footer class="minikids-cart-drawer-footer">
-                <a href="<?php echo esc_url( function_exists('wc_get_page_permalink') ? wc_get_page_permalink('cart') : home_url('/cart/') ); ?>" class="drawer-viewcart-btn">Ver carrito</a>
-                <a href="<?php echo esc_url( function_exists('wc_get_page_permalink') ? wc_get_page_permalink('checkout') : home_url('/checkout/') ); ?>" class="drawer-checkout-btn">Finalizar compra &gt;</a>
+                <a href="<?php echo esc_url( function_exists('wc_get_page_permalink') ? wc_get_page_permalink('cart') : '/wordpress/cart/' ); ?>" class="drawer-viewcart-btn">Ver carrito</a>
+                <a href="<?php echo esc_url( function_exists('wc_get_page_permalink') ? wc_get_page_permalink('checkout') : '/wordpress/checkout/' ); ?>" class="drawer-checkout-btn">Finalizar compra &gt;</a>
                 <button type="button" class="drawer-continue-btn">Seguir comprando</button>
             </footer>
         </aside>
@@ -435,6 +499,8 @@ add_action('woocommerce_init', function() {
                 'required'                   => true,
                 'attributes'                 => array(
                     'autocomplete' => 'tel',
+                    'placeholder'  => 'Ej. 991 117 380',
+                    'type'         => 'tel',
                     'aria-label'   => 'Número de celular',
                 ),
                 'validate_callback'          => function($value, $field) {
@@ -492,6 +558,54 @@ add_filter('woocommerce_checkout_fields', function($fields) {
     }
     return $fields;
 });
+
+// 11. Sincronización automática de códigos SKU estandarizados, stock e imagen de la matriz principal
+add_action('woocommerce_init', function() {
+    if (get_option('minikids_matrix_sku_stock_v2') === 'done') {
+        return;
+    }
+    if (!function_exists('wc_get_product')) {
+        return;
+    }
+
+    // Actualizar attachment 49 a kit.webp si existe en uploads/2026/10/kit.webp
+    $upload_dir = wp_upload_dir();
+    $kit_webp = $upload_dir['basedir'] . '/2026/10/kit.webp';
+    if (file_exists($kit_webp)) {
+        update_post_meta(49, '_wp_attached_file', '2026/10/kit.webp');
+        wp_update_post(array(
+            'ID'             => 49,
+            'post_mime_type' => 'image/webp',
+        ));
+    }
+
+    $matrix_updates = array(
+        42  => array('sku' => 'MK-CRE-ART-04A-001', 'stock' => 9),  // Kit de arte pequeños artistas
+        95  => array('sku' => 'MK-PEL-CON-00A-002', 'stock' => 14), // Peluche Conejita Rosa
+        135 => array('sku' => 'MK-DID-ABA-02A-003', 'stock' => 15), // Ábaco Pedagógico y Laberinto de Madera
+        89  => array('sku' => 'MK-DID-BLQ-02A-004', 'stock' => 18), // Set de Bloques de Madera 50 Piezas
+        133 => array('sku' => 'MK-ROL-MUN-01A-002', 'stock' => 15), // Muñeca de Trapo Dulces Sueños
+    );
+
+    foreach ($matrix_updates as $pid => $cfg) {
+        $product = wc_get_product($pid);
+        if (!$product) {
+            continue;
+        }
+        try {
+            $product->set_sku($cfg['sku']);
+        } catch (\Throwable $e) {
+            update_post_meta($pid, '_sku', $cfg['sku']);
+        }
+        $product->set_manage_stock(true);
+        $product->set_stock_quantity($cfg['stock']);
+        $product->set_stock_status('instock');
+        $product->save();
+    }
+
+    update_option('minikids_matrix_sku_stock_v2', 'done');
+}, 20);
+
 
 
 
