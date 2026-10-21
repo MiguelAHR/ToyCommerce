@@ -3522,3 +3522,380 @@ header.ct-header nav .menu-item a.ct-menu-link:hover {
   box-shadow: 0 6px 16px rgba(255, 214, 10, 0.5) !important;
 }
 
+/* ==========================================================================
+   Página: ¿Quiénes Somos? (Estructura Premium y Equipo de 4 Integrantes)
+   ========================================================================== */
+.minikids-about-container {
+  max-width: 1040px !important;
+  margin: 0 auto !important;
+  padding: 10px 0 40px !important;
+}
+
+.about-hero-card {
+  background: linear-gradient(180deg, #ffffff 0%, #fffdf5 100%) !important;
+  border: 1.5px solid var(--border) !important;
+  border-radius: 24px !important;
+  padding: 40px 32px !important;
+  text-align: center !important;
+  margin-bottom: 36px !important;
+  box-shadow: 0 6px 22px rgba(17, 17, 17, 0.04) !important;
+}
+
+.about-badge {
+  display: inline-block !important;
+  background: var(--pastel-yellow) !important;
+  color: var(--brand-ink) !important;
+  font-family: var(--font-display) !important;
+  font-weight: 800 !important;
+  font-size: 13px !important;
+  padding: 6px 18px !important;
+  border-radius: 999px !important;
+  margin-bottom: 16px !important;
+  border: 1px solid rgba(255, 214, 10, 0.45) !important;
+}
+
+.about-main-title {
+  font-family: var(--font-display) !important;
+  font-size: clamp(26px, 3.5vw, 36px) !important;
+  font-weight: 800 !important;
+  color: var(--brand-ink) !important;
+  margin: 0 0 16px !important;
+  line-height: 1.25 !important;
+}
+
+.about-lead-text {
+  font-family: var(--font-sans) !important;
+  font-size: 17px !important;
+  line-height: 1.7 !important;
+  color: #374151 !important;
+  max-width: 820px !important;
+  margin: 0 auto 14px !important;
+}
+
+.about-secondary-text {
+  font-family: var(--font-sans) !important;
+  font-size: 15px !important;
+  line-height: 1.65 !important;
+  color: #6b7280 !important;
+  max-width: 800px !important;
+  margin: 0 auto !important;
+}
+
+/* Grid Misión y Visión */
+.about-grid-two {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 24px !important;
+  margin-bottom: 40px !important;
+}
+
+.about-info-card {
+  background: #ffffff !important;
+  border: 1.5px solid var(--border) !important;
+  border-radius: 22px !important;
+  padding: 32px 28px !important;
+  box-shadow: 0 4px 18px rgba(17, 17, 17, 0.04) !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+}
+
+.about-info-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 10px 24px rgba(17, 17, 17, 0.08) !important;
+}
+
+.about-info-card.mission-card {
+  border-left: 6px solid var(--brand-blue) !important;
+  background: linear-gradient(180deg, #ffffff 0%, #f7faff 100%) !important;
+}
+
+.about-info-card.vision-card {
+  border-left: 6px solid var(--brand-yellow) !important;
+  background: linear-gradient(180deg, #ffffff 0%, #fffdf5 100%) !important;
+}
+
+.card-icon-wrapper {
+  font-size: 32px !important;
+  margin-bottom: 14px !important;
+}
+
+.card-title {
+  font-family: var(--font-display) !important;
+  font-size: 22px !important;
+  font-weight: 800 !important;
+  color: var(--brand-ink) !important;
+  margin: 0 0 12px !important;
+}
+
+.card-description {
+  font-family: var(--font-sans) !important;
+  font-size: 15px !important;
+  line-height: 1.65 !important;
+  color: #4b5563 !important;
+  margin: 0 !important;
+}
+
+/* Pilares de Compromiso */
+.about-pillars-section {
+  background: #ffffff !important;
+  border: 1.5px solid var(--border) !important;
+  border-radius: 24px !important;
+  padding: 36px 30px !important;
+  margin-bottom: 44px !important;
+  text-align: center !important;
+  box-shadow: 0 4px 18px rgba(17, 17, 17, 0.03) !important;
+}
+
+.section-heading {
+  font-family: var(--font-display) !important;
+  font-size: clamp(24px, 3vw, 30px) !important;
+  font-weight: 800 !important;
+  color: var(--brand-ink) !important;
+  margin: 0 0 24px !important;
+  text-align: center !important;
+}
+
+.about-pillars-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 20px !important;
+  text-align: center !important;
+}
+
+.pillar-item {
+  background: #f8fafc !important;
+  border-radius: 18px !important;
+  padding: 22px 16px !important;
+  border: 1px solid var(--border) !important;
+  transition: transform 0.2s ease !important;
+}
+
+.pillar-item:hover {
+  transform: translateY(-3px) !important;
+  border-color: var(--brand-blue) !important;
+}
+
+.pillar-icon {
+  font-size: 28px !important;
+  display: block !important;
+  margin-bottom: 10px !important;
+}
+
+.pillar-title {
+  font-family: var(--font-display) !important;
+  font-size: 16px !important;
+  font-weight: 800 !important;
+  color: var(--brand-ink) !important;
+  margin: 0 0 8px !important;
+}
+
+.pillar-text {
+  font-family: var(--font-sans) !important;
+  font-size: 13.5px !important;
+  line-height: 1.55 !important;
+  color: #4b5563 !important;
+  margin: 0 !important;
+}
+
+/* Sección de Equipo: 4 Integrantes */
+.about-team-section {
+  margin-bottom: 44px !important;
+}
+
+.team-header-box {
+  text-align: center !important;
+  margin-bottom: 30px !important;
+}
+
+.section-subheading {
+  font-family: var(--font-sans) !important;
+  font-size: 16px !important;
+  color: #4b5563 !important;
+  max-width: 680px !important;
+  margin: 0 auto !important;
+  line-height: 1.6 !important;
+}
+
+.about-team-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 22px !important;
+}
+
+.team-member-card {
+  background: #ffffff !important;
+  border: 1.5px solid var(--border) !important;
+  border-radius: 22px !important;
+  padding: 26px 20px !important;
+  text-align: center !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  box-shadow: 0 4px 16px rgba(17, 17, 17, 0.04) !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.2s ease !important;
+}
+
+.team-member-card:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: 0 12px 28px rgba(17, 17, 17, 0.08) !important;
+  border-color: var(--brand-yellow) !important;
+}
+
+.member-avatar {
+  width: 64px !important;
+  height: 64px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-family: var(--font-display) !important;
+  font-weight: 800 !important;
+  font-size: 20px !important;
+  color: #ffffff !important;
+  margin-bottom: 14px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+.avatar-blue {
+  background: linear-gradient(135deg, #1a73e8, #4285f4) !important;
+}
+
+.avatar-yellow {
+  background: linear-gradient(135deg, #f59e0b, #ffd60a) !important;
+  color: var(--brand-ink) !important;
+}
+
+.avatar-purple {
+  background: linear-gradient(135deg, #7c3aed, #a855f7) !important;
+}
+
+.avatar-green {
+  background: linear-gradient(135deg, #10b981, #34d399) !important;
+}
+
+.member-name {
+  font-family: var(--font-display) !important;
+  font-size: 16.5px !important;
+  font-weight: 800 !important;
+  color: var(--brand-ink) !important;
+  margin: 0 0 6px !important;
+  line-height: 1.3 !important;
+}
+
+.member-role {
+  font-family: var(--font-sans) !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  color: var(--brand-blue) !important;
+  margin-bottom: 12px !important;
+  display: block !important;
+}
+
+.member-bio {
+  font-family: var(--font-sans) !important;
+  font-size: 13.5px !important;
+  line-height: 1.55 !important;
+  color: #4b5563 !important;
+  margin: 0 0 16px !important;
+  flex-grow: 1 !important;
+}
+
+.member-tag {
+  background: var(--pastel-cream) !important;
+  font-size: 11.5px !important;
+  font-weight: 700 !important;
+  color: var(--brand-ink) !important;
+  padding: 5px 12px !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(255, 214, 10, 0.5) !important;
+}
+
+/* Call to Action */
+.about-cta-card {
+  background: linear-gradient(135deg, #1a73e8 0%, #1557b0 100%) !important;
+  border-radius: 24px !important;
+  padding: 36px 30px !important;
+  text-align: center !important;
+  color: #ffffff !important;
+  box-shadow: 0 8px 24px rgba(26, 115, 232, 0.25) !important;
+}
+
+.cta-title {
+  font-family: var(--font-display) !important;
+  font-size: 24px !important;
+  font-weight: 800 !important;
+  color: #ffffff !important;
+  margin: 0 0 10px !important;
+}
+
+.cta-text {
+  font-family: var(--font-sans) !important;
+  font-size: 15px !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  max-width: 650px !important;
+  margin: 0 auto 20px !important;
+  line-height: 1.6 !important;
+}
+
+.cta-buttons {
+  display: flex !important;
+  gap: 16px !important;
+  justify-content: center !important;
+  flex-wrap: wrap !important;
+}
+
+.about-btn {
+  font-family: var(--font-sans) !important;
+  font-weight: 800 !important;
+  font-size: 14.5px !important;
+  padding: 12px 28px !important;
+  border-radius: 999px !important;
+  text-decoration: none !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.btn-primary {
+  background: var(--brand-yellow) !important;
+  color: var(--brand-ink) !important;
+  box-shadow: 0 4px 14px rgba(255, 214, 10, 0.4) !important;
+}
+
+.btn-primary:hover {
+  background: var(--brand-yellow-dark) !important;
+  transform: translateY(-2px) !important;
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.15) !important;
+  color: #ffffff !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.5) !important;
+  backdrop-filter: blur(4px) !important;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.3) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Responsividad */
+@media (max-width: 900px) {
+  .about-grid-two {
+    grid-template-columns: 1fr !important;
+  }
+  .about-pillars-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .about-team-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 540px) {
+  .about-pillars-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .about-team-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
