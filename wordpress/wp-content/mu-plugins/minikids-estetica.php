@@ -218,8 +218,23 @@ add_filter('woocommerce_product_tabs', function ($tabs) {
     return $tabs;
 }, 98);
 
-// Suprimir título por defecto "Description" en la pestaña para evitar texto en inglés
+// Suprimir títulos por defecto en inglés de las pestañas
 add_filter('woocommerce_product_description_heading', '__return_empty_string');
+add_filter('woocommerce_product_additional_information_heading', '__return_empty_string');
+
+// 8.2b Subtítulo "Características" sobre la descripción en la ficha de producto
+add_filter('woocommerce_short_description', function ($desc) {
+    if (empty(trim($desc))) {
+        return $desc;
+    }
+    if (function_exists('is_product') && !is_product() && !is_singular('product')) {
+        return $desc;
+    }
+    if (strpos($desc, 'minikids-short-desc-subtitle') !== false) {
+        return $desc;
+    }
+    return '<h4 class="minikids-short-desc-subtitle">Características</h4>' . $desc;
+}, 20);
 
 // 8.3 Encabezados de productos relacionados, upsells, cross-sells y oferta en español
 add_filter('woocommerce_product_upsells_products_heading', function() {
