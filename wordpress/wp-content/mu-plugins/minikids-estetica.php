@@ -757,14 +757,32 @@ add_filter('woocommerce_mail_content', function($content) {
         'Shipping:' => 'Envío:',
         'Total:' => 'Total de compra:',
         "Thanks again! If you need any help with your order, please contact us at ." => '¡Muchas gracias por elegir MiniKids Perú! ¿Dudas o seguimiento? Escríbenos a nuestro WhatsApp oficial: <strong>+51 991 117 308</strong>.',
-        "Thanks again! If you need any help with your order, please contact us at" => '¡Muchas gracias por elegir MiniKids Perú! ¿Dudas o seguimiento? Escríbenos a nuestro WhatsApp oficial: <strong>+51 991 117 308</strong>.',
-        'MiniKids Peru</a></p>' => 'MiniKids Perú</a></p><div style="text-align:center;padding:10px 0;"><img src="http://localhost:8088/wordpress/wp-content/uploads/minikids/logo-minikids.png" alt="MiniKids Perú" style="height:55px;width:auto;display:inline-block;" /></div><div style="margin-top:16px;padding:12px 16px;background:#fef3c7;border:1px solid #fde68a;border-radius:10px;text-align:center;font-size:12px;color:#92400e;line-height:1.5;">✉️ <strong>Buzón automático no-reply:</strong> Este correo ha sido generado de forma automática. Por favor no respondas a esta dirección ya que no recibe mensajes entrantes. Para atención y consultas sobre tu pedido, escríbenos a nuestro <a href="https://wa.me/51991117308" target="_blank" style="color:#1a73e8;font-weight:700;text-decoration:underline;">WhatsApp Oficial (+51 991 117 308)</a>.</div>'
+        "Thanks again! If you need any help with your order, please contact us at" => '¡Muchas gracias por elegir MiniKids Perú! ¿Dudas o seguimiento? Escríbenos a nuestro WhatsApp oficial: <strong>+51 991 117 308</strong>.'
     );
     return str_replace(array_keys($replacements), array_values($replacements), $content);
 }, 20);
 
+// Inyección de aviso No-Reply al pie del correo del cliente
+add_action('woocommerce_email_footer', function($email) {
+    ?>
+    <div style="margin:20px 0 10px 0;padding:12px 16px;background:#fef3c7;border:1px solid #fde68a;border-radius:10px;text-align:center;font-size:12px;color:#92400e;line-height:1.5;">
+        ✉️ <strong>Buzón automático no-reply:</strong> Este correo ha sido generado de forma automática. Por favor no respondas a esta dirección ya que no recibe mensajes entrantes. Para atención y consultas sobre tu pedido, escríbenos a nuestro <a href="https://wa.me/51991117308" target="_blank" style="color:#1a73e8;font-weight:700;text-decoration:underline;">WhatsApp Oficial (+51 991 117 308)</a>.
+    </div>
+    <?php
+}, 5);
+
 add_filter('woocommerce_email_styles', function($css) {
     $custom_css = '
+    #template_header_image {
+        text-align: center !important;
+        padding: 24px 0 12px 0 !important;
+    }
+    #template_header_image img {
+        max-height: 55px !important;
+        width: auto !important;
+        margin: 0 auto !important;
+        display: inline-block !important;
+    }
     #header_wrapper {
         background-color: #ffd60a !important;
         border-bottom: 3px solid #ffc300 !important;
