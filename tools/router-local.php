@@ -20,7 +20,7 @@ if($target&&is_file($target)&&strtolower(pathinfo($target,PATHINFO_EXTENSION))!=
     return true;
 }
 // A missing asset must be a real 404, never WordPress's canonical redirect to home.
-if(!$target&&preg_match('~\.(?:png|jpe?g|gif|webp|svg|ico|woff2?|ttf|css|js)$~i',$path)){http_response_code(404);header('Content-Type: text/plain; charset=utf-8');exit('Archivo no encontrado');}
+if(!$target&&$path!=='/wordpress/favicon.ico'&&preg_match('~\.(?:png|jpe?g|gif|webp|svg|ico|woff2?|ttf|css|js)$~i',$path)){http_response_code(404);header('Content-Type: text/plain; charset=utf-8');exit('Archivo no encontrado');}
 if($path!=='/'&&$target&&is_file($target))return false;
 if($target&&is_dir($target)&&is_file($target.'/index.php')){require $target.'/index.php';return true;}
 require $root.'/index.php';

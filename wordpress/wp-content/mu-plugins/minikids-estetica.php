@@ -62,13 +62,6 @@ add_action('wp_enqueue_scripts', function () {
 
 // 3.3 Redirección de archivos individuales de categoría y búsquedas generales al catálogo unificado
 add_action('template_redirect', function () {
-    if (is_product_category()) {
-        $cat = get_queried_object();
-        if ($cat && isset($cat->slug)) {
-            wp_safe_redirect(home_url('/tienda/?cat=' . rawurlencode($cat->slug)), 301);
-            exit;
-        }
-    }
     if (is_search() && !is_admin()) {
         $q = get_search_query();
         if (!empty($q)) {

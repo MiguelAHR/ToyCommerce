@@ -68,7 +68,7 @@
    const label=visible===1?'1 producto':`${visible} productos`;if(status.textContent!==label)status.textContent=label;
    empty.hidden=visible>0||baseVisible===0;
    const active=pills.querySelector('.minikids-pill-active'),category=active?.getAttribute('data-cat')||'all';
-   const name=category==='all'?'Juguetes':active.textContent.trim();if(title&&title.textContent!==name)title.textContent=name;
+   const name=category==='all'?'Tienda de juguetes':active.textContent.trim();if(title&&title.textContent!==name)title.textContent=name;
    trail.textContent=category==='all'?' / Juguetes':` / Juguetes / ${name}`;
   }
   options.addEventListener('change',update);

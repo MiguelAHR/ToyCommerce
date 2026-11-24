@@ -84,7 +84,7 @@ add_action('wp_head',function(){
 },1);
 add_action('wp_body_open',function(){
     if(!mk7_loader_enabled())return;
-    echo '<div id="mk6-loader" aria-hidden="true"><img src="'.esc_url(mk6_logo()).'" alt="" width="200" height="90" fetchpriority="high"><div class="mk6-dots"><i></i><i></i><i></i></div></div>';
+    echo '<div id="mk6-loader" aria-hidden="true"><img src="'.esc_url(mk6_logo()).'" alt="MiniKids Perú" width="200" height="90" fetchpriority="high"><div class="mk6-dots"><i></i><i></i><i></i></div></div>';
 },0);
 
 // 4: native es_ES Woo pack supplements es_PE; explicit residual strings only.

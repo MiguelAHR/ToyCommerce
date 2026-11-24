@@ -37,7 +37,7 @@
     all('option',select).forEach((op,j)=>{if(j)op.textContent=op.value+' ('+items.filter(el=>base(el)&&records.get(el).brand===op.value).length+')';});
     all('.minikids-pill:not(.minikids-pill-reset)',pills).forEach(p=>{const cat=p.dataset.cat;qs('.mk5-count',p).textContent=' ('+items.filter(el=>cat==='all'||el.classList.contains('product_cat-'+cat)).length+')';});
     qs('.mkr-catalog-status').textContent=visible+' productos';const empty=qs('.mkr-extra-empty');if(empty){empty.hidden=visible>0;empty.textContent='No hay productos con estos filtros. Prueba otra categoría, precio o marca.';}
-    const active=qs('.minikids-pill-active',pills),name=active?active.childNodes[0].textContent.trim():'Todos los juguetes';const title=qs('.minikids-tienda-header h1');if(title)title.textContent=name==='Todos'?'Tienda':name;
+    const active=qs('.minikids-pill-active',pills),name=active?active.childNodes[0].textContent.trim():'Todos los juguetes';const title=qs('.minikids-tienda-header h1');if(title)title.textContent=name==='Todos'?'Tienda de juguetes':name;
     const trail=qs('.mkr-breadcrumb span');if(trail)trail.textContent=' | Tienda'+(active?.dataset.cat!=='all'?' | '+name:'');
    }
    field.addEventListener('change',update);select.addEventListener('change',update);qs('.mkr-sort select')?.addEventListener('change',()=>requestAnimationFrame(update));
