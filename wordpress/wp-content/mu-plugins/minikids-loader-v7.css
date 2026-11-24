@@ -4,7 +4,8 @@
 #mk6-loader i{width:12px;height:12px;border-radius:50%;background:#0756ad;animation-name:mk7-dot!important;animation-duration:.8s!important;animation-iteration-count:infinite!important;animation-direction:alternate!important;animation-delay:0s!important}
 #mk6-loader i:nth-child(2){background:#fff;animation-delay:.2s!important}#mk6-loader i:nth-child(3){animation-delay:.4s!important}
 #mk6-loader.mk6-ready{opacity:0;visibility:hidden;animation-name:none!important}
-.mk7-fast-nav #mk6-loader:not(.mk7-show){opacity:0;visibility:hidden;transition:none!important}
+/* Al salir de la pagina el velo cubre al instante, sin esperar a que llegue el HTML nuevo. */
+#mk6-loader.mk7-leaving{opacity:1;visibility:visible;pointer-events:auto;transition:none!important;animation-name:none!important}
 .mk7-loader-debug #mk6-loader{animation-name:none!important;opacity:1;visibility:visible}
 @keyframes mk7-dot{to{transform:translateY(-8px);opacity:.45}}
 @keyframes mk7-pulse{from{opacity:1}to{opacity:.4}}

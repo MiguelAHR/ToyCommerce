@@ -2,21 +2,47 @@
  'use strict';
  const root=document.documentElement,started=performance.now();
  if(window.mk7LoaderDebug){root.classList.add('mk7-loader-debug');return;}
- const nav=performance.getEntriesByType('navigation')[0];
- let internal=false;try{internal=nav?.type==='navigate'&&new URL(document.referrer).origin===location.origin;}catch(_){}
- if(internal)root.classList.add('mk7-fast-nav');
- let shown=internal?null:started,done=false,hideTimer;
  const el=()=>document.getElementById('mk6-loader');
- function finish(immediate=false){
+ const MIN=300; // tiempo minimo visible para que no parpadee en paginas muy rapidas
+ let done=false,hideTimer,leaving=false,leaveTimer;
+ // El velo se ve desde el primer pintado (CSS en la cabecera) en TODA carga, tambien al navegar dentro de la tienda.
+ function finish(immediate){
   if(done)return;
-  if(!immediate&&shown!==null&&performance.now()-shown<400){clearTimeout(hideTimer);hideTimer=setTimeout(()=>finish(),400-(performance.now()-shown));return;}
+  const wait=immediate?0:Math.max(0,MIN-(performance.now()-started));
+  if(wait>0){clearTimeout(hideTimer);hideTimer=setTimeout(()=>finish(true),wait);return;}
   done=true;clearTimeout(hideTimer);el()?.classList.add('mk6-ready');
  }
- if(internal)setTimeout(()=>{if(!done&&document.readyState!=='complete'){shown=performance.now();el()?.classList.add('mk7-show');}else finish(true);},400);
+ function stopLeaving(){
+  leaving=false;clearTimeout(leaveTimer);
+  const l=el();if(l){l.classList.remove('mk7-leaving');l.classList.add('mk6-ready');}
+  done=true;
+ }
+ // Salida: al pulsar un enlace interno (o enviar un formulario) el velo aparece al instante en la pagina actual.
+ function leave(){
+  if(leaving)return;const l=el();if(!l)return;
+  leaving=true;l.classList.remove('mk6-ready');l.classList.add('mk7-leaving');
+  clearTimeout(leaveTimer);leaveTimer=setTimeout(stopLeaving,6000); // si la navegacion no ocurre (descarga, cancelada), se retira
+ }
+ const FILES=/\.(pdf|zip|rar|docx?|xlsx?|pptx?|jpe?g|png|gif|webp|svg|mp4|mp3|csv|txt)(\?|$)/i;
+ document.addEventListener('click',e=>{
+  if(e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+  const a=e.target.closest&&e.target.closest('a[href]');if(!a)return;
+  if((a.target&&a.target!=='_self')||a.hasAttribute('download'))return;
+  let u;try{u=new URL(a.href,location.href);}catch(_){return;}
+  if(!/^https?:$/.test(u.protocol)||u.origin!==location.origin)return;
+  if(u.pathname===location.pathname&&u.search===location.search)return; // ancla o misma pagina
+  if(FILES.test(u.pathname)||/wp-admin|customer-logout|[?&]add-to-cart=/.test(u.href))return;
+  // Otros scripts pueden interceptar el clic (modales, AJAX): solo se cubre si la navegacion sigue en pie.
+  setTimeout(()=>{if(!e.defaultPrevented)leave();},0);
+ },true);
+ document.addEventListener('submit',e=>{
+  const f=e.target;if(!f||f.tagName!=='FORM'||(f.target&&f.target!=='_self'))return;
+  setTimeout(()=>{if(!e.defaultPrevented&&!f.closest('dialog'))leave();},0);
+ },true);
  window.addEventListener('load',()=>finish(),{once:true});
- window.addEventListener('pageshow',e=>{if(e.persisted)finish(true);else if(document.readyState==='complete')finish();});
- document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')finish();});
+ window.addEventListener('pageshow',e=>{if(e.persisted)stopLeaving();else if(document.readyState==='complete')finish();});
+ document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&document.readyState==='complete')finish();});
  document.addEventListener('DOMContentLoaded',()=>{if(done)el()?.classList.add('mk6-ready');if(document.readyState==='complete')finish();},{once:true});
- // Start fading at 2250ms; entirely hidden by 2500ms, even when load never fires.
+ // Empieza a desvanecerse a los 2250 ms y desaparece del todo a los 2500 ms aunque load no llegue.
  setTimeout(()=>finish(true),Math.max(0,2250-(performance.now()-started)));
 })();
