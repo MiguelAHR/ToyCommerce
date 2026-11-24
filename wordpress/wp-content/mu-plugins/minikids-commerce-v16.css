@@ -1,0 +1,89 @@
+/* V16: compact card stars, reviews modal, gallery slide fit & smooth hover zoom. */
+body.minikids-retail .mk16-stars{position:relative;display:inline-flex;align-items:center;line-height:1;flex:0 0 auto;vertical-align:middle}
+body.minikids-retail .mk16-stars-bg{display:inline-flex;gap:1px;color:#d5dce4}
+body.minikids-retail .mk16-stars-fg{position:absolute;left:0;top:0;bottom:0;display:inline-flex;gap:1px;color:#f5a623;overflow:hidden;white-space:nowrap}
+body.minikids-retail .mk16-stars svg{display:block;flex:0 0 auto;fill:currentColor}
+
+/* Compact 1-line card rating */
+body.minikids-retail .mk16-card-rating{display:inline-flex!important;align-items:center;flex-wrap:nowrap!important;gap:5px;margin:4px 0 6px!important;font-size:13px!important;line-height:1.3!important;color:#536172!important;white-space:nowrap!important}
+body.minikids-retail .mk16-card-rating .mk16-card-avg{font-weight:600;color:#3d4957}
+body.minikids-retail .mk16-card-rating .mk16-card-count{color:#657282}
+body.minikids-retail .ct-woo-card-rating{display:none!important}
+
+/* Single-product summary rating trigger */
+body.minikids-retail.single-product .mk16-single-rating{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:10px 0 14px;font-size:14px;color:#3d4957}
+body.minikids-retail.single-product .mk16-single-summary{font-weight:600;color:#172a41}
+body.minikids-retail.single-product .mk16-reviews-open{background:transparent!important;border:0!important;padding:4px 0!important;min-height:36px;color:#0756ad!important;font:600 14px/1.3 MKMontserrat,sans-serif!important;text-decoration:underline;cursor:pointer}
+body.minikids-retail.single-product .mk16-reviews-open:hover{color:#053d7a!important}
+
+/* Reviews Modal (<dialog>) */
+body.minikids-retail .mk16-reviews-dialog{box-sizing:border-box;width:min(760px,calc(100vw - 32px))!important;max-width:760px!important;max-height:calc(100dvh - 32px)!important;padding:28px 32px!important;border:0;border-radius:20px;background:#fff;color:#172a41;overflow-y:auto!important;overscroll-behavior:contain}
+body.minikids-retail .mk16-reviews-dialog:not([open]){display:none!important}
+body.minikids-retail .mk16-reviews-dialog[open]{display:block!important}
+body.minikids-retail .mk16-reviews-dialog::backdrop{background:#10284099}
+body.minikids-retail .mk16-reviews-dialog h2{font:700 28px/1.15 MKBarlow,'Barlow Condensed',sans-serif;color:#0756ad;margin:0 48px 16px 0!important;padding:0!important}
+body.minikids-retail .mk16-reviews-close{position:absolute!important;right:16px!important;top:16px!important;width:44px!important;height:44px!important;background:#0756ad!important;color:#fff!important}
+body.minikids-retail .mk16-reviews-overview{display:grid;grid-template-columns:160px minmax(0,1fr);gap:16px 24px;align-items:center;padding:16px;background:#f5f7fa;border-radius:12px;margin-bottom:14px;flex:0 0 auto}
+body.minikids-retail .mk16-overview-score{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center}
+body.minikids-retail .mk16-big-avg{font:800 38px/1 MKMontserrat,sans-serif;color:#172a41}
+body.minikids-retail .mk16-overview-count{font-size:12px;color:#536172}
+body.minikids-retail .mk16-overview-bars{display:flex;flex-direction:column;gap:6px}
+body.minikids-retail .mk16-bar-btn{display:grid;grid-template-columns:76px minmax(0,1fr) 28px;align-items:center;gap:10px;background:transparent!important;border:0!important;padding:2px 4px!important;min-height:24px!important;color:#172a41!important;font:500 12px/1.2 MKMontserrat,sans-serif!important;text-align:left;cursor:pointer;border-radius:4px}
+body.minikids-retail .mk16-bar-btn:hover,body.minikids-retail .mk16-bar-btn.is-active{background:#e6eef8!important}
+body.minikids-retail .mk16-bar-track{display:block;height:8px;background:#dce2e8;border-radius:999px;overflow:hidden}
+body.minikids-retail .mk16-bar-track>span{display:block;height:100%;background:#f5a623;border-radius:999px}
+body.minikids-retail .mk16-bar-num{text-align:right;color:#536172;font-weight:600}
+body.minikids-retail .mk16-filter-pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;flex:0 0 auto}
+body.minikids-retail .mk16-pill{background:#f3f5f7!important;color:#172a41!important;border:1px solid #d5dce4!important;border-radius:999px!important;padding:6px 14px!important;min-height:34px!important;font:600 12px/1.2 MKMontserrat,sans-serif!important;cursor:pointer}
+body.minikids-retail .mk16-pill.is-active{background:#0756ad!important;color:#fff!important;border-color:#0756ad!important}
+body.minikids-retail .mk16-reviews-list-wrap{max-height:60vh;overflow-y:auto;overscroll-behavior:contain;padding-right:4px;flex:1 1 auto;min-height:120px}
+body.minikids-retail .mk16-reviews-list{list-style:none!important;margin:0!important;padding:0!important;display:flex;flex-direction:column;gap:14px}
+body.minikids-retail .mk16-review-item{border-bottom:1px solid #e6ebf0;padding-bottom:14px}
+body.minikids-retail .mk16-review-item:last-child{border-bottom:0}
+body.minikids-retail .mk16-review-item[hidden]{display:none!important}
+body.minikids-retail .mk16-review-head{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+body.minikids-retail .mk16-avatar{width:38px;height:38px;border-radius:50%;background:#e6eef8;color:#0756ad;font:700 13px/1 MKMontserrat,sans-serif;display:grid;place-items:center;flex:0 0 38px}
+body.minikids-retail .mk16-review-meta{min-width:0;flex:1}
+body.minikids-retail .mk16-review-author-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+body.minikids-retail .mk16-author{font-size:13px;color:#172a41}
+body.minikids-retail .mk16-verified{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;color:#0b6b3a;background:#e8f6ee;padding:2px 8px;border-radius:999px}
+body.minikids-retail .mk16-review-rating-row{display:flex;align-items:center;gap:8px;margin-top:3px;font-size:12px;color:#657282}
+body.minikids-retail .mk16-review-body p{margin:0 0 6px;font-size:13px;line-height:1.55;color:#273649}
+body.minikids-retail .mk16-review-body p:last-child{margin-bottom:0}
+body.minikids-retail .mk16-load-more{display:block;width:100%;margin:12px 0 4px;background:#eef3f9!important;color:#0756ad!important;border:1px solid #c5d6ea!important;border-radius:8px!important;min-height:42px!important;font:700 13px MKMontserrat,sans-serif!important;cursor:pointer;flex:0 0 auto}
+body.minikids-retail .mk16-comment-pages{display:flex;gap:8px;justify-content:center;padding:8px 0;flex:0 0 auto}
+body.minikids-retail .mk16-comment-pages .page-numbers{display:inline-grid;place-items:center;min-width:34px;height:34px;border-radius:6px;border:1px solid #dce1e6;font-size:13px;text-decoration:none;color:#0756ad}
+body.minikids-retail .mk16-comment-pages .current{background:#0756ad;color:#fff;border-color:#0756ad}
+body.minikids-retail .mk16-review-form-section{margin-top:14px;padding-top:14px;border-top:1px solid #dce1e6;flex:0 0 auto}
+body.minikids-retail .mk16-review-form-section #reply-title{font:700 20px/1.2 MKBarlow,'Barlow Condensed',sans-serif;color:#0756ad;margin:0 0 10px}
+body.minikids-retail .mk16-review-form-section #review_form_wrapper{border:0!important;padding:0!important;box-shadow:none!important}
+body.minikids-retail .mk16-review-form-section textarea{min-height:90px!important}
+body.minikids-retail .mk16-review-form-section .form-submit #submit{background:#0756ad!important;color:#fff!important;min-height:44px;border-radius:8px;font-weight:700}
+body.minikids-retail .mk16-filter-empty,body.minikids-retail .mk16-no-reviews{font-size:14px;color:#536172;margin:16px 0}
+@media(max-width:639px){
+  body.minikids-retail .mk16-reviews-dialog{width:100vw!important;max-width:100vw!important;height:100dvh!important;max-height:100dvh!important;margin:auto 0 0 0!important;border-radius:20px 20px 0 0!important;padding:20px 16px max(16px,env(safe-area-inset-bottom))!important}
+  body.minikids-retail .mk16-reviews-overview{grid-template-columns:1fr;gap:12px}
+  body.minikids-retail .mk16-reviews-list-wrap{max-height:55vh}
+}
+
+/* Gallery frame & custom smooth hover zoom */
+body.minikids-retail .mk8-left>.woocommerce-product-gallery .flexy-view{width:100%!important;height:480px!important;max-height:480px!important;overflow:hidden!important;border-radius:16px!important;background:#fff!important}
+body.minikids-retail .mk8-left>.woocommerce-product-gallery .flexy-items{width:100%!important;max-width:none!important;height:100%!important;aspect-ratio:auto!important;margin-inline:0!important;padding:0!important;gap:0!important}
+body.minikids-retail .mk8-left>.woocommerce-product-gallery .flexy-items>.flexy-item{flex:0 0 100%!important;width:100%!important;max-width:100%!important;min-width:100%!important;height:100%!important;padding-inline:0!important;box-sizing:border-box!important}
+body.minikids-retail .mk8-left>.woocommerce-product-gallery .ct-product-gallery-container>figure.ct-media-container,
+body.minikids-retail .mk8-left>.woocommerce-product-gallery .flexy-items .ct-media-container{position:relative!important;width:100%!important;height:100%!important;max-height:480px!important;overflow:hidden!important;border-radius:16px!important;background:#fff!important;aspect-ratio:auto!important}
+body.minikids-retail .mk8-left>.woocommerce-product-gallery .ct-product-gallery-container>figure.ct-media-container{height:480px!important}
+body.minikids-retail .mk8-left>.woocommerce-product-gallery .flexy-items img,
+body.minikids-retail .mk8-left>.woocommerce-product-gallery .ct-product-gallery-container>figure.ct-media-container img{width:100%!important;height:100%!important;max-height:none!important;padding:12px!important;object-fit:contain!important;mix-blend-mode:normal!important;transition:transform .2s ease-out;transform:scale(1);transform-origin:50% 50%;will-change:transform}
+body.minikids-retail .mk8-left>.woocommerce-product-gallery .woocommerce-product-gallery__trigger{position:absolute!important;top:14px!important;right:14px!important;z-index:5!important;width:40px!important;height:40px!important;border-radius:50%!important;background:#fffffff0!important;color:#0756ad!important;display:grid!important;place-items:center!important;box-shadow:0 2px 10px #0b2b521f;font-size:0!important;text-decoration:none!important}
+body.minikids-retail .mk8-left>.woocommerce-product-gallery .woocommerce-product-gallery__trigger svg{width:18px;height:18px;display:block}
+@media(hover:hover) and (pointer:fine){
+  body.minikids-retail .mk8-left>.woocommerce-product-gallery .flexy-items .ct-media-container,
+  body.minikids-retail .mk8-left>.woocommerce-product-gallery .ct-product-gallery-container>figure.ct-media-container{cursor:zoom-in!important}
+  body.minikids-retail .mk8-left>.woocommerce-product-gallery .ct-media-container.is-zooming{cursor:zoom-out!important}
+  body.minikids-retail .mk8-left>.woocommerce-product-gallery .ct-media-container.is-zooming img{transition:transform .14s ease-out}
+}
+@media(max-width:899px){
+  body.minikids-retail .mk8-left>.woocommerce-product-gallery .flexy-view,
+  body.minikids-retail .mk8-left>.woocommerce-product-gallery .ct-product-gallery-container>figure.ct-media-container{height:min(480px,80vw)!important;max-height:min(480px,80vw)!important}
+}

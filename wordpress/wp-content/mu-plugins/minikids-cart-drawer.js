@@ -61,7 +61,7 @@
       'cursor': 'default',
       'transition': 'all 0.3s ease'
     });
-    $input.val('').attr('placeholder', '¡Gracias por suscribirte! 🎉').prop('disabled', true);
+    $input.val('').attr('placeholder', '¡Gracias por suscribirte!').prop('disabled', true);
   });
 
   // 7. Feedback interactivo para el formulario de contacto
@@ -71,7 +71,7 @@
     var $btn = $form.find('#contact-submit-btn');
     var $msg = $form.find('#contact-success-msg');
     
-    $btn.text('Enviado ✔').prop('disabled', true).css({
+    $btn.text('Enviado').prop('disabled', true).css({
       'background': '#e1f6ec',
       'color': '#148043',
       'cursor': 'default'

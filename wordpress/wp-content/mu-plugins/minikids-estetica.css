@@ -717,7 +717,7 @@ header.ct-header nav .menu-item a.ct-menu-link:hover {
 .woocommerce ul.products li.product span.onsale::before,
 .single-product .ct-product-gallery-container span.onsale::before,
 .woocommerce span.onsale::before {
-  content: "OFERTA" !important;
+  content: none !important;
   font-size: 11px !important;
   font-weight: 800 !important;
   letter-spacing: 0.05em !important;
@@ -1549,12 +1549,8 @@ header.ct-header nav .menu-item a.ct-menu-link:hover {
 }
 
 .woocommerce-noreviews::before {
-  content: "⭐ ⭐ ⭐ ⭐ ⭐" !important;
-  display: block !important;
-  font-size: 18px !important;
-  margin-bottom: 8px !important;
-  color: #f59e0b !important;
-  letter-spacing: 2px !important;
+  content: none !important;
+  display: none !important;
 }
 
 /* Formulario de Reseña */

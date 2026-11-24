@@ -29,7 +29,7 @@ add_action('admin_menu', function() {
         echo '<table class="form-table">';
         foreach(['name'=>'Razón social','ruc'=>'RUC','address'=>'Domicilio del establecimiento','email'=>'Correo del administrador y atención','phone'=>'Teléfono / WhatsApp'] as $key=>$label)echo '<tr><th><label for="mkpn-'.$key.'">'.esc_html($label).'</label></th><td><input class="regular-text" id="mkpn-'.$key.'" name="mkp_business['.$key.']" type="'.($key==='email'?'email':'text').'" value="'.esc_attr($data[$key]??'').'"></td></tr>';
         echo '<tr><th>Correo transaccional</th><td><input type="hidden" name="mkp_mail_enabled" value="no"><label><input type="checkbox" name="mkp_mail_enabled" value="yes" '.checked(get_option('mkp_mail_enabled'),'yes',false).'> Enviar correos de pedidos y reclamaciones mediante Brevo</label><p class="description">Al activarlo también se permite el envío desde esta instalación local. No activa pagos ni campañas.</p></td></tr></table>';
-        submit_button('Guardar datos');echo '</form><hr><h2>Conexión de correo</h2>';
+        do_settings_sections('mkpn-business');submit_button('Guardar datos');echo '</form><hr><h2>Conexión de correo</h2>';
         echo '<p>Credencial: <strong>'.(is_readable(mkpn_brevo_path())?'Configurada fuera de WordPress':'Pendiente').'</strong>. La clave no se muestra ni se guarda en opciones accesibles por MCP.</p>';
         echo '<form action="'.esc_url(admin_url('admin-post.php')).'" method="post"><input type="hidden" name="action" value="mkpn_save_key">';wp_nonce_field('mkpn_save_key');
         echo '<p><label>Nueva API key de Brevo <input type="password" name="brevo_key" class="regular-text" autocomplete="new-password" required></label></p>';

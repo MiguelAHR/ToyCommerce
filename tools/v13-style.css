@@ -1,0 +1,54 @@
+/* V13: common Woo card order in all contexts, including shortcode carousels. */
+body.minikids-retail ul.products li.product{display:flex!important;flex-direction:column!important;position:relative;min-width:0}
+body.minikids-retail ul.products li.product>figure{order:0!important}
+body.minikids-retail ul.products li.product>.mk5-card-brand{order:1!important;font-size:11px!important;margin:8px 0 6px!important}
+body.minikids-retail ul.products li.product>.woocommerce-loop-product__title{order:2!important}
+body.minikids-retail ul.products li.product>.price{order:3!important;flex-wrap:nowrap!important}
+body.minikids-retail ul.products li.product>.ct-woo-card-actions{order:4!important;display:block!important}
+body.minikids-retail ul.products li.product .mk12-card-buy{display:grid!important;grid-template-columns:minmax(0,45fr) minmax(0,55fr)!important;flex-wrap:nowrap!important;gap:6px!important;width:100%!important}
+body.minikids-retail ul.products li.product .mk12-card-buy>.mkr-quantity{display:grid!important;grid-template-columns:1fr 1fr 1fr!important;gap:0!important;height:40px!important;min-height:40px!important;box-sizing:border-box;width:100%!important;min-width:0!important}
+body.minikids-retail ul.products li.product .mk12-card-buy>.mkr-quantity :is(button,input){width:100%!important;min-width:0!important;max-width:100%!important;height:38px!important;min-height:38px!important;box-sizing:border-box;padding:0!important}
+body.minikids-retail ul.products li.product .mk12-card-buy>a.button{height:40px!important;min-height:40px!important;min-width:0!important;width:100%!important;box-sizing:border-box;padding:4px!important;gap:4px!important;background:#0756ad!important;line-height:1!important}
+body.minikids-retail ul.products li.product .mk12-card-buy>a.button:hover{background:#064487!important}
+body.minikids-retail ul.products li.product .mk12-card-buy>a.button svg{width:16px!important;height:16px!important}
+body.minikids-retail ul.products li.product span.onsale.mk12-tag{top:10px!important;right:8px!important;max-width:calc(100% - 16px);box-sizing:border-box}
+body.minikids-retail ul.products li.product span.onsale.mk12-tag::before,body.minikids-retail ul.products li.product span.onsale.mk12-tag::after{content:none!important;display:none!important}
+/* Only the native reviews wrapper establishes the two columns. */
+body.minikids-retail .mk12-comments .mk12-native-reviews #reviews{display:grid!important;grid-template-columns:minmax(0,45fr) minmax(0,55fr)!important;gap:40px!important;align-items:start!important}
+body.minikids-retail .mk12-comments #reviews>:is(#comments,#review_form_wrapper){display:block!important;float:none!important;width:100%!important;min-width:0!important;margin:0!important;padding:0!important;background:transparent!important;border:0!important}
+body.minikids-retail .mk12-comments #reviews>.clear{display:none!important}
+body.minikids-retail .mk12-comments .mk5-review-overview{margin:20px 0 8px!important;padding:0!important;background:transparent!important;border:0!important}
+body.minikids-retail .mk12-comments .mk5-review-overview h3{display:none}
+body.minikids-retail .mk12-comments .mk5-review-overview strong{font-size:36px;line-height:1.2;color:#172a41}
+body.minikids-retail .mk12-comments .woocommerce-noreviews{background:transparent!important;padding:12px 0!important;border:0!important;margin:0!important;color:#657282}
+body.minikids-retail .mk12-comments .mk13-zero-stars{font-size:24px;letter-spacing:3px;color:#657282;margin:8px 0}
+body.minikids-retail .mk12-comments #commentform{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:16px!important}
+body.minikids-retail .mk12-comments #commentform>*{grid-column:1/-1;min-width:0!important;width:auto!important;margin:0!important}
+body.minikids-retail .mk12-comments #commentform .comment-form-field-input-author{grid-column:1}
+body.minikids-retail .mk12-comments #commentform .comment-form-field-input-email{grid-column:2}
+body.minikids-retail .mk12-comments #commentform input:not([type=checkbox]):not([type=hidden]){height:44px!important;width:100%!important;box-sizing:border-box}
+body.minikids-retail .mk12-comments #commentform textarea{min-height:144px!important;width:100%!important;box-sizing:border-box}
+body.minikids-retail .mk12-comments #commentform .form-submit #submit,body.minikids-retail #mk12-auth .mk12-auth-submit{background:#0756ad!important;color:#fff!important}
+body.minikids-retail .mk12-comments #commentform .form-submit #submit:hover,body.minikids-retail #mk12-auth .mk12-auth-submit:hover{background:#064487!important}
+body.minikids-retail #mk12-auth{max-width:calc(100vw - 32px)!important;max-height:calc(100dvh - 32px);min-width:0;margin:auto}
+body.minikids-retail #mk12-auth h2{font-family:MKBarlow,'Barlow Condensed',sans-serif!important;margin-bottom:8px}
+body.minikids-retail #mk12-auth .mk13-auth-subtitle{margin:0 44px 24px 0;color:#657282;font-size:14px}
+body.minikids-retail #mk12-auth .mk12-account-fallback{display:block;text-align:center;border:1px solid #dce1e6;border-radius:8px;padding:10px;margin-top:12px;font-size:13px;text-decoration:none}
+/* Reset inherited Woo/table alignment for this same shipping component as the bag. */
+body.minikids-retail .mk5-native-cart .cart_totals table.shop_table .mk9-progress-row td .mk9-progress{display:grid!important;grid-template-columns:24px minmax(0,1fr)!important;gap:8px!important;align-items:center!important;height:64px!important;min-height:0!important;padding:8px 10px!important;box-sizing:border-box;text-align:left!important}
+body.minikids-retail .mk5-native-cart .cart_totals table.shop_table .mk9-progress>svg{display:block!important;position:static!important;width:24px!important;height:24px!important;margin:0!important}
+body.minikids-retail .mk5-native-cart .cart_totals table.shop_table .mk9-progress>div{display:block!important;min-width:0!important;text-align:left!important}
+body.minikids-retail .mk5-native-cart .cart_totals table.shop_table .mk9-progress p{display:block!important;text-align:left!important;line-height:1.3!important;font-size:11px!important;margin:0 0 6px!important}
+body.minikids-retail .mk5-native-cart .cart_totals table.shop_table .mk9-track{display:block!important;height:4px!important;width:100%!important}
+body.minikids-retail .mk5-native-cart .cart_totals .woocommerce-shipping-totals ul.woocommerce-shipping-methods{display:block!important;margin:0 0 6px!important}
+body.minikids-retail .mk5-native-cart .cart_totals .woocommerce-shipping-totals ul.woocommerce-shipping-methods>li{display:block!important;margin:4px 0!important}
+body.minikids-retail .mk5-native-cart .cart_totals .woocommerce-shipping-totals ul.woocommerce-shipping-methods label{display:flex!important;align-items:baseline;justify-content:space-between;gap:8px!important;text-align:left!important;width:100%;font-size:13px!important}
+body.minikids-retail .mk5-native-cart .cart_totals .woocommerce-shipping-totals .shipping_method[type=radio]+label{display:inline-flex!important;width:calc(100% - 28px)}
+body.minikids-retail .mk5-native-cart .cart_totals .woocommerce-shipping-destination{color:#657282;font-size:11px!important}
+body.minikids-retail .mk5-native-cart .cart_totals .woocommerce-shipping-destination::before{content:none!important}
+body.minikids-retail .mk5-native-cart td.product-remove{vertical-align:middle!important}
+body.minikids-retail .mk5-native-cart td.product-remove a.remove{display:inline-flex!important;align-items:center;justify-content:center;position:static!important;width:44px!important;height:44px!important;font-size:0!important;background:transparent!important}
+body.minikids-retail .mk5-native-cart td.product-remove a.remove::before,body.minikids-retail .mk5-native-cart td.product-remove a.remove::after{content:none!important;display:none!important;background:none!important;mask:none!important}
+body.minikids-retail .mk5-native-cart td.product-remove a.remove>svg{display:block!important;position:static!important;width:20px!important;height:20px!important;margin:0!important}
+@media(max-width:899px){body.minikids-retail .mk12-comments .mk12-native-reviews #reviews{grid-template-columns:minmax(0,1fr)!important;gap:28px!important}}
+@media(max-width:480px){body.minikids-retail .mk12-comments #commentform{grid-template-columns:minmax(0,1fr)!important}body.minikids-retail .mk12-comments #commentform .comment-form-field-input-email{grid-column:1}}

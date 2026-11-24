@@ -1,0 +1,67 @@
+# Local-only, dedicated Apache instance; never include the global XAMPP config.
+ServerRoot "C:/xampp/apache"
+Listen 127.0.0.1:8082
+Listen [::1]:8082
+ServerName localhost:8082
+PidFile "@PRIVATE@/apache-v5.pid"
+ErrorLog "@PRIVATE@/apache-v5-error.log"
+LogLevel warn
+LoadModule authz_core_module modules/mod_authz_core.so
+LoadModule authz_host_module modules/mod_authz_host.so
+LoadModule mime_module modules/mod_mime.so
+LoadModule dir_module modules/mod_dir.so
+LoadModule rewrite_module modules/mod_rewrite.so
+LoadModule headers_module modules/mod_headers.so
+LoadModule filter_module modules/mod_filter.so
+LoadModule deflate_module modules/mod_deflate.so
+LoadModule env_module modules/mod_env.so
+LoadFile "C:/xampp/php/php8ts.dll"
+LoadFile "C:/xampp/php/libpq.dll"
+LoadFile "C:/xampp/php/libsqlite3.dll"
+LoadModule php_module "C:/xampp/php/php8apache2_4.dll"
+PHPIniDir "C:/xampp/php"
+ThreadsPerChild 64
+MaxConnectionsPerChild 0
+ServerTokens Prod
+ServerSignature Off
+TraceEnable Off
+Timeout 60
+KeepAlive On
+KeepAliveTimeout 2
+TypesConfig "C:/xampp/apache/conf/mime.types"
+AddType image/webp .webp
+AddType font/woff2 .woff2
+AddOutputFilterByType DEFLATE text/html text/css application/javascript text/javascript application/json image/svg+xml
+DocumentRoot "@ROOT@"
+<Directory />
+    AllowOverride None
+    Require all denied
+</Directory>
+<Directory "@ROOT@/wordpress">
+    Require local
+    AllowOverride None
+    Options -Indexes -Includes -ExecCGI
+    DirectoryIndex index.php index.html
+    RewriteEngine On
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule \.(?:png|jpe?g|gif|webp|svg|woff2?|ttf|css|js)$ - [R=404,END,NC]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule . /wordpress/index.php [END]
+    <FilesMatch "\.php$">
+        SetHandler application/x-httpd-php
+    </FilesMatch>
+    <FilesMatch "\.(?:css|js|png|jpe?g|webp|gif|svg|ico|woff2?|ttf)$">
+        Header set Cache-Control "public, max-age=604800"
+    </FilesMatch>
+</Directory>
+# Match the restrictions of router-local.php, plus deny scripts in uploads.
+<LocationMatch "(?i)(?:^/(?!wordpress(?:/|$)|$)|/\.[^/]+|/wp-config(?:\.example|-sample)?\.php|/test_home\.html|\.bak(?:-|$)|/debug\.log$|/wp-content/qa-evidencia/|/wp-content/uploads/.*\.php(?:/|$))">
+    Require all denied
+</LocationMatch>
+<LocationMatch "^/wordpress/wp-content/(?:mu-plugins|uploads)/.*\.(?:php|json)$">
+    Require all denied
+</LocationMatch>
+RewriteEngine On
+RewriteRule ^/?$ /wordpress/ [R=302,L]

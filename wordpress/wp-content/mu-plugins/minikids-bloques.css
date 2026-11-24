@@ -130,7 +130,7 @@ header.ct-header [data-row] {
 /* Icono amigable antes del texto "Ver carrito" */
 .woocommerce a.added_to_cart::before,
 .added_to_cart.wc-forward::before {
-  content: "🛒" !important;
+  content: none !important;
   font-size: 13px !important;
 }
 

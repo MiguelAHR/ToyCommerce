@@ -96,8 +96,8 @@ add_action('blocksy:footer:before', function () {
     <footer class="minikids-site-footer">
         <div class="minikids-footer-inner">
             <div class="footer-col brand-col">
-                <img src="/wordpress/wp-content/uploads/minikids/logo-minikids.png" alt="Mini Kids" class="footer-logo-img"/>
-                <p class="footer-tagline">Jugar hoy,<br><span style="padding-left:14px">un mejor mañana</span> <span style="color:#ef233c">❤️</span></p>
+                <img src="<?php echo esc_url(function_exists('mka_webp_url') ? mka_webp_url(content_url('/uploads/minikids/logo-minikids.png')) : content_url('/uploads/minikids/logo-minikids.png')); ?>" alt="Mini Kids" class="footer-logo-img" width="1024" height="341" loading="lazy" decoding="async"/>
+                <p class="footer-tagline">Jugar hoy,<br><span style="padding-left:14px">un mejor mañana</span> <span style="color:#ef233c"></span></p>
             </div>
             <div class="footer-col">
                 <h3 class="footer-heading">Tienda</h3>
@@ -137,7 +137,7 @@ add_action('blocksy:footer:before', function () {
                     <button type="submit">Suscribirme</button>
                 </form>
                 <div class="footer-bottom-copy">
-                    <p>© 2026 Mini Kids. Todos los derechos reservados. <span style="color:#ef233c">❤️</span></p>
+                    <p>© 2026 Mini Kids. Todos los derechos reservados. <span style="color:#ef233c"></span></p>
                 </div>
             </div>
         </div>
@@ -162,7 +162,7 @@ add_action('woocommerce_single_product_summary', function () {
     ?>
     <div class="minikids-product-meta-badges">
         <?php if (!empty($edad)): ?>
-            <span class="meta-badge badge-age"><span class="badge-icon">👶</span> Edad: <?php echo esc_html($edad); ?></span>
+            <span class="meta-badge badge-age"><span class="badge-icon"></span> Edad: <?php echo esc_html($edad); ?></span>
         <?php endif; ?>
         <?php if ($product->is_in_stock()): ?>
             <span class="meta-badge badge-stock"><span class="badge-dot">●</span> <?php echo esc_html($stock_label); ?></span>
@@ -207,10 +207,10 @@ add_action('woocommerce_product_meta_end', function () {
 // 8.2 Pestañas personalizadas de la ficha de producto en español amigable
 add_filter('woocommerce_product_tabs', function ($tabs) {
     if (isset($tabs['description'])) {
-        $tabs['description']['title'] = '💡 Cuidados y Recomendaciones';
+        $tabs['description']['title'] = ' Cuidados y Recomendaciones';
     }
     if (isset($tabs['additional_information'])) {
-        $tabs['additional_information']['title'] = '📋 Especificaciones';
+        $tabs['additional_information']['title'] = ' Especificaciones';
     }
     if (isset($tabs['reviews'])) {
         $tabs['reviews']['title'] = '⭐ Opiniones de Padres';
@@ -281,36 +281,7 @@ add_action('after_setup_theme', function () {
     add_theme_support('wc-product-gallery-lightbox');
 }, 50);
 
-// 9. Barra de Envío Gratis en la página de Carrito (Next.js visual parity)
-add_filter('the_content', function ($content) {
-    if (is_cart() && in_the_loop() && is_main_query()) {
-        $threshold = 149;
-        $subtotal = 0;
-        if (function_exists('WC') && WC()->cart) {
-            $subtotal = (float) WC()->cart->get_subtotal();
-        }
-        $diff = max(0, $threshold - $subtotal);
-        $percent = min(100, $threshold > 0 ? ($subtotal / $threshold) * 100 : 100);
-        
-        $msg = ($subtotal >= $threshold) 
-            ? '<span>¡Felicidades! Tienes <strong>Envío Gratis</strong> a todo el Perú 🎉</span>' 
-            : '<span>Te faltan <strong>S/ ' . number_format($diff, 2) . '</strong> para tener <strong>Envío Gratis</strong> a todo el Perú</span>';
-            
-        $bar = '
-        <div class="minikids-shipping-progress-banner">
-            <div class="shipping-progress-header">
-                <span class="shipping-icon">🚚</span>
-                <span class="shipping-text">' . $msg . '</span>
-            </div>
-            <div class="shipping-progress-track">
-                <div class="shipping-progress-fill" style="width:' . $percent . '%;"></div>
-            </div>
-        </div>';
-        
-        return $bar . $content;
-    }
-    return $content;
-});
+// V9: compact free-shipping notice lives in cart totals and native mini-cart fragment.
 
 // 9.1 Inyección del Buscador y Selector de Categorías en el Catálogo de la Tienda
 add_filter('the_content', function ($content) {
@@ -320,7 +291,7 @@ add_filter('the_content', function ($content) {
           <div class="minikids-catalog-search-box">
             <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
             <input type="text" id="minikids-catalog-search" placeholder="Buscar juguetes por nombre o categoría..." autocomplete="off" />
-            <button type="button" id="minikids-search-clear" aria-label="Limpiar búsqueda" style="display:none;">✕</button>
+            <button type="button" id="minikids-search-clear" aria-label="Limpiar búsqueda" style="display:none;">Borrar</button>
           </div>
         </div>
         <div class="minikids-cat-pills-wrap">
@@ -333,13 +304,13 @@ add_filter('the_content', function ($content) {
             <button type="button" class="minikids-pill" data-cat="creatividad">Creatividad</button>
             <button type="button" class="minikids-pill" data-cat="juegos-familiares">Juegos en familia</button>
             <button type="button" class="minikids-pill" data-cat="tecnologia">Tecnología</button>
-            <button type="button" class="minikids-pill minikids-pill-reset" style="display:none;" title="Restablecer filtros">Limpiar filtro ✕</button>
+            <button type="button" class="minikids-pill minikids-pill-reset" style="display:none;" title="Restablecer filtros">Limpiar filtro</button>
           </div>
         </div>';
         
         $no_results = '
         <div class="minikids-no-results" style="display:none;">
-          <p class="no-results-emoji">🧸</p>
+          <p class="no-results-emoji"></p>
           <h3 class="no-results-title">No encontramos juguetes para esa búsqueda</h3>
           <p class="no-results-desc">Prueba con otra palabra clave o explora todas las categorías.</p>
           <button type="button" class="btn-reset-catalog">Ver todos los juguetes</button>
@@ -361,7 +332,7 @@ add_filter('the_content', function ($content) {
         $html = '
         <div class="minikids-contacto-hero">
             <h1 class="minikids-section-title">Hablemos con una <span style="color:var(--brand-blue)">sonrisa</span></h1>
-            <p class="minikids-hero-cursive">¡Estamos listos para ayudarte! ❤️</p>
+            <p class="minikids-hero-cursive">¡Estamos listos para ayudarte! </p>
             <p class="minikids-contacto-desc">¿Tienes dudas sobre algún juguete, tu pedido o quieres asesoría para elegir el regalo perfecto? Nuestro equipo te responde con todo el cariño.</p>
         </div>
 
@@ -406,7 +377,7 @@ add_filter('the_content', function ($content) {
 
                 <!-- Columna Derecha: Formulario Interactivo -->
                 <div class="minikids-contacto-form-card">
-                    <h2 class="form-card-title">Envíanos un mensaje 💌</h2>
+                    <h2 class="form-card-title">Envíanos un mensaje </h2>
                     <p class="form-card-desc">Completa tus datos y te responderemos en menos de 24 horas hábiles.</p>
                     
                     <form id="minikids-contact-form" class="contacto-form">
@@ -440,7 +411,7 @@ add_filter('the_content', function ($content) {
                         </div>
 
                         <div id="contact-success-msg" style="display:none;" class="contact-feedback-success">
-                            ¡Gracias por escribirnos! 💌 Hemos recibido tu mensaje y nos pondremos en contacto muy pronto.
+                            ¡Gracias por escribirnos!  Hemos recibido tu mensaje y nos pondremos en contacto muy pronto.
                         </div>
                     </form>
                 </div>
@@ -457,10 +428,10 @@ add_action('woocommerce_before_account_navigation', function() {
     $name = $current_user->display_name ? $current_user->display_name : 'Amigo de MiniKids';
     ?>
     <div class="minikids-account-welcome-banner">
-        <div class="welcome-badge-icon">🎈</div>
+        <div class="welcome-badge-icon"></div>
         <div class="welcome-text-wrap">
             <h2 class="welcome-name">¡Hola, <?php echo esc_html($name); ?>!</h2>
-            <p class="welcome-tagline">Bienvenido a tu espacio personal en MiniKids · <em>Jugar hoy, un mejor mañana</em> ❤️</p>
+            <p class="welcome-tagline">Bienvenido a tu espacio personal en MiniKids · <em>Jugar hoy, un mejor mañana</em> </p>
         </div>
     </div>
     <?php
@@ -469,7 +440,7 @@ add_action('woocommerce_before_account_navigation', function() {
 add_action('woocommerce_before_customer_login_form', function() {
     ?>
     <div class="minikids-account-auth-header">
-        <div class="auth-icon">🧸</div>
+        <div class="auth-icon"></div>
         <h2 class="auth-title">Accede a tu cuenta MiniKids</h2>
         <p class="auth-subtitle">Inicia sesión o regístrate para revisar el estado de tus compras, cupones y direcciones de envío.</p>
     </div>
@@ -488,30 +459,18 @@ add_action('wp_footer', function () {
         <aside class="minikids-cart-drawer-panel" role="dialog" aria-modal="true" aria-label="Carrito de compras">
             <header class="minikids-cart-drawer-header">
                 <h2 class="drawer-title">
-                    Tu carrito <span class="cart-count-badge">(<?php echo esc_html($count); ?>)</span>
+                    Mi bolsa <span class="cart-count-badge">(<?php echo esc_html($count); ?>)</span>
                 </h2>
                 <button type="button" class="minikids-cart-close" aria-label="Cerrar carrito">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                 </button>
             </header>
 
-            <div class="minikids-cart-drawer-shipping">
-                <p class="shipping-notice-text">
-                    <span class="shipping-icon">🚚</span> Envíos gratis a todo el Perú en compras desde S/ 149
-                </p>
-            </div>
-
             <div class="minikids-cart-drawer-body">
                 <div class="widget_shopping_cart_content">
                     <?php if (function_exists('woocommerce_mini_cart')) { woocommerce_mini_cart(); } ?>
                 </div>
             </div>
-
-            <footer class="minikids-cart-drawer-footer">
-                <a href="<?php echo esc_url( function_exists('wc_get_page_permalink') ? wc_get_page_permalink('cart') : '/wordpress/cart/' ); ?>" class="drawer-viewcart-btn">Ver carrito</a>
-                <a href="<?php echo esc_url( function_exists('wc_get_page_permalink') ? wc_get_page_permalink('checkout') : '/wordpress/checkout/' ); ?>" class="drawer-checkout-btn">Finalizar compra &gt;</a>
-                <button type="button" class="drawer-continue-btn">Seguir comprando</button>
-            </footer>
         </aside>
     </div>
     <?php
@@ -533,8 +492,8 @@ add_action('woocommerce_init', function() {
                 'required'                   => true,
                 'attributes'                 => array(
                     'autocomplete' => 'tel',
-                    'placeholder'  => 'Ej. 991 117 380',
-                    'type'         => 'tel',
+                    
+                    
                     'aria-label'   => 'Número de celular',
                 ),
                 'validate_callback'          => function($value, $field) {
@@ -649,7 +608,7 @@ add_action('wp_footer', function() {
            rel="noopener noreferrer" 
            class="minikids-floating-whatsapp-btn" 
            aria-label="Atención por WhatsApp al +51 991 117 308">
-            <span class="whatsapp-floating-tooltip">💬 ¿Dudas? ¡Escríbenos por WhatsApp!</span>
+            <span class="whatsapp-floating-tooltip"> ¿Dudas? ¡Escríbenos por WhatsApp!</span>
             <div class="whatsapp-floating-icon">
                 <svg width="34" height="34" viewBox="0 0 24 24" fill="white">
                     <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2z"/>
@@ -708,123 +667,7 @@ add_filter('the_content', function($content) {
     return $content;
 }, 99);
 
-// 14. Personalización del Correo de Resumen de Compra de WooCommerce (Español & Branding MiniKids)
-add_filter('woocommerce_email_subject_customer_processing_order', function($subject, $order) {
-    if (!$order) return $subject;
-    return '¡Tu pedido #' . $order->get_order_number() . ' en MiniKids Perú ha sido recibido! 🎉';
-}, 20, 2);
-
-add_filter('woocommerce_email_heading_customer_processing_order', function($heading, $order) {
-    return '¡Gracias por tu compra en MiniKids! ❤️';
-}, 20, 2);
-
-add_filter('woocommerce_email_subject_customer_on_hold_order', function($subject, $order) {
-    if (!$order) return $subject;
-    return '¡Tu pedido #' . $order->get_order_number() . ' en MiniKids Perú está registrado! 🧸';
-}, 20, 2);
-
-add_filter('woocommerce_email_heading_customer_on_hold_order', function($heading, $order) {
-    return '¡Hemos recibido tu pedido en MiniKids!';
-}, 20, 2);
-
-add_filter('woocommerce_email_subject_new_order', function($subject, $order) {
-    if (!$order) return $subject;
-    return '🔔 [MiniKids Admin] ¡Nuevo pedido recibido! #' . $order->get_order_number() . ' 🎉';
-}, 20, 2);
-
-add_filter('woocommerce_email_heading_new_order', function($heading, $order) {
-    return '🔔 Nuevo Pedido en MiniKids Perú';
-}, 20, 2);
-
-add_filter('woocommerce_mail_content', function($content) {
-    $replacements = array(
-        'Order summary' => 'Resumen de tu compra 🧸',
-        'Product' => 'Juguete / Producto',
-        'Quantity' => 'Cant.',
-        'Price' => 'Precio',
-        'Payment method:' => 'Método de pago:',
-        'Billing address' => 'Datos de contacto',
-        'Shipping address' => 'Dirección de entrega en Perú',
-        'Additional information' => 'Información de despacho',
-        'Just to let you know &mdash; we’ve received your order, and it is now being processed.' => '¡Te confirmamos que hemos recibido tu pedido con éxito y ya lo estamos preparando con todo el cariño! ❤️',
-        'Just to let you know &#8212; we&#8217;ve received your order, and it is now being processed.' => '¡Te confirmamos que hemos recibido tu pedido con éxito y ya lo estamos preparando con todo el cariño! ❤️',
-        "Just to let you know — we've received your order, and it is now being processed." => '¡Te confirmamos que hemos recibido tu pedido con éxito y ya lo estamos preparando con todo el cariño! ❤️',
-        'Just to let you know — we’ve received your order, and it is now being processed.' => '¡Te confirmamos que hemos recibido tu pedido con éxito y ya lo estamos preparando con todo el cariño! ❤️',
-        'Hi ' => '¡Hola ',
-        "Here’s a reminder of what you’ve ordered:" => 'A continuación te compartimos el detalle de tu compra:',
-        "Here&#8217;s a reminder of what you&#8217;ve ordered:" => 'A continuación te compartimos el detalle de tu compra:',
-        'Order #' => 'Pedido #',
-        'Shipping:' => 'Envío:',
-        'Total:' => 'Total de compra:',
-        "Thanks again! If you need any help with your order, please contact us at ." => '¡Muchas gracias por elegir MiniKids Perú! ¿Dudas o seguimiento? Escríbenos a nuestro WhatsApp oficial: <strong>+51 991 117 308</strong>.',
-        "Thanks again! If you need any help with your order, please contact us at" => '¡Muchas gracias por elegir MiniKids Perú! ¿Dudas o seguimiento? Escríbenos a nuestro WhatsApp oficial: <strong>+51 991 117 308</strong>.'
-    );
-    return str_replace(array_keys($replacements), array_values($replacements), $content);
-}, 20);
-
-// Inyección de aviso No-Reply al pie del correo del cliente
-add_action('woocommerce_email_footer', function($email) {
-    ?>
-    <div style="margin:20px 0 10px 0;padding:12px 16px;background:#fef3c7;border:1px solid #fde68a;border-radius:10px;text-align:center;font-size:12px;color:#92400e;line-height:1.5;">
-        ✉️ <strong>Buzón automático no-reply:</strong> Este correo ha sido generado de forma automática. Por favor no respondas a esta dirección ya que no recibe mensajes entrantes. Para atención y consultas sobre tu pedido, escríbenos a nuestro <a href="https://wa.me/51991117308" target="_blank" style="color:#1a73e8;font-weight:700;text-decoration:underline;">WhatsApp Oficial (+51 991 117 308)</a>.
-    </div>
-    <?php
-}, 5);
-
-add_filter('woocommerce_email_styles', function($css) {
-    $custom_css = '
-    #template_header_image {
-        text-align: center !important;
-        padding: 24px 0 12px 0 !important;
-    }
-    #template_header_image img {
-        max-height: 55px !important;
-        width: auto !important;
-        margin: 0 auto !important;
-        display: inline-block !important;
-    }
-    #header_wrapper {
-        background-color: #ffd60a !important;
-        border-bottom: 3px solid #ffc300 !important;
-        padding: 30px 20px !important;
-        text-align: center !important;
-    }
-    #header_wrapper h1 {
-        color: #1f2937 !important;
-        font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-        font-size: 26px !important;
-        font-weight: 800 !important;
-        margin: 0 !important;
-    }
-    #body_content {
-        font-family: "Nunito Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-        color: #374151 !important;
-        font-size: 14.5px !important;
-    }
-    .order_item td {
-        font-size: 14px !important;
-        border-bottom: 1px solid #f3f4f6 !important;
-    }
-    #template_footer {
-        background-color: #f8fafc !important;
-        border-top: 1px solid #e5e7eb !important;
-        text-align: center !important;
-        padding: 20px !important;
-        font-size: 12.5px !important;
-        color: #6b7280 !important;
-    }
-    ';
-    return $css . $custom_css;
-});
-
-// Disparo inmediato garantizado del correo al cliente al completar el checkout
-add_action('woocommerce_checkout_order_processed', function($order_id, $posted_data, $order) {
-    if (!$order) return;
-    $mailer = WC()->mailer();
-    if (isset($mailer->emails['WC_Email_Customer_Processing_Order'])) {
-        $mailer->emails['WC_Email_Customer_Processing_Order']->trigger($order_id, $order);
-    }
-}, 20, 3);
+// V8: native Woo mail settings and status-triggered email hooks; styles in commerce-v8.
 
 // 15. Sistema de Registro y Visualización de Correos Enviados (Email Logger & Web Viewer)
 add_filter('wp_mail', function($args) {
@@ -863,13 +706,9 @@ add_action('wp_mail_failed', function($wp_error) {
 });
 
 // Filtro global para remitente No-Reply (protege la privacidad del correo personal del administrador)
-add_filter('wp_mail_from', function($from) {
-    return 'noreply@minikids.pe';
-}, 99);
 
-add_filter('wp_mail_from_name', function($name) {
-    return 'MiniKids Perú (No Responder)';
-}, 99);
+
+
 
 // Soporte SMTP nativo con remitente No-Reply y Reply-To restringido
 add_action('phpmailer_init', function($phpmailer) {
@@ -898,7 +737,7 @@ add_action('admin_menu', function() {
     add_submenu_page(
         'woocommerce',
         'Bandeja de Correos MiniKids',
-        '📨 Correos Enviados',
+        ' Correos Enviados',
         'manage_woocommerce',
         'minikids-correos',
         'minikids_render_email_logs_page'
@@ -929,9 +768,9 @@ function minikids_render_email_logs_page() {
             $headers = array('Content-Type: text/html; charset=UTF-8');
             $sent = wp_mail($l['to'], $l['subject'], $l['message'], $headers);
             if ($sent) {
-                $msg = '<div class="notice notice-success is-dismissible"><p><strong>✓ Correo reenviado con éxito a ' . esc_html($l['to']) . '! Revisa la bandeja de entrada o spam.</strong></p></div>';
+                $msg = '<div class="notice notice-success is-dismissible"><p><strong> Correo reenviado con éxito a ' . esc_html($l['to']) . '! Revisa la bandeja de entrada o spam.</strong></p></div>';
             } else {
-                $msg = '<div class="notice notice-error is-dismissible"><p><strong>❌ Error al reenviar a ' . esc_html($l['to']) . '. Activa SMTP e ingresa tu contraseña de aplicación de Gmail a la derecha.</strong></p></div>';
+                $msg = '<div class="notice notice-error is-dismissible"><p><strong> Error al reenviar a ' . esc_html($l['to']) . '. Activa SMTP e ingresa tu contraseña de aplicación de Gmail a la derecha.</strong></p></div>';
             }
         }
     }
@@ -949,7 +788,7 @@ function minikids_render_email_logs_page() {
                 $count++;
             }
         }
-        $msg = '<div class="notice notice-success is-dismissible"><p><strong>✓ Se procesó el reenvío de ' . $count . ' pedidos recientes a sus correos correspondientes.</strong></p></div>';
+        $msg = '<div class="notice notice-success is-dismissible"><p><strong> Se procesó el reenvío de ' . $count . ' pedidos recientes a sus correos correspondientes.</strong></p></div>';
     }
 
     // Procesar guardado de ajustes SMTP
@@ -965,7 +804,7 @@ function minikids_render_email_logs_page() {
         }
         update_option('minikids_smtp_from_email', sanitize_email($_POST['smtp_from_email']));
         update_option('minikids_smtp_from_name', sanitize_text_field($_POST['smtp_from_name']));
-        $msg = '<div class="notice notice-success is-dismissible"><p><strong>✓ Configuración SMTP guardada correctamente.</strong></p></div>';
+        $msg = '<div class="notice notice-success is-dismissible"><p><strong> Configuración SMTP guardada correctamente.</strong></p></div>';
     }
 
     // Procesar prueba de correo
@@ -974,13 +813,13 @@ function minikids_render_email_logs_page() {
         if (!empty($test_to)) {
             $sent = wp_mail(
                 $test_to,
-                '🎉 Prueba de correo exitosa · MiniKids Perú',
+                ' Prueba de correo exitosa · MiniKids Perú',
                 '<h2>¡Hola desde MiniKids Perú!</h2><p>Este es un correo de prueba para verificar que el envío SMTP está funcionando al 100%.</p><p>Los clientes recibirán el resumen de sus compras con su lista de juguetes, precios y detalles de entrega.</p>'
             );
             if ($sent) {
-                $msg = '<div class="notice notice-success is-dismissible"><p><strong>✓ ¡Correo de prueba enviado con éxito a ' . esc_html($test_to) . '! Revisa tu bandeja de entrada o spam.</strong></p></div>';
+                $msg = '<div class="notice notice-success is-dismissible"><p><strong> ¡Correo de prueba enviado con éxito a ' . esc_html($test_to) . '! Revisa tu bandeja de entrada o spam.</strong></p></div>';
             } else {
-                $msg = '<div class="notice notice-error is-dismissible"><p><strong>❌ No se pudo enviar el correo de prueba. Verifica tu usuario, contraseña de aplicación o puerto SMTP.</strong></p></div>';
+                $msg = '<div class="notice notice-error is-dismissible"><p><strong> No se pudo enviar el correo de prueba. Verifica tu usuario, contraseña de aplicación o puerto SMTP.</strong></p></div>';
             }
         }
     }
@@ -997,14 +836,14 @@ function minikids_render_email_logs_page() {
     $smtp_from_name  = get_option('minikids_smtp_from_name', 'MiniKids Perú');
     ?>
     <div class="wrap">
-        <h1 style="display:flex;align-items:center;gap:10px;">📨 Bandeja de Correos y Resúmenes de Compra · MiniKids</h1>
+        <h1 style="display:flex;align-items:center;gap:10px;"> Bandeja de Correos y Resúmenes de Compra · MiniKids</h1>
         <p>Aquí puedes auditar y previsualizar exactamente los correos de resumen de compra generados por WooCommerce para cada cliente, y configurar el envío real por SMTP.</p>
         <?php echo $msg; ?>
 
         <div style="display:grid;grid-template-columns:1.8fr 1.2fr;gap:24px;margin-top:20px;">
             <!-- Columna Izquierda: Historial de Correos Generados -->
             <div style="background:#fff;border-radius:12px;padding:24px;box-shadow:0 4px 14px rgba(0,0,0,0.06);border:1px solid #e5e7eb;">
-                <h2 style="margin-top:0;font-size:18px;">📬 Registro de Correos Generados para Clientes</h2>
+                <h2 style="margin-top:0;font-size:18px;"> Registro de Correos Generados para Clientes</h2>
                 <?php if (empty($logs)): ?>
                     <p style="color:#6b7280;font-style:italic;">Aún no se han registrado correos. Realiza una compra en el Checkout para ver el correo generado aquí.</p>
                 <?php else: ?>
@@ -1026,14 +865,14 @@ function minikids_render_email_logs_page() {
                                     <td><?php echo esc_html($l['subject']); ?></td>
                                     <td>
                                         <?php if ($l['status'] === 'Enviado'): ?>
-                                            <span style="color:#10b981;font-weight:700;">✓ Enviado</span>
+                                            <span style="color:#10b981;font-weight:700;"> Enviado</span>
                                         <?php else: ?>
                                             <span style="color:#f59e0b;font-weight:700;" title="<?php echo esc_attr($l['error']); ?>">Registrado (HTML)</span>
                                         <?php endif; ?>
                                     </td>
                                     <td style="white-space:nowrap;display:flex;gap:6px;">
-                                        <a href="<?php echo admin_url('admin.php?page=minikids-correos&view_mail=' . urlencode($l['id'])); ?>" target="_blank" class="button button-small button-primary">👁️ Ver</a>
-                                        <a href="<?php echo wp_nonce_url(admin_url('admin.php?page=minikids-correos&resend_mail=' . urlencode($l['id'])), 'minikids_resend_mail'); ?>" class="button button-small">🚀 Reenviar</a>
+                                        <a href="<?php echo admin_url('admin.php?page=minikids-correos&view_mail=' . urlencode($l['id'])); ?>" target="_blank" class="button button-small button-primary"> Ver</a>
+                                        <a href="<?php echo wp_nonce_url(admin_url('admin.php?page=minikids-correos&resend_mail=' . urlencode($l['id'])), 'minikids_resend_mail'); ?>" class="button button-small"> Reenviar</a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -1044,7 +883,7 @@ function minikids_render_email_logs_page() {
 
             <!-- Columna Derecha: Configuración SMTP para Envío a Gmail / Outlook -->
             <div style="background:#fff;border-radius:12px;padding:24px;box-shadow:0 4px 14px rgba(0,0,0,0.06);border:1px solid #e5e7eb;">
-                <h2 style="margin-top:0;font-size:18px;">⚙️ Configuración de Envío Real (SMTP)</h2>
+                <h2 style="margin-top:0;font-size:18px;"> Configuración de Envío Real (SMTP)</h2>
                 <p style="font-size:13px;color:#4b5563;line-height:1.5;">Para que el correo <strong>llegue en tiempo real a la bandeja de entrada</strong> del cliente desde tu XAMPP local, activa SMTP e ingresa tu correo y contraseña de aplicación de Gmail o tu servidor SMTP.</p>
 
                 <form method="post" action="">
@@ -1091,13 +930,13 @@ function minikids_render_email_logs_page() {
                         </tr>
                     </table>
                     <p class="submit" style="padding-bottom:0;">
-                        <button type="submit" name="save_smtp_settings" class="button button-primary">💾 Guardar Configuración SMTP</button>
+                        <button type="submit" name="save_smtp_settings" class="button button-primary"> Guardar Configuración SMTP</button>
                     </p>
                 </form>
 
                 <hr style="margin:20px 0;border:0;border-top:1px solid #e5e7eb;" />
 
-                <h3 style="font-size:15px;margin:0 0 10px 0;">🚀 Enviar Correo de Prueba</h3>
+                <h3 style="font-size:15px;margin:0 0 10px 0;"> Enviar Correo de Prueba</h3>
                 <form method="post" action="" style="display:flex;gap:10px;">
                     <?php wp_nonce_field('minikids_smtp_nonce'); ?>
                     <input type="email" name="test_email_to" value="<?php echo esc_attr($smtp_user); ?>" placeholder="correo@ejemplo.com" required style="flex-grow:1;" />
